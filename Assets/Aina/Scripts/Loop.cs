@@ -9,5 +9,10 @@ public class Loop : MonoBehaviour
     void Update()
     {
         transform.position -= new Vector3(Time.deltaTime * speed, 0, 0);
+
+        if (transform.position.x < -15)
+        {
+            Destroy(gameObject);
+        }
     }
 }
