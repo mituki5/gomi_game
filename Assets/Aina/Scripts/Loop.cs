@@ -9,10 +9,5 @@ public class Loop : MonoBehaviour
     void Update()
     {
         transform.position -= new Vector3(Time.deltaTime * speed, 0, 0);
-
-        if (transform.position.x <= -10f)
-        {
-            transform.position = new Vector3(14, 4, 0);
-        }
     }
 }
