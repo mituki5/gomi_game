@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5976641077494698037}
   - component: {fileID: 2660466201161217736}
   - component: {fileID: 5897312954479939860}
-  - component: {fileID: 2082039544169654941}
+  - component: {fileID: 4086287674796912791}
   m_Layer: 0
-  m_Name: moerugomi_box
+  m_Name: moerugomi_box (2)
   m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4043949655087102159}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10, y: 5.5, z: 5}
+  m_LocalPosition: {x: 20, y: 5.5, z: 5}
   m_LocalScale: {x: 2, y: 2, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -126,7 +126,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!65 &2082039544169654941
+--- !u!65 &4086287674796912791
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,5 +145,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.1847582, y: 0.36640692, z: 0.2}
-  m_Center: {x: -0.0034804344, y: 1.0841262, z: 0}
+  m_Size: {x: 2.2364874, y: 0.38199472, z: 0.2}
+  m_Center: {x: -0.015851498, y: 1.0626447, z: 0}

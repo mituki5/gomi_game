@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        time = 2.0f; // Startが呼ばれた時、タイマーを1秒に設定
+        time = 3.5f; // Startが呼ばれた時、タイマーを1秒に設定
     }
 
     void Update()
@@ -18,9 +18,9 @@ public class GameManager : MonoBehaviour
         time -= Time.deltaTime; // タイマーを減少させる
         if (time <= 0.0f) // タイマーが0以下になったら
         {
-            time = 2.0f; // タイマーをリセット
+            time = 3.5f; // タイマーをリセット
             number = Random.Range(0, Prefabs.Length); // プレファブ配列からランダムにインデックスを選ぶ
-            Instantiate(Prefabs[number], new Vector3(12, 4, 0), Quaternion.identity); // 選ばれたプレファブを生成
+            Instantiate(Prefabs[number], new Vector3(20, 5.5f, 5), Quaternion.identity); // 選ばれたプレファブを生成
         }
     }
 }
