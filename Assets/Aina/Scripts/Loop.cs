@@ -10,7 +10,7 @@ public class Loop : MonoBehaviour
     {
         transform.position -= new Vector3(Time.deltaTime * speed, 0, 0);
 
-        if (transform.position.x < -15)
+        if (transform.position.x < -20)
         {
             Destroy(gameObject);
         }
