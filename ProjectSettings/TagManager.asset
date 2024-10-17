@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Box
+  - moerugomi
+  - moerugomi_box
+  - plasticgomi_box
   layers:
   - Default
   - TransparentFX
