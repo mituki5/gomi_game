@@ -9,12 +9,13 @@ public class NewBehaviourScript : MonoBehaviour
     public float Power = 0;
     public GameObject Trash_box;
     public GameObject Player;
-    public float time;
+    public float time = 0;
     Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
     }
 
     
@@ -23,15 +24,15 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            Power += 0.1f;
+            Power += 1f;
             Debug.Log(Power + "ëùÇ¶ÇƒÇÈ");
 
         }
         if (Input.GetMouseButtonUp(0))
         {
             Debug.Log(Power + "ï˙ÇµÇΩ");
-            //Throw();
-            Gauge();
+            Throw();
+            //Gauge();
             
             Power = 0;
 
@@ -44,25 +45,28 @@ public class NewBehaviourScript : MonoBehaviour
     public void Throw()
     {
         //óÕÇÃï˚å¸
-        Vector3 forceDirection = new Vector3(0, Power, Power);
+        Vector3 pos = Trash_box.transform.position * Power - Player.transform.position;
+        Vector3 forceDirection = new Vector3(0, Power * 9.8f / 1000 , Power /1000);
+        if(pos.z <= forceDirection.z)
+        {
+            forceDirection = new Vector3(0, Power * 9.8f * 3, Power);
+        }
         float forceMagnitude = 10.0f;
         Vector3 force = forceMagnitude * forceDirection;
-        rb = GetComponent<Rigidbody>();
-        rb.useGravity = false;
         rb.AddForce(force, ForceMode.Impulse);
     }
 
 
     public void Gauge()
-    {
+    {   
         Vector3 youpos = Trash_box.transform.position;
         Vector3 mypos = Player.transform.position;
         Vector3 V;
-        time = Power / mypos.z;
-        V.z = mypos.z * time;
-        V.y = time *2 + mypos.y * time;
-        rb = GetComponent<Rigidbody>();
-        rb.AddForce(0, V.y, V.z);
-
+        //time = youpos.z / mypos.z;
+        V.z = Mathf.Cos(Mathf.Deg2Rad * youpos.z) * Power * time;
+        V.y = (float)((Mathf.Sign(Mathf.Deg2Rad * youpos.y) * Power) * time - (1 / 2) * 9.8 * Mathf.Pow(time, 2));
+        gameObject.transform.position = new Vector3(0, -V.z, V.y);        rb.GetComponent<Rigidbody>();
+        //rb.useGravity = false;
+        //rb.AddForce(0, V.y, V.z);
     }
 }
