@@ -9,6 +9,9 @@ public class kinds : MonoBehaviour
     public GameObject nextObject;
     public string _name;
 
+    public GameObject bottelObject;
+    public GameObject capObject;
+
     private void Update()
     {
         //投げるものの名前を取得
@@ -37,12 +40,14 @@ public class kinds : MonoBehaviour
     /// 分解する関数
     /// </summary>
     public void Separation()
-    { 
-        
+    {
+        Destroy(firstObject);
+        Instantiate(bottelObject, firstObject.transform);
+        Instantiate(capObject, nextObject.transform);
     }
 
     /// <summary>
-    /// 
+    /// クリックによる分解をする関数
     /// </summary>
     /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
@@ -50,6 +55,10 @@ public class kinds : MonoBehaviour
         if (firstObject.name == "Plastic_bottle")
         {
             Separation();
+        }
+        else
+        {
+
         }
     }
 }
