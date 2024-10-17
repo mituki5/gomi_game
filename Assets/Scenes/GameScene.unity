@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLimit: 30
-  timerText: {fileID: 396145947}
+  timeText: {fileID: 396145947}
 --- !u!4 &167474526
 Transform:
   m_ObjectHideFlags: 0
@@ -299,6 +299,10 @@ PrefabInstance:
     - target: {fileID: 4043949655087102159, guid: 269f8ff3a79a81848bda665ccbeae401, type: 3}
       propertyPath: m_Name
       value: moerugomi_box (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043949655087102159, guid: 269f8ff3a79a81848bda665ccbeae401, type: 3}
+      propertyPath: m_TagString
+      value: moerugomi_box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -551,6 +555,7 @@ GameObject:
   - component: {fileID: 865628082}
   - component: {fileID: 865628084}
   - component: {fileID: 865628083}
+  - component: {fileID: 865628086}
   m_Layer: 5
   m_Name: ScreText
   m_TagString: Untagged
@@ -619,6 +624,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865628081}
   m_CullTransparentMesh: 1
+--- !u!114 &865628086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865628081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2520f59a27eb0f4bb5592240bad8ce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScoreText: {fileID: 865628083}
+  score: 0
 --- !u!1 &878756081
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,8 +835,8 @@ GameObject:
   - component: {fileID: 1178732515}
   - component: {fileID: 1178732516}
   m_Layer: 0
-  m_Name: Player
-  m_TagString: Untagged
+  m_Name: Gomi
+  m_TagString: moerugomi
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -835,8 +854,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Power: 0
-  ThowKey: 0
-  timer: 0
+  Trash_box: {fileID: 0}
+  Player: {fileID: 0}
+  time: 0
 --- !u!65 &1178732511
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -917,7 +937,7 @@ Transform:
   m_GameObject: {fileID: 1178732509}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalPosition: {x: -11.59, y: 10.06, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -962,6 +982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdbe87a7e1581ad4c8688d6879723c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScoreText: {fileID: 865628083}
 --- !u!1 &1264363194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,6 +1058,170 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264363194}
   m_CullTransparentMesh: 1
+--- !u!1 &1277479063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1277479070}
+  - component: {fileID: 1277479069}
+  - component: {fileID: 1277479068}
+  - component: {fileID: 1277479067}
+  - component: {fileID: 1277479066}
+  - component: {fileID: 1277479065}
+  - component: {fileID: 1277479064}
+  m_Layer: 0
+  m_Name: Gomi (2)
+  m_TagString: moerugomi
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1277479064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277479063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e0f84e485203e42baf9872e508843f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScoreText: {fileID: 865628083}
+--- !u!54 &1277479065
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277479063}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1277479066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277479063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb93b783df97ad244a5f7081302b76d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Power: 0
+  Trash_box: {fileID: 0}
+  Player: {fileID: 0}
+  time: 0
+--- !u!65 &1277479067
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277479063}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1277479068
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277479063}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1277479069
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277479063}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1277479070
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277479063}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.35, y: 16.61, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1392134269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,6 +1739,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: plasticgomi_box
       objectReference: {fileID: 0}
+    - target: {fileID: 4574355636318427306, guid: 5de00b383b8f4c74e8a7d91d2903176f, type: 3}
+      propertyPath: m_TagString
+      value: plasticgomi_box
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1611,6 +1800,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: moerugomi_box
       objectReference: {fileID: 0}
+    - target: {fileID: 4043949655087102159, guid: 926ffb965bc235f4197e5bb31bae5246, type: 3}
+      propertyPath: m_TagString
+      value: moerugomi_box
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1631,5 +1824,6 @@ SceneRoots:
   - {fileID: 878756086}
   - {fileID: 1072840288}
   - {fileID: 1178732514}
+  - {fileID: 1277479070}
   - {fileID: 1615113459}
   - {fileID: 167474526}
