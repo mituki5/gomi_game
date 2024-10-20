@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+//í—Ş‚Æ•ª‰ğ
 public class kinds : MonoBehaviour
 {
     public GameObject firstObject;
     public GameObject nextObject;
-    public string _name;
+    [SerializeField]@public string _name;
 
     public GameObject bottelObject;
     public GameObject capObject;
-    public float weight;
+    [SerializeField] public float weight;
 
     private void Update()
     {

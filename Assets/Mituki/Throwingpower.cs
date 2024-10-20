@@ -4,7 +4,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Throwingpoewr : MonoBehaviour
 {
     public float Power = 0;
     public GameObject Trash_box;
@@ -56,6 +56,7 @@ public class NewBehaviourScript : MonoBehaviour
             }
             float forceMagnitude = 10.0f;
             Vector3 force = forceMagnitude * forceDirection;
+            Rigidbody rb = GetComponent<Rigidbody>();
             rb.AddForce(force, ForceMode.Impulse);
         }
 
