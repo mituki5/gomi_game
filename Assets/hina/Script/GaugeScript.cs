@@ -19,7 +19,6 @@ public class GaugeScript : MonoBehaviour
             {
                 currentValue = 100.0f;
             }
-            
         }
         if (Input.GetMouseButtonUp(0))
         {
