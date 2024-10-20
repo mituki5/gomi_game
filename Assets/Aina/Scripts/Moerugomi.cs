@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class Moerugomi : MonoBehaviour
 {
-    [SerializeField] Text ScoreText;
-
+    [SerializeField] private GameObject Trash;
+    public bool isEnter;
     void Start()
     {
-        
+        isEnter = false;
     }
 
     void Update()
@@ -22,10 +23,9 @@ public class Moerugomi : MonoBehaviour
         if (collision.gameObject.tag == "moerugomi_box")
         {
             Debug.Log("入った!");
-            Destroy(gameObject);
-            Score scorescript = GetComponent<Score>();
-            scorescript.score = 30;
-            ScoreText.text = $"スコア：{scorescript.score.ToString("D3")}";
+            isEnter = true;
+            //Destroy(gameObject);
+            Trash.SetActive(false);
         }
     }
 }
