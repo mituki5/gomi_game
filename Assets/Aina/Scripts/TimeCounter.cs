@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TimeCounter : MonoBehaviour
@@ -17,5 +18,9 @@ public class TimeCounter : MonoBehaviour
         int remaining = timeLimit - (int)time;
         //timerText‚ğXV‚µ‚Ä‚¢‚­
         timeText.text = $"§ŒÀŠÔF{remaining.ToString("D2")}";
+        if (remaining == 0)
+        {
+            SceneManager.LoadScene("Result");
+        }
     }
 }

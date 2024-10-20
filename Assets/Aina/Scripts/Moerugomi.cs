@@ -18,7 +18,7 @@ public class Moerugomi : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "moerugomi_box")
         {
