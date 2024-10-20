@@ -11,6 +11,7 @@ public class kinds : MonoBehaviour
 
     public GameObject bottelObject;
     public GameObject capObject;
+    public float weight;
 
     private void Update()
     {
@@ -24,14 +25,19 @@ public class kinds : MonoBehaviour
         {
             //ペットボトルの場合のみ分解
             case "Plastic_bottle":
+                weight = 3.0f;
                 break;
             case "bottle":
+                weight = 3.0f;
                 break;
             case "cap":
+                weight = 1.0f;
                 break;
             case "Trash_paper":
+                weight = 1.0f;
                 break;
             case "lunch_box":
+                weight = 5.0f;
                 break;
         }
     }
@@ -58,7 +64,7 @@ public class kinds : MonoBehaviour
         }
         else
         {
-
+            //別のとこ場合
         }
     }
 }
