@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Loop : MonoBehaviour
 {
-    private float speed = 10.0f;
+    private float speed = 5.0f;
     [SerializeField] int count = 1;
     [SerializeField] Transform pointA;
     [SerializeField] Transform pointB;
