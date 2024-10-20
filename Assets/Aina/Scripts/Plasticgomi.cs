@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class Plasticgomi : MonoBehaviour
 {
-    [SerializeField] Text ScoreText;
+    [SerializeField] private GameObject Trash2;
+    public bool isEnter;
 
     void Start()
     {
-
+        isEnter = false;
     }
 
     void Update()
@@ -22,10 +23,9 @@ public class Plasticgomi : MonoBehaviour
         if (collision.gameObject.tag == "plasticgomi_box")
         {
             Debug.Log("入った!");
-            Destroy(gameObject);
-            Score scorescript = GetComponent<Score>();
-            scorescript.score = 80;
-            ScoreText.text = $"スコア：{scorescript.score.ToString("D3")}";
+            isEnter = true;
+            //Destroy(gameObject);
+            Trash2.SetActive(false);
         }
     }
 }
