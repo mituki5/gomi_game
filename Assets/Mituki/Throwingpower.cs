@@ -44,16 +44,22 @@ public class NewBehaviourScript : MonoBehaviour
     /// </summary>
     public void Throw()
     {
-        //—Í‚Ì•ûŒü
-        Vector3 pos = Trash_box.transform.position * Power - Player.transform.position;
-        Vector3 forceDirection = new Vector3(0, Power * 9.8f / 1000 , Power /1000);
-        if(pos.z <= forceDirection.z)
+        kinds _kindsScript = GetComponent<kinds>();
+        if(_kindsScript.firstObject.name == _kindsScript._name)
         {
-            forceDirection = new Vector3(0, Power * 9.8f * 3, Power);
+            //—Í‚Ì•ûŒü
+            Vector3 pos = Trash_box.transform.position * Power - Player.transform.position;
+            Vector3 forceDirection = new Vector3(0, Power * 9.8f /_kindsScript.weight / 1000 , Power /1000 /_kindsScript.weight);
+            if(pos.z <= forceDirection.z)
+            {
+                forceDirection = new Vector3(0, Power / _kindsScript.weight * 9.8f * 3, Power / _kindsScript.weight);
+            }
+            float forceMagnitude = 10.0f;
+            Vector3 force = forceMagnitude * forceDirection;
+            rb.AddForce(force, ForceMode.Impulse);
         }
-        float forceMagnitude = 10.0f;
-        Vector3 force = forceMagnitude * forceDirection;
-        rb.AddForce(force, ForceMode.Impulse);
+
+
     }
 
 
