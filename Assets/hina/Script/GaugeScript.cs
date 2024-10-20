@@ -1,16 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class GaugeScript : MonoBehaviour
 {
-    public Image scoreGauge; // ゲージ本体画像をインスペクターからセット
-    private int totalScore; // 得点を代入する変数
+    public Image gaugeImage1; // ゲージのImageコンポーネント
+    public Image gaugeImage2;
+
+    public float maxValue = 100f; // ゲージの最大値
+    private float currentValue = 0; // 現在の値
 
     void Update()
     {
-        scoreGauge.fillAmount = totalScore / 50.0f;
-        // ゲージを増減させるコードは今回は省略
+        if(Input.GetMouseButtonDown(0))
+        {
+            currentValue += 1;
+
+            if(currentValue >= maxValue)
+            {
+                currentValue = 100;
+            }
+            if(Input.GetMouseButtonDown(0))
+            {
+                currentValue = 0;
+            }
+        }
+
     }
 }
