@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class Loop : MonoBehaviour
 {
-    private float speed = 3;
+    private float speed = 10.0f;
+    [SerializeField] int count = 1;
+    [SerializeField] Transform pointA;
+    [SerializeField] Transform pointB;
+    [SerializeField] Transform pointC;
 
     void Update()
     {
-        transform.position -= new Vector3(Time.deltaTime * speed, 0, 0);
+        if (count == 0)
+            transform.position = Vector3.MoveTowards(transform.position, pointA.position, speed * Time.deltaTime);
+        else if (count == 1)
+            transform.position = Vector3.MoveTowards(transform.position, pointB.position, speed * Time.deltaTime);
+        else if (count == 2)
+            transform.position = Vector3.MoveTowards(transform.position, pointC.position, speed * Time.deltaTime);
+    }
 
-        if (transform.position.x < -20)
-        {
-            Destroy(gameObject);
-        }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "PointA")
+            count = 1;
+        else if (other.gameObject.name == "PointB")
+            count = 2;
+        else if (other.gameObject.name == "PointC")
+            count = 0;
     }
 }
