@@ -215,10 +215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548d78c0d34e86b4dadffbdfc6bc41e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score: 0
-  scoreText: {fileID: 150001914}
-  Trash_1: {fileID: 0}
-  Trash_2: {fileID: 0}
 --- !u!1 &152265860
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,10 +456,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 439a9059317b1b94cbec09f9913cd3ac, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -490,8 +486,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gaugeImage1: {fileID: 653317357}
-  gaugeImage2: {fileID: 1758347908}
   maxValue: 100
+  currentValue: 0
 --- !u!1 &834798799
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,26 +5,27 @@ using System.Collections;
 public class GaugeScript : MonoBehaviour
 {
     public Image gaugeImage1; // ゲージのImageコンポーネント
-    public Image gaugeImage2;
 
     public float maxValue = 100f; // ゲージの最大値
-    private float currentValue = 0; // 現在の値
+    public float currentValue = 0; // 現在の値
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            currentValue += 1;
+            currentValue += 0.1f;
 
-            if(currentValue >= maxValue)
+            if (currentValue >= maxValue)
             {
-                currentValue = 100;
+                currentValue = 100.0f;
             }
-            if(Input.GetMouseButtonDown(0))
-            {
-                currentValue = 0;
-            }
+            
         }
-
+        if (Input.GetMouseButtonUp(0))
+        {
+                currentValue = 0;
+        }
+        // ゲージの画像を更新
+        gaugeImage1.fillAmount = currentValue / maxValue;
     }
 }
