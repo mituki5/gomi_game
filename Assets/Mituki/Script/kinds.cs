@@ -15,6 +15,12 @@ public class kinds : MonoBehaviour, IPointerClickHandler
     public GameObject capObject;
     [SerializeField] public float weight;
 
+    public void Start()
+    {
+        Vector3 firstpos = transform.position;
+        Vector3 nextpos = transform.position;
+    }
+
     private void Update()
     {
         //投げるものの名前を取得
@@ -50,8 +56,12 @@ public class kinds : MonoBehaviour, IPointerClickHandler
     /// </summary>
     public void Separation()
     {
+        //分解前のペットボトルを消す
         Destroy(firstObject);
+        //投げる場所に分解したfirstObjectを置く
         Instantiate(bottelObject, firstObject.transform);
+        //次のところ
+
         Instantiate(capObject, nextObject.transform);
     }
 

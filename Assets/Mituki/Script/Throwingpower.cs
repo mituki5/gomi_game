@@ -24,11 +24,11 @@ public class Throwingpoewr : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 Power += 1f / 10;
-               // Debug.Log(Power + "‘‚¦‚Ä‚é");
+                Debug.Log(Power + "‘‚¦‚Ä‚é");
             }
             if (Input.GetMouseButtonUp(0))
             {
-                //Debug.Log(Power + "•ú‚µ‚½");
+                Debug.Log(Power + "•ú‚µ‚½");
                 Throw();
                 //Gauge();
 
