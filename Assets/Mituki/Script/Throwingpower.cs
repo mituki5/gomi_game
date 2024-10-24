@@ -10,6 +10,8 @@ public class Throwingpoewr : MonoBehaviour
     public GameObject Trash_box;
     public GameObject Player;
 
+    public bool landing = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,7 @@ public class Throwingpoewr : MonoBehaviour
                 //Gauge();
 
                 Power = 0;
+                landing = false;
 
             }
         }
@@ -46,7 +49,7 @@ public class Throwingpoewr : MonoBehaviour
         kinds _kindsScript = GetComponent<kinds>();
         Debug.Log(_kindsScript.firstObject.name);
         Debug.Log(_kindsScript._name);
-        if (_kindsScript.firstObject.name == _kindsScript._name)
+        if (_kindsScript.firstObject.name == _kindsScript._name[_kindsScript.index])
         {
             //—Í‚Ì•ûŒü
             Vector3 pos = Trash_box.transform.position * Power - Player.transform.position;

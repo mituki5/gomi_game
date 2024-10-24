@@ -9,45 +9,66 @@ public class kinds : MonoBehaviour, IPointerClickHandler
 {
     public GameObject firstObject;
     public GameObject nextObject;
-    [SerializeField]　public string _name;
+    //[SerializeField] public string _name;
+    public List<string> _name = new List<string>();
+    public int index;
 
-    public GameObject bottelObject;
-    public GameObject capObject;
+    //生成されるごみ
+    [SerializeField] public GameObject Plastic_bottle;
+    [SerializeField] public GameObject bottelObject;
+    [SerializeField] public GameObject capObject;
+    [SerializeField] public GameObject trash_paper;
+    [SerializeField] public GameObject lunch_box;
+
+
     [SerializeField] public float weight;
 
     public void Start()
     {
-        Vector3 firstpos = transform.position;
-        Vector3 nextpos = transform.position;
+        Instantiate(firstObject);
+
+        _name.Add("plastic_bottle");
+        _name.Add("bottle");
+        _name.Add("cap");
+        _name.Add("trash_paper");
+        _name.Add("lunch_box");
+        //Vector3 firstpos = firstObject.transform.position;
+        //Vector3 nextpos = nextObject.transform.position;
+        
     }
 
     private void Update()
     {
-        //投げるものの名前を取得
-        _name = firstObject.name;
-        Kinds();
+        Throwingpoewr throwingpoewrScript = GetComponent<Throwingpoewr>();
+        if (throwingpoewrScript.landing == false)
+        {
+            index = (int)Random.Range(0.0f, _name.Count);
+            //投げるものの名前を取得
+            Kinds();
+        }
     }
 
     public void Kinds()
-    {     
-            switch (_name)
+    {
+        
+        switch (_name[index])
             {
                 //ペットボトルの場合のみ分解
-                case "Plastic_bottle":
+                case "plastic_bottle":
                     weight = 3.0f;
-                    break;
+                break;
                 case "bottle":
                     weight = 3.0f;
-                    break;
+                break;
                 case "cap":
                     weight = 1.0f;
-                    break;
-                case "Trash_paper":
+                break;
+                case "trash_paper":
                     weight = 1.0f;
-                    break;
+                break;
                 case "lunch_box":
                     weight = 5.0f;
-                    break;
+                break;
             }    
     }
 
@@ -59,9 +80,8 @@ public class kinds : MonoBehaviour, IPointerClickHandler
         //分解前のペットボトルを消す
         Destroy(firstObject);
         //投げる場所に分解したfirstObjectを置く
-        Instantiate(bottelObject, firstObject.transform);
+        Instantiate(bottelObject,firstObject.transform);
         //次のところ
-
         Instantiate(capObject, nextObject.transform);
     }
 
@@ -73,15 +93,11 @@ public class kinds : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.pointerId == -1)
         {
-            //if (_name == "Plastic_bottle")
-            //{
+            if (_name[index] == "Plastic_bottle")
+            {
                 Debug.Log("分解");
                 Separation();
-            //}
-            //else
-            //{
-                //別のとこ場合
-            //}
+            }
         }
 
     }
