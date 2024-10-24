@@ -4,28 +4,35 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using UnityEngine;
 
-public class Throwingpoewr : MonoBehaviour
+public class ThrowingPower : MonoBehaviour
 {
     public float Power = 0;
     public GameObject Trash_box;
     public GameObject Player;
 
     public bool landing = true;
+    public bool shot = true;
+    public bool canShot = false;
 
-    // Start is called before the first frame update
-    void Start()
+    private kinds kindScript;
+
+
+    public void SetScript(GameObject trashBox, kinds kind, bool canShot)
     {
+        Trash_box = trashBox;
+        kindScript = kind;
+        this.canShot = canShot;
     }
-
     
     // Update is called once per frame
     void Update()
     {
-        if(Power < 100)
+        if (!this.canShot) return;
+        if(Power < 100f)
         {
             if (Input.GetMouseButton(0))
             {
-                Power += 1f / 10;
+                Power += 0.1f;
                 Debug.Log(Power + "‘‚¦‚Ä‚é");
             }
             if (Input.GetMouseButtonUp(0))
@@ -36,6 +43,7 @@ public class Throwingpoewr : MonoBehaviour
 
                 Power = 0;
                 landing = false;
+                shot = false;
 
             }
         }
@@ -46,24 +54,25 @@ public class Throwingpoewr : MonoBehaviour
     /// </summary>
     public void Throw()
     {
-        kinds _kindsScript = GetComponent<kinds>();
-        Debug.Log(_kindsScript.firstObject.name);
-        Debug.Log(_kindsScript._name);
-        if (_kindsScript.firstObject.name == _kindsScript._name[_kindsScript.index])
-        {
-            //—Í‚Ì•ûŒü
-            Vector3 pos = Trash_box.transform.position * Power - Player.transform.position;
-            Vector3 forceDirection = new Vector3(0, Power / _kindsScript.weight * 9.8f  / 100 , Power / 100);
-            //if(pos.z <= forceDirection.z)
-            //{
-            //    forceDirection = new Vector3(0, Power  * 9.8f * 3, Power);
-            //}
-            float forceMagnitude = 10.0f;
-            Vector3 force = forceMagnitude * forceDirection;
-            Rigidbody rb = GetComponent<Rigidbody>();
-            rb.AddForce(force, ForceMode.Impulse);
-        }
-
+        //Debug.Log(kindScript.firstObject.name);
+        //Debug.Log(kindScript.weight);
+        //if (kindScript.firstObject.name == kindScript._name[kindScript.index])
+        //{
+           
+        //}
+        //—Í‚Ì•ûŒü
+        Trash_box = GameObject.Find("TrashBox");
+        Vector3 pos = Trash_box.transform.position * Power - Player.transform.position;
+        Vector3 forceDirection = new Vector3(0, Power / kindScript.weight * 9.8f / 100f, Power / 100f);
+        //if(pos.z <= forceDirection.z)
+        //{
+        //    forceDirection = new Vector3(0, Power  * 9.8f * 3, Power);
+        //}
+        float forceMagnitude = 10.0f;
+        Vector3 force = forceMagnitude * forceDirection;
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.AddForce(force, ForceMode.Impulse);
+        rb.useGravity = true;
 
     }
 
