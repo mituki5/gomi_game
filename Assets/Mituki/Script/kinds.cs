@@ -12,45 +12,78 @@ public class kinds : MonoBehaviour, IPointerClickHandler
     //[SerializeField] public string _name;
     public List<string> _name = new List<string>();
     public int index;
-
+    private int nextIndex;
+    [SerializeField] private GameObject trashBox;
+    private enum TrashType
+    {
+        Plastic_bottle,
+        BottelObject,
+        CapObject,
+        //TrashPaper,
+        //LunchBox
+    }
+    [SerializeField] List<GameObject> trashPrefabs = new List<GameObject>();
     //生成されるごみ
-    [SerializeField] public GameObject Plastic_bottle;
-    [SerializeField] public GameObject bottelObject;
-    [SerializeField] public GameObject capObject;
-    [SerializeField] public GameObject trash_paper;
-    [SerializeField] public GameObject lunch_box;
+    //[SerializeField] public GameObject Plastic_bottle;
+    //[SerializeField] public GameObject bottelObject;
+    //[SerializeField] public GameObject capObject;
+    //[SerializeField] public GameObject trash_paper;
+    //[SerializeField] public GameObject lunch_box;
 
-
+    private ThrowingPower firstThrowingpower;
     [SerializeField] public float weight;
 
     public void Start()
     {
-        Instantiate(firstObject);
-
-        _name.Add("plastic_bottle");
-        _name.Add("bottle");
-        _name.Add("cap");
-        _name.Add("trash_paper");
-        _name.Add("lunch_box");
+        //_name.Add("plastic_bottle");
+        //_name.Add("bottle");
+        //_name.Add("cap");
+        //_name.Add("trash_paper");
+        //_name.Add("lunch_box");
         //Vector3 firstpos = firstObject.transform.position;
         //Vector3 nextpos = nextObject.transform.position;
-        
+
+        int tmpIndex = Random.Range(0, _name.Count);
+        firstObject = Instantiate(trashPrefabs[tmpIndex], this.transform);
+        firstThrowingpower = firstObject.GetComponent<ThrowingPower>();
+        index = tmpIndex;
+        firstThrowingpower.SetScript(trashBox, this, true);
+        Kinds();
+        tmpIndex = Random.Range(0, _name.Count);
+        //nextのオブジェクトも開始直後同じ場所に生成されている↓
+        nextObject = Instantiate(trashPrefabs[tmpIndex], nextObject.transform);
+        nextIndex = tmpIndex;
     }
 
     private void Update()
     {
-        Throwingpoewr throwingpoewrScript = GetComponent<Throwingpoewr>();
-        if (throwingpoewrScript.landing == false)
+        if (firstThrowingpower.landing == false)
         {
-            index = (int)Random.Range(0.0f, _name.Count);
-            //投げるものの名前を取得
+            FirstInstantiateTrash();
+            SecondInstantiateTrash();
             Kinds();
+            firstThrowingpower.landing = true;
+            firstThrowingpower.shot = true;
         }
     }
 
+    private void FirstInstantiateTrash()
+    {
+        firstObject.name = nextObject.name;
+        firstObject = nextObject;
+        firstThrowingpower = firstObject.GetComponent<ThrowingPower>();
+        firstThrowingpower.SetScript(trashBox, this, true);
+        index = nextIndex;
+    }
+
+    private void SecondInstantiateTrash()
+    {
+        nextIndex = (int)Random.Range(0.0f, _name.Count);
+        nextObject.name = _name[index];
+        nextObject = Instantiate(trashPrefabs[index], transform);
+    }
     public void Kinds()
     {
-        
         switch (_name[index])
             {
                 //ペットボトルの場合のみ分解
@@ -80,9 +113,9 @@ public class kinds : MonoBehaviour, IPointerClickHandler
         //分解前のペットボトルを消す
         Destroy(firstObject);
         //投げる場所に分解したfirstObjectを置く
-        Instantiate(bottelObject,firstObject.transform);
+        Instantiate(trashPrefabs[(int)TrashType.BottelObject], firstObject.transform);
         //次のところ
-        Instantiate(capObject, nextObject.transform);
+        Instantiate(trashPrefabs[(int)TrashType.CapObject], nextObject.transform);
     }
 
     /// <summary>
