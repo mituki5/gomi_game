@@ -9,6 +9,7 @@ TagManager:
   - moerugomi_box
   - plasticgomi_box
   - plasticgomi
+  - plasticbottle_box
   layers:
   - Default
   - TransparentFX
