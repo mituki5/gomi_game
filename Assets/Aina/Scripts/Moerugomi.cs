@@ -6,7 +6,7 @@ using static UnityEditor.Progress;
 
 public class Moerugomi : MonoBehaviour
 {
-    [SerializeField] private GameObject Trash;
+    [SerializeField] private GameObject trash;
     public bool isEnter;
     void Start()
     {
@@ -25,7 +25,7 @@ public class Moerugomi : MonoBehaviour
             Debug.Log("“ü‚Á‚½!");
             isEnter = true;
             //Destroy(gameObject);
-            Trash.SetActive(false);
+            trash.SetActive(false);
         }
     }
 }

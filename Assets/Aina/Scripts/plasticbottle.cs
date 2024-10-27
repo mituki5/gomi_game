@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
 
-public class plasticbottle : MonoBehaviour
+public class Plasticbottle : MonoBehaviour
 {
-    [SerializeField] private GameObject Trash3;
+    [SerializeField] private GameObject bottle;
     public bool isEnter;
     void Start()
     {
@@ -25,7 +25,7 @@ public class plasticbottle : MonoBehaviour
             Debug.Log("“ü‚Á‚½!");
             isEnter = true;
             //Destroy(gameObject);
-            Trash3.SetActive(false);
+            bottle.SetActive(false);
         }
     }
 }

@@ -6,41 +6,41 @@ using static UnityEditor.Progress;
 
 public class Score : MonoBehaviour
 {
-    private GameObject Trash;
-    private GameObject Trash2;
-    private GameObject Trash3;
+    private GameObject trash;
+    private GameObject plastic;
+    private GameObject bottle;
 
     [SerializeField] Text ScoreText;
     public int score = 0;
     void Start()
     {
         ScoreText.text = $"スコア：{score.ToString("D3")}";
-        Trash = GameObject.Find("trash");
-        Trash2 = GameObject.Find("trash2");
-        Trash3 = GameObject.Find("trash3");
+        trash = GameObject.Find("trash");
+        plastic = GameObject.Find("plastic");
+        bottle = GameObject.Find("bottle");
     }
 
     void Update()
     {
-        if (Trash.GetComponent<Moerugomi>().isEnter == true)
+        if (trash.GetComponent<Moerugomi>().isEnter == true)
         {
             score += 30;
             ScoreText.text = $"スコア：{score.ToString("D3")}";
-            Trash.GetComponent<Moerugomi>().isEnter = false;
+            trash.GetComponent<Moerugomi>().isEnter = false;
         }
 
-        if (Trash2.GetComponent<Plasticgomi>().isEnter == true)
+        if (plastic.GetComponent<Plasticgomi>().isEnter == true)
         {
             score += 80;
             ScoreText.text = $"スコア：{score.ToString("D3")}";
-            Trash2.GetComponent<Plasticgomi>().isEnter = false;
+            plastic.GetComponent<Plasticgomi>().isEnter = false;
         }
 
-        if (Trash3.GetComponent<plasticbottle>().isEnter == true)
+        if (bottle.GetComponent<Plasticbottle>().isEnter == true)
         {
             score += 80;
             ScoreText.text = $"スコア：{score.ToString("D3")}";
-            Trash3.GetComponent<plasticbottle>().isEnter = false;
+            bottle.GetComponent<Plasticbottle>().isEnter = false;
         }
     }
 }
