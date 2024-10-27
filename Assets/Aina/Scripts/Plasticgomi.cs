@@ -7,10 +7,12 @@ public class Plasticgomi : MonoBehaviour
 {
     [SerializeField] private GameObject plastic;
     public bool isEnter;
+    public bool mistake;
 
     void Start()
     {
         isEnter = false;
+        mistake = false;
     }
 
     void Update()
@@ -26,6 +28,12 @@ public class Plasticgomi : MonoBehaviour
             isEnter = true;
             //Destroy(gameObject);
             plastic.SetActive(false);
+        }
+        if (collision.gameObject.tag == "moerugomi_box" || collision.gameObject.tag == "plasticbottle_box")
+        {
+            Debug.Log("ŠÔˆá‚¦‚½");
+            mistake = true;
+            gameObject.SetActive(false);
         }
     }
 }

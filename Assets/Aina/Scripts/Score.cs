@@ -42,5 +42,17 @@ public class Score : MonoBehaviour
             ScoreText.text = $"スコア：{score.ToString("D3")}";
             bottle.GetComponent<Plasticbottle>().isEnter = false;
         }
+
+        if (trash.GetComponent<Moerugomi>().mistake == true || plastic.GetComponent<Plasticgomi>().mistake == true || bottle.GetComponent<Plasticbottle>().mistake == true)
+        {
+            if (score > 0)
+            {
+                score -= 10;
+                ScoreText.text = $"スコア：{score.ToString("D3")}";
+                trash.GetComponent<Moerugomi>().mistake = false;
+                plastic.GetComponent<Plasticgomi>().mistake = false;
+                bottle.GetComponent<Plasticbottle>().mistake = false;
+            }
+        }
     }
 }
