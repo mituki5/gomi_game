@@ -44,7 +44,6 @@ public class ThrowingPower : MonoBehaviour
                 Power = 0;
                 landing = false;
                 shot = false;
-
             }
         }
     }
@@ -61,8 +60,8 @@ public class ThrowingPower : MonoBehaviour
            
         //}
         //—Í‚Ì•ûŒü
-        Trash_box = GameObject.Find("TrashBox");
-        Vector3 pos = Trash_box.transform.position * Power - Player.transform.position;
+        //Trash_box = GameObject.Find("TrashBox");
+        //Vector3 pos = Trash_box.transform.position * Power - Player.transform.position;
         Vector3 forceDirection = new Vector3(0, Power / kindScript.weight * 9.8f / 100f, Power / 100f);
         //if(pos.z <= forceDirection.z)
         //{
