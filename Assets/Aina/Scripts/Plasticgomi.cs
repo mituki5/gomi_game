@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Plasticgomi : MonoBehaviour
 {
-    [SerializeField] private GameObject Trash2;
+    [SerializeField] private GameObject plastic;
     public bool isEnter;
 
     void Start()
@@ -25,7 +25,7 @@ public class Plasticgomi : MonoBehaviour
             Debug.Log("“ü‚Á‚½!");
             isEnter = true;
             //Destroy(gameObject);
-            Trash2.SetActive(false);
+            plastic.SetActive(false);
         }
     }
 }
