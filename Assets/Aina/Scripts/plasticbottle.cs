@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
@@ -8,9 +9,11 @@ public class Plasticbottle : MonoBehaviour
 {
     [SerializeField] private GameObject bottle;
     public bool isEnter;
+    public bool mistake;
     void Start()
     {
         isEnter = false;
+        mistake = false;
     }
 
     void Update()
@@ -26,6 +29,12 @@ public class Plasticbottle : MonoBehaviour
             isEnter = true;
             //Destroy(gameObject);
             bottle.SetActive(false);
+        }
+        if (collision.gameObject.tag == "plasticgomi_box" || collision.gameObject.tag == "moerugomi_box")
+        {
+            Debug.Log("ŠÔˆá‚¦‚½");
+            mistake = true;
+            gameObject.SetActive(false);
         }
     }
 }
