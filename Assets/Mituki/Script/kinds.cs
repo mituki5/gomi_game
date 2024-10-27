@@ -71,11 +71,11 @@ public class kinds : MonoBehaviour, IPointerClickHandler
             firstThrowingpower.shot = true;
         }
 
-        if(firstObject.transform.position.y < -5 || firstObject.transform.position.y > 10.0f)
-        {
-            Destroy(firstObject);
-            Debug.Log(firstObject.name);
-        }
+        //if(firstObject.transform.position.y < -5 || firstObject.transform.position.y > 10.0f)
+        //{
+        //    Destroy(firstObject);
+        //    Debug.Log(firstObject.name);
+        //}
     }
 
     private void FirstInstantiateTrash()
@@ -123,6 +123,7 @@ public class kinds : MonoBehaviour, IPointerClickHandler
     {
         //分解前のペットボトルを消す
         Destroy(firstObject);
+        Destroy(nextObject);
         //投げる場所に分解したfirstObjectを置く
         Instantiate(trashPrefabs[(int)Disassembled.BottelObject], firstObject.transform);
         //次のところ
@@ -133,15 +134,17 @@ public class kinds : MonoBehaviour, IPointerClickHandler
     /// クリックによる分解をする関数
     /// </summary>
     /// <param name="eventData"></param>
+    
+    
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.pointerId == -1)
         {
-            //if (_name[index] == "Plastic_bottle")
-            //{
+            if (_name[index] == "Plastic_bottle")
+            {
                 Debug.Log("分解");
                 Separation();
-            //}
+            }
         }
 
     }

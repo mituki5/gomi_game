@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine;
 public class ThrowingPower : MonoBehaviour
 {
     public float Power = 0;
+    public float Angle = 50.0f;
     public GameObject Trash_box;
     public GameObject Player;
 
@@ -38,8 +40,8 @@ public class ThrowingPower : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 Debug.Log(Power + "放した");
-                Throw();
-                //Gauge();
+                //Throw();
+                Gauge();
 
                 Power = 0;
                 landing = false;
@@ -62,6 +64,7 @@ public class ThrowingPower : MonoBehaviour
         //力の方向
         //Trash_box = GameObject.Find("TrashBox");
         //Vector3 pos = Trash_box.transform.position * Power - Player.transform.position;
+        //50度
         Vector3 forceDirection = new Vector3(0, Power / kindScript.weight * 9.8f / 100f, Power / 100f);
         //if(pos.z <= forceDirection.z)
         //{
@@ -76,16 +79,58 @@ public class ThrowingPower : MonoBehaviour
     }
 
 
-    //public void Gauge()
-    //{   
-    //    Vector3 youpos = Trash_box.transform.position;
-    //    Vector3 mypos = Player.transform.position;
-    //    Vector3 V;
-    //    //time = youpos.z / mypos.z;
-    //    V.z = Mathf.Cos(Mathf.Deg2Rad * youpos.z) * Power * time;
-    //    V.y = (float)((Mathf.Sign(Mathf.Deg2Rad * youpos.y) * Power) * time - (1 / 2) * 9.8 * Mathf.Pow(time, 2));
-    //    gameObject.transform.position = new Vector3(0, -V.z, V.y);        rb.GetComponent<Rigidbody>();
-    //    //rb.useGravity = false;
-    //    //rb.AddForce(0, V.y, V.z);
-    //}
+    public void Gauge()
+    {
+
+
+            // 標的の座標
+            Vector3 targetPosition = Trash_box.transform.position;
+
+            // 射出角度
+            float angle = Angle;
+
+            // 射出速度を算出
+            Vector3 velocity = CalculateVelocity(this.transform.position, targetPosition, angle);
+
+            // 射出
+            Rigidbody rb = GetComponent<Rigidbody>();
+           rb.AddForce(velocity * rb.mass, ForceMode.Impulse);
+        rb.useGravity = true;
+
+    }
+
+    /// <summary>
+    /// 標的に命中する射出速度の計算
+    /// </summary>
+    /// <param name="pointA">射出開始座標</param>
+    /// <param name="pointB">標的の座標</param>
+    /// <returns>射出速度</returns>
+    private Vector3 CalculateVelocity(Vector3 pointA, Vector3 pointB, float angle)
+    {
+        // 射出角をラジアンに変換
+        float rad = angle * Mathf.PI / 180;
+
+        // 水平方向の距離x
+        //ここにpoawerをかける
+        //float x = Vector2.Distance(new Vector2(pointA.x, pointA.z), new Vector2(pointB.x, pointB.z));
+        Vector2 posX = new Vector2(Power,Power);
+        float x = Vector2.Distance(new Vector2(pointA.x, pointA.z), posX);
+
+
+        // 垂直方向の距離y
+        float y = pointA.y - pointB.y;
+
+        // 斜方投射の公式を初速度について解く
+        float speed = Mathf.Sqrt(-Physics.gravity.y * Mathf.Pow(x, 2) / (2 * Mathf.Pow(Mathf.Cos(rad), 2) * (x * Mathf.Tan(rad) + y)));
+
+        if (float.IsNaN(speed))
+        {
+            // 条件を満たす初速を算出できなければVector3.zeroを返す
+            return Vector3.zero;
+        }
+        else
+        {
+            return (new Vector3(pointB.x - pointA.x, x * Mathf.Tan(rad), pointB.z - pointA.z).normalized * speed);
+        }
+    }
 }
