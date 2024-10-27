@@ -14,15 +14,11 @@ public class GaugeScript : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            if(currentValue == 0)
-            {
                 GaugeUp();
-            }
-
         }
         if (Input.GetMouseButtonUp(0))
         {
-                currentValue = 0;
+                currentValue = minValue;
         }
         // ゲージの画像を更新
         gaugeImage1.fillAmount = currentValue / maxValue;
@@ -30,19 +26,20 @@ public class GaugeScript : MonoBehaviour
 
     private void GaugeUp()
     {
-        currentValue += 0.1f;
+        currentValue += 0.2f;
 
         if (currentValue >= maxValue)
         {
-            currentValue = 100.0f;
+            //currentValue = 100.0f;
+            GaugeDown();
         }
     }
 
     private void GaugeDown()
     {
-        if(currentValue == maxValue)
-        {
+//        if(currentValue == maxValue)
+//        {
             currentValue -= 0.1f;
-        }
+//        }
     }
 }
