@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class TrashBox : MonoBehaviour
 {
-    [SerializeField] private GameObject Trash;
-    [SerializeField] private GameObject Trash2;
+    [SerializeField] private GameObject trash;
+    [SerializeField] private GameObject plastic;
+    [SerializeField] private GameObject bottle;
     public bool isEnter;
     void Start()
     {
@@ -25,10 +26,13 @@ public class TrashBox : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "moerugomi":
-                Trash.SetActive(false);
+                trash.SetActive(false);
                 break;
             case "plasticgomi":
-                Trash2.SetActive(false);
+                plastic.SetActive(false);
+                break;
+            case "plasticbottle":
+                plastic.SetActive(false);
                 break;
 
         }

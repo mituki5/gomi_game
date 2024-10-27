@@ -8,10 +8,14 @@ using static UnityEditor.Progress;
 public class Moerugomi : MonoBehaviour
 {
     [SerializeField] private GameObject trash;
+
     public bool isEnter;
     public bool mistake;
     void Start()
     {
+        /*trash = this.transform.Find("trash").gameObject;
+        trash.GetComponent<Moerugomi>().gameObject = "”R‚¦‚éƒSƒ~";*/
+
         isEnter = false;
         mistake = false;
     }
