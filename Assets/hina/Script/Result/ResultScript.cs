@@ -20,6 +20,6 @@ public class ResultScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ScoreText.text = score.ToString();
+        ScoreText.text = "ScoreÅF" + score.ToString();
     }
 }
