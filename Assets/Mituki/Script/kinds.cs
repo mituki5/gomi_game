@@ -16,11 +16,16 @@ public class kinds : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject trashBox;
     private enum TrashType
     {
-        Plastic_bottle,
+        //Plastic_bottle,
+        trash3,
+        teash2,
+        trash,
+        //LunchBox
+    }
+    private enum Disassembled
+    {
         BottelObject,
         CapObject,
-        //TrashPaper,
-        //LunchBox
     }
     [SerializeField] List<GameObject> trashPrefabs = new List<GameObject>();
     //生成されるごみ
@@ -65,6 +70,12 @@ public class kinds : MonoBehaviour, IPointerClickHandler
             firstThrowingpower.landing = true;
             firstThrowingpower.shot = true;
         }
+
+        if(firstObject.transform.position.y < -5 || firstObject.transform.position.y > 10.0f)
+        {
+            Destroy(firstObject);
+            Debug.Log(firstObject.name);
+        }
     }
 
     private void FirstInstantiateTrash()
@@ -90,13 +101,13 @@ public class kinds : MonoBehaviour, IPointerClickHandler
                 case "plastic_bottle":
                     weight = 3.0f;
                 break;
-                case "bottle":
+                case "trash3":
                     weight = 3.0f;
                 break;
-                case "cap":
+                case "trash2":
                     weight = 1.0f;
                 break;
-                case "trash_paper":
+                case "trash":
                     weight = 1.0f;
                 break;
                 case "lunch_box":
@@ -113,9 +124,9 @@ public class kinds : MonoBehaviour, IPointerClickHandler
         //分解前のペットボトルを消す
         Destroy(firstObject);
         //投げる場所に分解したfirstObjectを置く
-        Instantiate(trashPrefabs[(int)TrashType.BottelObject], firstObject.transform);
+        Instantiate(trashPrefabs[(int)Disassembled.BottelObject], firstObject.transform);
         //次のところ
-        Instantiate(trashPrefabs[(int)TrashType.CapObject], nextObject.transform);
+        Instantiate(trashPrefabs[(int)Disassembled.CapObject], nextObject.transform);
     }
 
     /// <summary>
@@ -126,11 +137,11 @@ public class kinds : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.pointerId == -1)
         {
-            if (_name[index] == "Plastic_bottle")
-            {
+            //if (_name[index] == "Plastic_bottle")
+            //{
                 Debug.Log("分解");
                 Separation();
-            }
+            //}
         }
 
     }
