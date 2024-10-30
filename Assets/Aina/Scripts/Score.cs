@@ -15,43 +15,43 @@ public class Score : MonoBehaviour
     void Start()
     {
         ScoreText.text = $"スコア：{score.ToString("D3")}";
-        trash = GameObject.Find("trash");
-        plastic = GameObject.Find("plastic");
-        bottle = GameObject.Find("bottle");
+        trash = GameObject.Find("Moeru_Gomibako");
+        plastic = GameObject.Find("Plastic_Gomibako");
+        bottle = GameObject.Find("Bottle_Gomibako");
     }
 
     void Update()
     {
-        if (trash.GetComponent<Moerugomi>().isEnter == true)
+        if (trash.GetComponent<TrashBox>().isEnter == true)
         {
             score += 30;
             ScoreText.text = $"スコア：{score.ToString("D3")}";
-            trash.GetComponent<Moerugomi>().isEnter = false;
+            trash.GetComponent<TrashBox>().isEnter = false;
         }
 
-        if (plastic.GetComponent<Plasticgomi>().isEnter == true)
+        if (plastic.GetComponent<PlasticBox>().isEnter == true)
+        {
+            score += 100;
+            ScoreText.text = $"スコア：{score.ToString("D3")}";
+            plastic.GetComponent<PlasticBox>().isEnter = false;
+        }
+
+        if (bottle.GetComponent<BottleBox>().isEnter == true)
         {
             score += 80;
             ScoreText.text = $"スコア：{score.ToString("D3")}";
-            plastic.GetComponent<Plasticgomi>().isEnter = false;
+            bottle.GetComponent<BottleBox>().isEnter = false;
         }
 
-        if (bottle.GetComponent<Plasticbottle>().isEnter == true)
-        {
-            score += 80;
-            ScoreText.text = $"スコア：{score.ToString("D3")}";
-            bottle.GetComponent<Plasticbottle>().isEnter = false;
-        }
-
-        if (trash.GetComponent<Moerugomi>().mistake == true || plastic.GetComponent<Plasticgomi>().mistake == true || bottle.GetComponent<Plasticbottle>().mistake == true)
+        if (trash.GetComponent<TrashBox>().mistake == true || plastic.GetComponent<PlasticBox>().mistake == true || bottle.GetComponent<BottleBox>().mistake == true)
         {
             if (score > 0)
             {
                 score -= 10;
                 ScoreText.text = $"スコア：{score.ToString("D3")}";
-                trash.GetComponent<Moerugomi>().mistake = false;
-                plastic.GetComponent<Plasticgomi>().mistake = false;
-                bottle.GetComponent<Plasticbottle>().mistake = false;
+                trash.GetComponent<TrashBox>().mistake = false;
+                plastic.GetComponent<PlasticBox>().mistake = false;
+                bottle.GetComponent<BottleBox>().mistake = false;
             }
         }
     }
