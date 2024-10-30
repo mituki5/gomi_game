@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class TrashBox : MonoBehaviour
+public class PlasticBox : MonoBehaviour
 {
     [SerializeField] private GameObject trash;
     [SerializeField] private GameObject plastic;
@@ -46,13 +46,13 @@ public class TrashBox : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "moerugomi":
-                isEnter = true;
-                Debug.Log("”R‚¦‚éƒSƒ~“ü‚Á‚½");
+                mistake = true;
+                Debug.Log("ŠÔˆá‚¦‚½");
                 Destroy(collision.gameObject);
                 break;
             case "plasticgomi":
-                mistake = true;
-                Debug.Log("ŠÔˆá‚¦‚½");
+                isEnter = true;
+                Debug.Log("ƒvƒ‰ƒSƒ~“ü‚Á‚½");
                 Destroy(collision.gameObject);
                 break;
             case "plasticbottle":
