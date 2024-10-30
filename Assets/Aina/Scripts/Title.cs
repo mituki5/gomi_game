@@ -9,12 +9,12 @@ public class Title : MonoBehaviour
 
     void Start()
     {
-        Trash = GameObject.Find("trash");
+        Trash = GameObject.Find("Moeru_Gomibako");
     }
 
     void Update()
     {
-        if (Trash.GetComponent<Moerugomi>().isEnter == true)
+        if (Trash.GetComponent<TrashBox>().isEnter == true)
         {
             SceneManager.LoadScene("GameScene 1");
         }
