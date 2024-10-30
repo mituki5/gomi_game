@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using UnityEngine;
@@ -42,7 +43,7 @@ public class ThrowingPower : MonoBehaviour
             TargetDistance();
             Gauge();
 
-            Power = 0;
+            Power = MinPower;
             landing = false;
             shot = false;
         }
@@ -51,26 +52,34 @@ public class ThrowingPower : MonoBehaviour
 
     public void Key()
     {
+        Debug.Log(powercount);
         if (Input.GetMouseButton(0))
         {
-            if (powercount == false)
+            if(Power == MaxPower)
             {
-                if (Power <= 100)
+                if (Power > MaxPower)
                 {
-                    Power += 0.1f;
-                    Debug.Log(Power + "ëùÇ¶ÇƒÇÈ");
-                }
-                if (Power == 100)
-                {
-                    Power -= 0.1f;
                     powercount = true;
-                    Debug.Log(Power + "å∏Ç¡ÇƒÇÈ");
                 }
-            
-                if (Power == 0)
+            }
+            if(Power == MinPower)
+            {
+                if (Power > MinPower)
                 {
                     powercount = false;
                 }
+            }
+
+            if(powercount == false)
+            {
+                    Power += 0.1f;
+                    Debug.Log(Power + "ëùÇ¶ÇƒÇÈ");
+            }
+
+            if(powercount == true){
+                    Power -= 0.1f;
+                    Debug.Log(Power + "å∏Ç¡ÇƒÇÈ");
+
             }
         }
     }
