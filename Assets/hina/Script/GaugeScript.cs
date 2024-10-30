@@ -9,12 +9,28 @@ public class GaugeScript : MonoBehaviour
     public float maxValue = 100f; // ゲージの最大値
     public float currentValue = 0; // 現在の値
     public float minValue = 0;
+    private bool isIncreasing = true;
 
     void Update()
     {
         if (Input.GetMouseButton(0))
         {
+            if (isIncreasing)
+            {
                 GaugeUp();
+                if(currentValue >= maxValue)
+                {
+                    isIncreasing = false;
+                }
+            }
+            else
+            {
+                GaugeDown();
+                if (currentValue <= minValue)
+                {
+                    isIncreasing = true;
+                }
+            }
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -28,18 +44,19 @@ public class GaugeScript : MonoBehaviour
     {
         currentValue += 0.2f;
 
-        if (currentValue >= maxValue)
+        if (currentValue > maxValue)
         {
-            //currentValue = 100.0f;
-            GaugeDown();
+            currentValue = maxValue;
         }
     }
 
     private void GaugeDown()
     {
-//        if(currentValue == maxValue)
-//        {
-            currentValue -= 0.1f;
-//        }
+        currentValue -= 0.2f;
+
+        if(currentValue < minValue)
+        {
+            currentValue = minValue;
+        }
     }
 }
