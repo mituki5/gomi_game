@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1159781414272548677}
   - component: {fileID: -6212641240048162155}
   - component: {fileID: 9020624913877782274}
-  - component: {fileID: -3884380291359176317}
   m_Layer: 0
   m_Name: plastic_bottle
   m_TagString: Untagged
@@ -123,11 +122,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Power: 0
+  Angle: 50
   Trash_box: {fileID: 0}
   Player: {fileID: 7608051752013143209}
+  targetobject: {fileID: 7496919824475447461, guid: 75e902d151b82774b83efffd2b25c422, type: 3}
   landing: 1
   shot: 0
   canShot: 0
+  powercount: 0
 --- !u!54 &9020624913877782274
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -155,26 +157,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &-3884380291359176317
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7608051752013143209}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}

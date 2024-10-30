@@ -8,13 +8,17 @@ using UnityEngine;
 public class ThrowingPower : MonoBehaviour
 {
     public float Power = 0;
+    public float MinPower = 0;
+    public float MaxPower = 100;
     public float Angle = 50.0f;
     public GameObject Trash_box;
     public GameObject Player;
+    public GameObject targetobject;
 
     public bool landing = true;
     public bool shot = true;
     public bool canShot = false;
+    public bool powercount  = false;
 
     private kinds kindScript;
 
@@ -30,24 +34,51 @@ public class ThrowingPower : MonoBehaviour
     void Update()
     {
         if (!this.canShot) return;
-        if(Power < 100f)
+        Key();
+        if (Input.GetMouseButtonUp(0))
         {
-            if (Input.GetMouseButton(0))
-            {
-                Power += 0.1f;
-                Debug.Log(Power + "増えてる");
-            }
-            if (Input.GetMouseButtonUp(0))
-            {
-                Debug.Log(Power + "放した");
-                //Throw();
-                Gauge();
+            Debug.Log(Power + "放した");
+            //Throw();
+            TargetDistance();
+            Gauge();
 
-                Power = 0;
-                landing = false;
-                shot = false;
+            Power = 0;
+            landing = false;
+            shot = false;
+        }
+        
+    }
+
+    public void Key()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            if (powercount == false)
+            {
+                if (Power <= 100)
+                {
+                    Power += 0.1f;
+                    Debug.Log(Power + "増えてる");
+                }
+                if (Power == 100)
+                {
+                    Power -= 0.1f;
+                    powercount = true;
+                    Debug.Log(Power + "減ってる");
+                }
+            
+                if (Power == 0)
+                {
+                    powercount = false;
+                }
             }
         }
+    }
+
+    public void TargetDistance()
+    {
+        targetobject.transform.position = new Vector3(0,0, Power);
+        Debug.Log(Power+"aaaaaaaa");
     }
 
     /// <summary>
@@ -81,10 +112,9 @@ public class ThrowingPower : MonoBehaviour
 
     public void Gauge()
     {
-
-
             // 標的の座標
-            Vector3 targetPosition = Trash_box.transform.position;
+            Vector3 targetPosition = targetobject.transform.position;
+        Debug.Log(targetPosition);
 
             // 射出角度
             float angle = Angle;
@@ -95,6 +125,7 @@ public class ThrowingPower : MonoBehaviour
             // 射出
             Rigidbody rb = GetComponent<Rigidbody>();
            rb.AddForce(velocity * rb.mass, ForceMode.Impulse);
+        Debug.Log(velocity);
         rb.useGravity = true;
 
     }
@@ -112,9 +143,8 @@ public class ThrowingPower : MonoBehaviour
 
         // 水平方向の距離x
         //ここにpoawerをかける
-        //float x = Vector2.Distance(new Vector2(pointA.x, pointA.z), new Vector2(pointB.x, pointB.z));
-        Vector2 posX = new Vector2(Power,Power);
-        float x = Vector2.Distance(new Vector2(pointA.x, pointA.z), posX);
+        float x = Vector2.Distance(new Vector2(pointA.x, pointA.z), new Vector2(pointB.x, pointB.z));
+
 
 
         // 垂直方向の距離y

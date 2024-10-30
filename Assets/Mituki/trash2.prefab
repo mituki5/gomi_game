@@ -121,11 +121,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Power: 0
+  Angle: 50
   Trash_box: {fileID: 0}
   Player: {fileID: 8706815323055326940}
+  targetobject: {fileID: 7496919824475447461, guid: 75e902d151b82774b83efffd2b25c422, type: 3}
   landing: 1
   shot: 1
   canShot: 0
+  powercount: 0
 --- !u!54 &1400659871223737111
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -165,5 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e0f84e485203e42baf9872e508843f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Trash2: {fileID: 8706815323055326940}
+  plastic: {fileID: 0}
   isEnter: 0
+  mistake: 0
