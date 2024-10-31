@@ -9,7 +9,7 @@ public class ResultScript : MonoBehaviour
 
     [SerializeField] Text ScoreText;
 
-    public static int score;
+    public static float score;
 
     // Start is called before the first frame update
     void Start()
