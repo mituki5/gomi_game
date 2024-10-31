@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using UnityEngine;
@@ -23,7 +22,6 @@ public class ThrowingPower : MonoBehaviour
 
     private kinds kindScript;
 
-
     public void SetScript(GameObject trashBox, kinds kind, bool canShot)
     {
         Trash_box = trashBox;
@@ -43,43 +41,41 @@ public class ThrowingPower : MonoBehaviour
             TargetDistance();
             Gauge();
 
-            Power = MinPower;
+            Power = 0;
             landing = false;
             shot = false;
         }
         
     }
 
+
+    /// <summary>
+    /// 押している間Powerをためる関数（繰り返す）
+    /// </summary>
     public void Key()
     {
-        Debug.Log(powercount);
         if (Input.GetMouseButton(0))
         {
-            if(Power == MaxPower)
+            if (powercount == false)
             {
-                if (Power > MaxPower)
+                if ((int)Power <= 100)
                 {
-                    powercount = true;
+                    Power += 0.1f;
+                    Debug.Log(Power + "増えてる");
+                    if((int)Power == MaxPower)
+                    {
+                        powercount = true;
+                    }    
                 }
             }
-            if(Power == MinPower)
+            if (powercount == true)
             {
-                if (Power > MinPower)
+                Power -= 0.1f;
+                Debug.Log(Power + "減ってる");
+                if ((int)Power == MinPower)
                 {
                     powercount = false;
                 }
-            }
-
-            if(powercount == false)
-            {
-                    Power += 0.1f;
-                    Debug.Log(Power + "増えてる");
-            }
-
-            if(powercount == true){
-                    Power -= 0.1f;
-                    Debug.Log(Power + "減ってる");
-
             }
         }
     }
@@ -87,7 +83,6 @@ public class ThrowingPower : MonoBehaviour
     public void TargetDistance()
     {
         targetobject.transform.position = new Vector3(0,0, Power);
-        Debug.Log(Power+"aaaaaaaa");
     }
 
     /// <summary>
@@ -118,7 +113,9 @@ public class ThrowingPower : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// 投げる関数
+    /// </summary>
     public void Gauge()
     {
             // 標的の座標
@@ -133,7 +130,7 @@ public class ThrowingPower : MonoBehaviour
 
             // 射出
             Rigidbody rb = GetComponent<Rigidbody>();
-           rb.AddForce(velocity * rb.mass, ForceMode.Impulse);
+           rb.AddForce(velocity * rb.mass / kindScript.weight, ForceMode.Impulse);
         Debug.Log(velocity);
         rb.useGravity = true;
 
@@ -151,7 +148,6 @@ public class ThrowingPower : MonoBehaviour
         float rad = angle * Mathf.PI / 180;
 
         // 水平方向の距離x
-        //ここにpoawerをかける
         float x = Vector2.Distance(new Vector2(pointA.x, pointA.z), new Vector2(pointB.x, pointB.z));
 
 
