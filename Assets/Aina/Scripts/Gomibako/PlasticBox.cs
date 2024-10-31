@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class PlasticBox : MonoBehaviour
 {
-    [SerializeField] private GameObject trash;
-    [SerializeField] private GameObject plastic;
-    [SerializeField] private GameObject bottle;
     public bool isEnter;
     public bool mistake;
     void Start()
