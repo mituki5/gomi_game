@@ -17,9 +17,9 @@ public class kinds : MonoBehaviour, IPointerClickHandler
     private enum TrashType
     {
         //Plastic_bottle,
-        trash3,
-        teash2,
-        trash,
+        trash3,//bottle
+        teash2,//cap
+        trash,//paper
         //LunchBox
     }
     private enum Disassembled
