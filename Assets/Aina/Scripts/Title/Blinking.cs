@@ -10,6 +10,7 @@ public class Blinking : MonoBehaviour
 
     //private
     private Text Holdtext;
+    private GameObject TitleImage;
     private GameObject Titletext;
     private Image image;
     private float time;
@@ -18,6 +19,7 @@ public class Blinking : MonoBehaviour
     void Start()
     {
         Holdtext = this.gameObject.GetComponent<Text>();
+        TitleImage = GameObject.Find("TitleNameImage");
         Titletext = GameObject.Find("TitleNameText");
     }
 
@@ -27,6 +29,7 @@ public class Blinking : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             this.gameObject.SetActive(false);
+            TitleImage.SetActive(false);
             Titletext.SetActive(false);
         }
         Holdtext.color = GetAlphaColor(Holdtext.color);
