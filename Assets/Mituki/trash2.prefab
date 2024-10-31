@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 3431640482246379101}
   - component: {fileID: 6676608255836030469}
   - component: {fileID: 1400659871223737111}
-  - component: {fileID: 8782781760366517980}
   m_Layer: 8
   m_Name: trash2
   m_TagString: Untagged
@@ -121,6 +120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Power: 0
+  MinPower: 0
+  MaxPower: 100
   Angle: 50
   Trash_box: {fileID: 0}
   Player: {fileID: 8706815323055326940}
@@ -156,18 +157,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8782781760366517980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8706815323055326940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46e0f84e485203e42baf9872e508843f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plastic: {fileID: 0}
-  isEnter: 0
-  mistake: 0

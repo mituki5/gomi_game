@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rotate : MonoBehaviour
 {
-    public float rotate;
+    public float _Rotate;
     public float max = 180;
     public float min = -180;
  
@@ -33,12 +33,12 @@ public class Rotate : MonoBehaviour
     //d‚¢‚Æ‚±‚ğ’†S‚É
     public void Rotatering1()
     {
-        rotate = transform.eulerAngles.z;
-        if (rotate <= max)
+        _Rotate = transform.eulerAngles.z;
+        if (_Rotate <= max)
         {
             transform.Rotate(0, 0, -1);
         }
-        else if(rotate >= min)
+        else if(_Rotate >= min)
         {
             transform.Rotate(0, 0, 1);
         }
