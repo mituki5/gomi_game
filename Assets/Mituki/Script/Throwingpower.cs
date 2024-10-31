@@ -22,7 +22,6 @@ public class ThrowingPower : MonoBehaviour
 
     private kinds kindScript;
 
-
     public void SetScript(GameObject trashBox, kinds kind, bool canShot)
     {
         Trash_box = trashBox;
@@ -49,25 +48,31 @@ public class ThrowingPower : MonoBehaviour
         
     }
 
+
+    /// <summary>
+    /// 押している間Powerをためる関数（繰り返す）
+    /// </summary>
     public void Key()
     {
         if (Input.GetMouseButton(0))
         {
             if (powercount == false)
             {
-                if (Power <= 100)
+                if ((int)Power <= 100)
                 {
                     Power += 0.1f;
                     Debug.Log(Power + "増えてる");
+                    if((int)Power == MaxPower)
+                    {
+                        powercount = true;
+                    }    
                 }
-                if (Power == 100)
-                {
-                    Power -= 0.1f;
-                    powercount = true;
-                    Debug.Log(Power + "減ってる");
-                }
-            
-                if (Power == 0)
+            }
+            if (powercount == true)
+            {
+                Power -= 0.1f;
+                Debug.Log(Power + "減ってる");
+                if ((int)Power == MinPower)
                 {
                     powercount = false;
                 }
@@ -78,7 +83,6 @@ public class ThrowingPower : MonoBehaviour
     public void TargetDistance()
     {
         targetobject.transform.position = new Vector3(0,0, Power);
-        Debug.Log(Power+"aaaaaaaa");
     }
 
     /// <summary>
@@ -109,7 +113,9 @@ public class ThrowingPower : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// 投げる関数
+    /// </summary>
     public void Gauge()
     {
             // 標的の座標
@@ -124,7 +130,7 @@ public class ThrowingPower : MonoBehaviour
 
             // 射出
             Rigidbody rb = GetComponent<Rigidbody>();
-           rb.AddForce(velocity * rb.mass, ForceMode.Impulse);
+           rb.AddForce(velocity * rb.mass / kindScript.weight, ForceMode.Impulse);
         Debug.Log(velocity);
         rb.useGravity = true;
 
@@ -142,7 +148,6 @@ public class ThrowingPower : MonoBehaviour
         float rad = angle * Mathf.PI / 180;
 
         // 水平方向の距離x
-        //ここにpoawerをかける
         float x = Vector2.Distance(new Vector2(pointA.x, pointA.z), new Vector2(pointB.x, pointB.z));
 
 

@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 4160270818932256122}
   - component: {fileID: 1283753667868311842}
   - component: {fileID: 2447776352134871663}
-  - component: {fileID: -7257512493633677412}
-  - component: {fileID: 2779212188518186819}
+  - component: {fileID: 2180387726707475281}
   m_Layer: 0
   m_Name: trash
   m_TagString: Untagged
@@ -123,6 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Power: 0
+  MinPower: 0
+  MaxPower: 100
   Angle: 50
   Trash_box: {fileID: 0}
   Player: {fileID: 8301393549835201551}
@@ -131,22 +132,7 @@ MonoBehaviour:
   shot: 1
   canShot: 0
   powercount: 0
---- !u!114 &-7257512493633677412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8301393549835201551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdbe87a7e1581ad4c8688d6879723c4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trash: {fileID: 0}
-  isEnter: 0
-  mistake: 0
---- !u!54 &2779212188518186819
+--- !u!54 &2180387726707475281
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
