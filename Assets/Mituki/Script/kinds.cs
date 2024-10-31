@@ -38,6 +38,10 @@ public class kinds : MonoBehaviour, IPointerClickHandler
     private ThrowingPower firstThrowingpower;
     [SerializeField] public float weight;
 
+    [SerializeField] private GameObject TrashImage;
+    [SerializeField] private GameObject PlasticImage;
+    [SerializeField] private GameObject BottleImage;
+
     public void Start()
     {
         //_name.Add("plastic_bottle");
@@ -58,6 +62,10 @@ public class kinds : MonoBehaviour, IPointerClickHandler
         //nextのオブジェクトも開始直後同じ場所に生成されている↓
         nextObject = Instantiate(trashPrefabs[tmpIndex], nextObject.transform);
         nextIndex = tmpIndex;
+
+        //TrashImage.SetActive(false);
+        //PlasticImage.SetActive(false);
+        //BottleImage.SetActive(false);
     }
 
     private void Update()
@@ -102,13 +110,22 @@ public class kinds : MonoBehaviour, IPointerClickHandler
                     weight = 3.0f;
                 break;
                 case "trash3":
+                    TrashImage.SetActive(false);
+                    PlasticImage.SetActive(false);
                     weight = 3.0f;
+                    BottleImage.SetActive(true);
                 break;
                 case "trash2":
+                    TrashImage.SetActive(false);
+                    BottleImage.SetActive(false);
                     weight = 1.0f;
+                    PlasticImage.SetActive(true);
                 break;
                 case "trash":
+                    PlasticImage.SetActive(false);
+                    BottleImage.SetActive(false);
                     weight = 1.0f;
+                    TrashImage.SetActive(true);
                 break;
                 case "lunch_box":
                     weight = 5.0f;
