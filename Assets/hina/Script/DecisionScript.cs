@@ -22,28 +22,28 @@ public class DecisionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(trash.GetComponent<Moerugomi>().isEnter == true)
+        if(trash.GetComponent<TrashBox>().isEnter == true)
         {
             CorrectAnswerImage();
-            trash.GetComponent<Moerugomi>().isEnter = false;
+            trash.GetComponent<TrashBox>().isEnter = false;
         }
-        if (plastic.GetComponent<Plasticgomi>().isEnter == true)
+        if (plastic.GetComponent<PlasticBox>().isEnter == true)
         {
             CorrectAnswerImage();
-            plastic.GetComponent<Plasticgomi>().isEnter = false;
+            plastic.GetComponent<PlasticBox>().isEnter = false;
         }
 
-        if (bottle.GetComponent<Plasticbottle>().isEnter == true)
+        if (bottle.GetComponent<BottleBox>().isEnter == true)
         {
             CorrectAnswerImage();
-            bottle.GetComponent<Plasticbottle>().isEnter = false;
+            bottle.GetComponent<BottleBox>().isEnter = false;
         }
-        if (trash.GetComponent<Moerugomi>().mistake == true || plastic.GetComponent<Plasticgomi>().mistake == true || bottle.GetComponent<Plasticbottle>().mistake == true)
+        if (trash.GetComponent<TrashBox>().mistake == true || plastic.GetComponent<PlasticBox>().mistake == true || bottle.GetComponent<BottleBox>().mistake == true)
         {
             IncorrectAnswerImage();
-            trash.GetComponent<Moerugomi>().mistake = false;
-            plastic.GetComponent<Plasticgomi>().mistake = false;
-            bottle.GetComponent<Plasticbottle>().mistake = false;
+            trash.GetComponent<TrashBox>().mistake = false;
+            plastic.GetComponent<PlasticBox>().mistake = false;
+            bottle.GetComponent<BottleBox>().mistake = false;
         }
     }
 
