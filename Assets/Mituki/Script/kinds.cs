@@ -65,7 +65,7 @@ public class kinds : MonoBehaviour, IPointerClickHandler
         if (firstThrowingpower.landing == false)
         {
             FirstInstantiateTrash();
-            SecondInstantiateTrash();
+            //SecondInstantiateTrash();
             Kinds();
             firstThrowingpower.landing = true;
             firstThrowingpower.shot = true;
@@ -80,6 +80,7 @@ public class kinds : MonoBehaviour, IPointerClickHandler
 
     private void FirstInstantiateTrash()
     {
+        SecondInstantiateTrash();
         firstObject.name = nextObject.name;
         firstObject = nextObject;
         firstThrowingpower = firstObject.GetComponent<ThrowingPower>();
