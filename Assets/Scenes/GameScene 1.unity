@@ -274,9 +274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ccd4847ecb376479ccf549812e6af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trash: {fileID: 7074895528951235237, guid: 261e6548d5c53f647833c2311a7b1e8d, type: 3}
-  plastic: {fileID: 878055780521267457, guid: 3b01b9dd695745d4f8e875299c8ca28c, type: 3}
-  bottle: {fileID: 8999785880462900969, guid: 4cf13c9e68213c94f9ce7697b638cd87, type: 3}
+  trash: {fileID: 0}
+  plastic: {fileID: 0}
+  bottle: {fileID: 0}
   isEnter: 0
   mistake: 0
 --- !u!1 &84088797
@@ -883,7 +883,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &237634126
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1408,10 +1408,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moeru_Gomibako
       objectReference: {fileID: 0}
-    - target: {fileID: 287479710543177700, guid: f7ffa918a8d7f794bb05605b073f850b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 668657171942211704, guid: f7ffa918a8d7f794bb05605b073f850b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.2
@@ -1464,10 +1460,6 @@ PrefabInstance:
       propertyPath: pointC
       value: 
       objectReference: {fileID: 1553480460}
-    - target: {fileID: 3329128082052739087, guid: f7ffa918a8d7f794bb05605b073f850b, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2113,7 +2105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &488570210
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3699,9 +3691,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fadb47f3b2470843a8662f42362a75e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trash: {fileID: 7074895528951235237, guid: 261e6548d5c53f647833c2311a7b1e8d, type: 3}
-  plastic: {fileID: 878055780521267457, guid: 3b01b9dd695745d4f8e875299c8ca28c, type: 3}
-  bottle: {fileID: 8999785880462900969, guid: 4cf13c9e68213c94f9ce7697b638cd87, type: 3}
+  trash: {fileID: 0}
+  plastic: {fileID: 0}
+  bottle: {fileID: 0}
   isEnter: 0
   mistake: 0
 --- !u!1 &756728445
@@ -5178,10 +5170,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plastic_Gomibako
       objectReference: {fileID: 0}
-    - target: {fileID: 5827396345530142948, guid: 5fbd02efee9eb194cbde3f3254ebf914, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6503235367993668338, guid: 5fbd02efee9eb194cbde3f3254ebf914, type: 3}
       propertyPath: pointA
       value: 
@@ -5194,10 +5182,6 @@ PrefabInstance:
       propertyPath: pointC
       value: 
       objectReference: {fileID: 1553480460}
-    - target: {fileID: 6503235367993668338, guid: 5fbd02efee9eb194cbde3f3254ebf914, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6816258528830595468, guid: 5fbd02efee9eb194cbde3f3254ebf914, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8
@@ -5603,9 +5587,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gaugeImage1: {fileID: 1125978310}
-  maxPower: 100
-  Power: 0
-  minPower: 0
+  maxValue: 100
+  currentValue: 0
+  minValue: 0
 --- !u!1 &1139822069
 GameObject:
   m_ObjectHideFlags: 0
@@ -6021,6 +6005,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdbe87a7e1581ad4c8688d6879723c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trash: {fileID: 0}
+  isEnter: 0
+  mistake: 0
 --- !u!114 &1178732517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6034,16 +6021,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Power: 0
-  MinPower: 0
-  MaxPower: 100
   Angle: 50
   Trash_box: {fileID: 0}
   Player: {fileID: 0}
-  targetobject: {fileID: 0}
   landing: 1
   shot: 1
   canShot: 0
-  powercount: 0
 --- !u!1 &1193477673
 GameObject:
   m_ObjectHideFlags: 0
@@ -6086,7 +6069,6 @@ GameObject:
   - component: {fileID: 1233521973}
   - component: {fileID: 1233521974}
   - component: {fileID: 1233521975}
-  - component: {fileID: 1233521976}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -6102,12 +6084,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1233521972}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -959.6, y: -540.83, z: -2.56}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.4, y: -0.83, z: -2.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1615113459}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1233521974
 MonoBehaviour:
@@ -6129,14 +6111,14 @@ MonoBehaviour:
   - trash
   index: 0
   trashBox: {fileID: 0}
+  TrashImage: {fileID: 237634125}
+  PlasticImage: {fileID: 1825863382}
+  BottleImage: {fileID: 488570209}
   trashPrefabs:
   - {fileID: 7335773958864978630, guid: ebd536b9016d10d40a5df98296b6c25c, type: 3}
   - {fileID: 8706815323055326940, guid: 3667cf3674d65d34bac9dfe35a481f19, type: 3}
   - {fileID: 8301393549835201551, guid: 1e92e044dd7d2554dbfe5d13e3f28a64, type: 3}
   weight: 5
-  TrashImage: {fileID: 237634125}
-  PlasticImage: {fileID: 1825863382}
-  BottleImage: {fileID: 488570209}
 --- !u!114 &1233521975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6149,21 +6131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f3d6cbd5479ab14395c92fa8533cded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1233521976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1233521972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c16dcdbc113ac8c41bb11d304811a605, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ThrowingObject: {fileID: 7074895528951235237, guid: 261e6548d5c53f647833c2311a7b1e8d, type: 3}
-  TargetObject: {fileID: 1344354857}
-  ThrowingAngle: 29.4
 --- !u!1 &1264363194
 GameObject:
   m_ObjectHideFlags: 0
@@ -6409,6 +6376,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e0f84e485203e42baf9872e508843f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plastic: {fileID: 0}
+  isEnter: 0
+  mistake: 0
 --- !u!54 &1277479065
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6535,16 +6505,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Power: 0
-  MinPower: 0
-  MaxPower: 100
   Angle: 50
   Trash_box: {fileID: 0}
   Player: {fileID: 1277479063}
-  targetobject: {fileID: 0}
   landing: 1
   shot: 1
   canShot: 0
-  powercount: 0
 --- !u!114 &1277479072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6562,11 +6528,11 @@ MonoBehaviour:
   _name: []
   index: 0
   trashBox: {fileID: 0}
-  trashPrefabs: []
-  weight: 0
   TrashImage: {fileID: 0}
   PlasticImage: {fileID: 0}
   BottleImage: {fileID: 0}
+  trashPrefabs: []
+  weight: 0
 --- !u!1 &1344354857 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 287479710543177700, guid: f7ffa918a8d7f794bb05605b073f850b, type: 3}
@@ -6584,9 +6550,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f7859ea70cd0504ab191b5d6363742e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trash: {fileID: 7074895528951235237, guid: 261e6548d5c53f647833c2311a7b1e8d, type: 3}
-  plastic: {fileID: 878055780521267457, guid: 3b01b9dd695745d4f8e875299c8ca28c, type: 3}
-  bottle: {fileID: 8999785880462900969, guid: 4cf13c9e68213c94f9ce7697b638cd87, type: 3}
+  trash: {fileID: 0}
+  plastic: {fileID: 0}
+  bottle: {fileID: 0}
   isEnter: 0
   mistake: 0
 --- !u!1 &1392134269
@@ -7320,7 +7286,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1233521973}
   - {fileID: 865628082}
   - {fileID: 396145946}
   - {fileID: 1392134270}
@@ -7350,10 +7315,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b902a6f31630b84f9e71901e42b71ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrashImage: {fileID: 0}
-  PlasticImage: {fileID: 0}
-  BottleImage: {fileID: 0}
-  index: 0
 --- !u!1 &1636131410
 GameObject:
   m_ObjectHideFlags: 0
@@ -7914,10 +7875,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bottle_Gomibako
       objectReference: {fileID: 0}
-    - target: {fileID: 2846517511310122707, guid: 5002d28880dc030439bc9f5481f1598d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5238733638748366101, guid: 5002d28880dc030439bc9f5481f1598d, type: 3}
       propertyPath: pointA
       value: 
@@ -7930,10 +7887,6 @@ PrefabInstance:
       propertyPath: pointC
       value: 
       objectReference: {fileID: 1553480460}
-    - target: {fileID: 5238733638748366101, guid: 5002d28880dc030439bc9f5481f1598d, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8701219798211139462, guid: 5002d28880dc030439bc9f5481f1598d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8
@@ -8698,9 +8651,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gaugeImage1: {fileID: 0}
-  maxPower: 100
-  Power: 0
-  minPower: 0
+  maxValue: 100
+  currentValue: 0
+  minValue: 0
 --- !u!212 &1797925831
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8904,7 +8857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1825863383
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9963,6 +9916,7 @@ SceneRoots:
   - {fileID: 1913515624}
   - {fileID: 878756086}
   - {fileID: 1056050259}
+  - {fileID: 1233521973}
   - {fileID: 1193477674}
   - {fileID: 2059248521}
   - {fileID: 311161971}

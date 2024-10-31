@@ -25,11 +25,7 @@ Transform:
   m_GameObject: {fileID: 7496919824475447461}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD
-  m_LocalPosition: {x: 0, y: 0, z: 20.20004}
-=======
-  m_LocalPosition: {x: 0, y: 0, z: 192.40254}
->>>>>>> origin/mituki
+  m_LocalPosition: {x: 0, y: 0, z: 12.400011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
