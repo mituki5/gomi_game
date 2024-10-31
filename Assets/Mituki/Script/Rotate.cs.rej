@@ -1,0 +1,17 @@
+diff a/Assets/Mituki/Script/Rotate.cs b/Assets/Mituki/Script/Rotate.cs	(rejected hunks)
+@@ -33,12 +33,12 @@
+     //�d���Ƃ��𒆐S��
+     public void Rotatering1()
+     {
+-        rotate = transform.eulerAngles.z;
+-        if (rotate <= max)
++        _Rotate = transform.eulerAngles.z;
++        if (_Rotate <= max)
+         {
+             transform.Rotate(0, 0, -1);
+         }
+-        else if(rotate >= min)
++        else if(_Rotate >= min)
+         {
+             transform.Rotate(0, 0, 1);
+         }
