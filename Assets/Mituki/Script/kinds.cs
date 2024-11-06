@@ -16,7 +16,7 @@ public class kinds : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject trashBox;
     private enum TrashType
     {
-        Plastic_bottle,
+        //Plastic_bottle,
         trash3,//bottle
         teash2,//cap
         trash,//paper
@@ -62,18 +62,12 @@ public class kinds : MonoBehaviour, IPointerClickHandler
 
     private void Update()
     {
-
         if (firstThrowingpower.landing == false)
         {
             FirstInstantiateTrash();
             //SecondInstantiateTrash();
             Kinds();
-            if (_name[index] == "Plastic_bottle")
-            {
-                Separation();
-            }
-
-                firstThrowingpower.landing = true;
+            firstThrowingpower.landing = true;
             firstThrowingpower.shot = true;
         }
 
@@ -89,6 +83,9 @@ public class kinds : MonoBehaviour, IPointerClickHandler
         SecondInstantiateTrash();
         firstObject.name = nextObject.name;
         firstObject = nextObject;
+        firstThrowingpower = firstObject.GetComponent<ThrowingPower>();
+        firstThrowingpower.SetScript(trashBox, this, true);
+        index = nextIndex;
     }
 
     private void SecondInstantiateTrash()
