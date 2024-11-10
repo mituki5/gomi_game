@@ -17,9 +17,9 @@ public class kinds : MonoBehaviour, IPointerClickHandler
     private enum TrashType
     {
         //Plastic_bottle,
-        trash3,//bottle
-        teash2,//cap
-        trash,//paper
+        Bottle,//bottle
+        Cap,//cap
+        Trash,//paper
         //LunchBox
     }
     private enum Disassembled
@@ -37,6 +37,8 @@ public class kinds : MonoBehaviour, IPointerClickHandler
 
     private ThrowingPower firstThrowingpower;
     [SerializeField] public float weight;
+
+    private GameObject time;
 
     public void Start()
     {
@@ -58,24 +60,29 @@ public class kinds : MonoBehaviour, IPointerClickHandler
         //nextのオブジェクトも開始直後同じ場所に生成されている↓
         nextObject = Instantiate(trashPrefabs[tmpIndex], nextObject.transform);
         nextIndex = tmpIndex;
+
+        time = GameObject.Find("TimeObject");
     }
 
     private void Update()
     {
-        if (firstThrowingpower.landing == false)
+        if (time.GetComponent<TimeCounter>().start == true)
         {
-            FirstInstantiateTrash();
-            //SecondInstantiateTrash();
-            Kinds();
-            firstThrowingpower.landing = true;
-            firstThrowingpower.shot = true;
-        }
+            if (firstThrowingpower.landing == false)
+            {
+                FirstInstantiateTrash();
+                //SecondInstantiateTrash();
+                Kinds();
+                firstThrowingpower.landing = true;
+                firstThrowingpower.shot = true;
+            }
 
-        //if(firstObject.transform.position.y < -5 || firstObject.transform.position.y > 10.0f)
-        //{
-        //    Destroy(firstObject);
-        //    Debug.Log(firstObject.name);
-        //}
+            //if(firstObject.transform.position.y < -5 || firstObject.transform.position.y > 10.0f)
+            //{
+            //    Destroy(firstObject);
+            //    Debug.Log(firstObject.name);
+            //}
+        }
     }
 
     private void FirstInstantiateTrash()
@@ -97,24 +104,24 @@ public class kinds : MonoBehaviour, IPointerClickHandler
     public void Kinds()
     {
         switch (_name[index])
-            {
-                //ペットボトルの場合のみ分解
-                case "plastic_bottle":
-                    weight = 3.0f;
+        {
+            //ペットボトルの場合のみ分解
+            case "plastic_bottle":
+                weight = 3.0f;
                 break;
-                case "trash3":
-                    weight = 3.0f;
+            case "bottle":
+                weight = 3.0f;
                 break;
-                case "trash2":
-                    weight = 1.0f;
+            case "cap":
+                weight = 1.0f;
                 break;
-                case "trash":
-                    weight = 1.0f;
+            case "Trash":
+                weight = 1.0f;
                 break;
-                case "lunch_box":
-                    weight = 5.0f;
+            case "lunch_box":
+                weight = 5.0f;
                 break;
-            }    
+        }
     }
 
     /// <summary>

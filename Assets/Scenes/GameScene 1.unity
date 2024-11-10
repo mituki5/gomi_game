@@ -8823,7 +8823,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1233521973}
   - component: {fileID: 1233521974}
-  - component: {fileID: 1233521975}
   - component: {fileID: 1233521976}
   m_Layer: 0
   m_Name: GameObject
@@ -8862,9 +8861,9 @@ MonoBehaviour:
   firstObject: {fileID: 0}
   nextObject: {fileID: 1193477673}
   _name:
-  - trash3
-  - trash2
-  - trash
+  - bottle
+  - cap
+  - Trash
   index: 0
   trashBox: {fileID: 0}
   trashPrefabs:
@@ -8872,18 +8871,6 @@ MonoBehaviour:
   - {fileID: 8706815323055326940, guid: 3667cf3674d65d34bac9dfe35a481f19, type: 3}
   - {fileID: 8301393549835201551, guid: 1e92e044dd7d2554dbfe5d13e3f28a64, type: 3}
   weight: 5
---- !u!114 &1233521975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1233521972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f3d6cbd5479ab14395c92fa8533cded, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1233521976
 MonoBehaviour:
   m_ObjectHideFlags: 0

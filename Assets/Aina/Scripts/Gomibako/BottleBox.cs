@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class BottleBox : MonoBehaviour
 {
-    public bool isEnter;
+    public bool isEnter_p;
+    public bool isEnter_b;
     public bool mistake;
     void Start()
     {
-        isEnter = false;
+        isEnter_p = false;
+        isEnter_b = false;
         mistake = false;
     }
 
@@ -53,8 +55,18 @@ public class BottleBox : MonoBehaviour
                 Destroy(collision.gameObject);
                 break;
             case "plasticbottle":
-                isEnter = true;
+                isEnter_p = true;
                 Debug.Log("ペットボトル入った");
+                Destroy(collision.gameObject);
+                break;
+            case "bottle":
+                isEnter_b = true;
+                Debug.Log("ボトル入った");
+                Destroy(collision.gameObject);
+                break;
+            case "cap":
+                mistake = true;
+                Debug.Log("間違えた");
                 Destroy(collision.gameObject);
                 break;
         }

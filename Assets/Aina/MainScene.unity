@@ -494,8 +494,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c16dcdbc113ac8c41bb11d304811a605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThrowingObject: {fileID: 8999785880462900969, guid: 4cf13c9e68213c94f9ce7697b638cd87, type: 3}
-  TargetObject: {fileID: 1901366168}
+  ThrowingObject: {fileID: 878055780521267457, guid: 3b01b9dd695745d4f8e875299c8ca28c, type: 3}
+  TargetObject: {fileID: 1188860168}
   ThrowingAngle: 51
 --- !u!65 &713662721
 BoxCollider:
@@ -1064,7 +1064,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ccd4847ecb376479ccf549812e6af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
+  isEnter_p: 0
+  isEnter_c: 0
   mistake: 0
 --- !u!1 &1321501315
 GameObject:
@@ -1309,6 +1310,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLimit: 30
   timeText: {fileID: 1866606288}
+  timeLimit1: 0
+  timeText1: {fileID: 0}
+  start: 0
 --- !u!1 &1866606285
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,6 +1365,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLimit: 30
   timeText: {fileID: 1866606288}
+  timeLimit1: 0
+  timeText1: {fileID: 0}
+  start: 0
 --- !u!114 &1866606288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1420,7 +1427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fadb47f3b2470843a8662f42362a75e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
+  isEnter_p: 0
+  isEnter_b: 0
   mistake: 0
 --- !u!1 &1963656464
 GameObject:
