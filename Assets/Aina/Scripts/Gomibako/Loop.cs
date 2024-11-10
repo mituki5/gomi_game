@@ -10,14 +10,24 @@ public class Loop : MonoBehaviour
     [SerializeField] Transform pointB;
     [SerializeField] Transform pointC;
 
+    private GameObject time;
+
+    private void Start()
+    {
+        time = GameObject.Find("TimeObject");
+    }
+
     void Update()
     {
-        if (count == 0)
-            transform.position = Vector3.MoveTowards(transform.position, pointA.position, speed * Time.deltaTime);
-        else if (count == 1)
-            transform.position = Vector3.MoveTowards(transform.position, pointB.position, speed * Time.deltaTime);
-        else if (count == 2)
-            transform.position = Vector3.MoveTowards(transform.position, pointC.position, speed * Time.deltaTime);
+        if (time.GetComponent<TimeCounter>().start == true) 
+        {
+            if (count == 0)
+                transform.position = Vector3.MoveTowards(transform.position, pointA.position, speed * Time.deltaTime);
+            else if (count == 1)
+                transform.position = Vector3.MoveTowards(transform.position, pointB.position, speed * Time.deltaTime);
+            else if (count == 2)
+                transform.position = Vector3.MoveTowards(transform.position, pointC.position, speed * Time.deltaTime);
+        }
     }
 
     void OnTriggerEnter(Collider other)
