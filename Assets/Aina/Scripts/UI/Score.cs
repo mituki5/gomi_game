@@ -29,17 +29,31 @@ public class Score : MonoBehaviour
             ScoreText.text = $"スコア：{score.ToString("D3")}";
             trash.GetComponent<TrashBox>().isEnter = false;
         }
-        if (plastic.GetComponent<PlasticBox>().isEnter == true)
+
+        if (plastic.GetComponent<PlasticBox>().isEnter_p == true)
         {
             score += 80;
             ScoreText.text = $"スコア：{score.ToString("D3")}";
-            plastic.GetComponent<PlasticBox>().isEnter = false;
+            plastic.GetComponent<PlasticBox>().isEnter_p = false;
         }
-        if (bottle.GetComponent<BottleBox>().isEnter == true)
+        if (plastic.GetComponent<PlasticBox>().isEnter_c == true)
+        {
+            score += 20;
+            ScoreText.text = $"スコア：{score.ToString("D3")}";
+            plastic.GetComponent<PlasticBox>().isEnter_c = false;
+        }
+
+        if (bottle.GetComponent<BottleBox>().isEnter_p == true)
+        {
+            score += 80;
+            ScoreText.text = $"スコア：{score.ToString("D3")}";
+            bottle.GetComponent<BottleBox>().isEnter_p = false;
+        }
+        if (bottle.GetComponent<BottleBox>().isEnter_b == true)
         {
             score += 100;
             ScoreText.text = $"スコア：{score.ToString("D3")}";
-            bottle.GetComponent<BottleBox>().isEnter = false;
+            bottle.GetComponent<BottleBox>().isEnter_b = false;
         }
 
         if (trash.GetComponent<TrashBox>().mistake == true || plastic.GetComponent<PlasticBox>().mistake == true || bottle.GetComponent<BottleBox>().mistake == true)

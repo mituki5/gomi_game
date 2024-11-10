@@ -27,17 +27,17 @@ public class DecisionScript : MonoBehaviour
             CorrectAnswerImage();
             trash.GetComponent<TrashBox>().isEnter = false;
         }
-        if (plastic.GetComponent<PlasticBox>().isEnter == true)
-        {
-            CorrectAnswerImage();
-            plastic.GetComponent<PlasticBox>().isEnter = false;
-        }
+        //if (plastic.GetComponent<PlasticBox>().isEnter == true)
+        //{
+        //    CorrectAnswerImage();
+        //    plastic.GetComponent<PlasticBox>().isEnter = false;
+        //}
 
-        if (bottle.GetComponent<BottleBox>().isEnter == true)
-        {
-            CorrectAnswerImage();
-            bottle.GetComponent<BottleBox>().isEnter = false;
-        }
+        //if (bottle.GetComponent<BottleBox>().isEnter == true)
+        //{
+        //    CorrectAnswerImage();
+        //    bottle.GetComponent<BottleBox>().isEnter = false;
+        //}
         if (trash.GetComponent<TrashBox>().mistake == true || plastic.GetComponent<PlasticBox>().mistake == true || bottle.GetComponent<BottleBox>().mistake == true)
         {
             IncorrectAnswerImage();

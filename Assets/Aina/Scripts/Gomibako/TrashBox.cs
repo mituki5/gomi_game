@@ -57,6 +57,16 @@ public class TrashBox : MonoBehaviour
                 Debug.Log("ŠÔˆá‚¦‚½");
                 Destroy(collision.gameObject);
                 break;
+            case "cap":
+                mistake = true;
+                Debug.Log("ŠÔˆá‚¦‚½");
+                Destroy(collision.gameObject);
+                break;
+            case "bottle":
+                mistake = true;
+                Debug.Log("ŠÔˆá‚¦‚½");
+                Destroy(collision.gameObject);
+                break;
         }
     }
 }
