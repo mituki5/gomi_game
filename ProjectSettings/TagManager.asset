@@ -13,6 +13,7 @@ TagManager:
   - plasticbottle
   - cap
   - bottle
+  - Floor
   layers:
   - Default
   - TransparentFX
