@@ -38,7 +38,7 @@ public class kinds : MonoBehaviour, IPointerClickHandler
     private ThrowingPower firstThrowingpower;
     [SerializeField] public float weight;
 
-    private GameObject time;
+    //private GameObject time;
 
     public void Start()
     {
@@ -57,16 +57,15 @@ public class kinds : MonoBehaviour, IPointerClickHandler
         firstThrowingpower.SetScript(trashBox, this, true);
         Kinds();
         tmpIndex = Random.Range(0, _name.Count);
-        //nextのオブジェクトも開始直後同じ場所に生成されている↓
         nextObject = Instantiate(trashPrefabs[tmpIndex], nextObject.transform);
         nextIndex = tmpIndex;
 
-        time = GameObject.Find("TimeObject");
+        //time = GameObject.Find("TimeObject");
     }
 
     private void Update()
     {
-        if (time.GetComponent<TimeCounter>().start == true)
+        //if (time.GetComponent<TimeCounter>().start == true)
         {
             if (firstThrowingpower.landing == false)
             {
@@ -76,12 +75,6 @@ public class kinds : MonoBehaviour, IPointerClickHandler
                 firstThrowingpower.landing = true;
                 firstThrowingpower.shot = true;
             }
-
-            //if(firstObject.transform.position.y < -5 || firstObject.transform.position.y > 10.0f)
-            //{
-            //    Destroy(firstObject);
-            //    Debug.Log(firstObject.name);
-            //}
         }
     }
 
@@ -121,6 +114,9 @@ public class kinds : MonoBehaviour, IPointerClickHandler
             case "lunch_box":
                 weight = 5.0f;
                 break;
+            default:
+                weight = 1.0f;
+                break;
         }
     }
 
@@ -142,8 +138,6 @@ public class kinds : MonoBehaviour, IPointerClickHandler
     /// クリックによる分解をする関数
     /// </summary>
     /// <param name="eventData"></param>
-    
-    
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.pointerId == -1)
