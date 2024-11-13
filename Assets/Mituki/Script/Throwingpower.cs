@@ -19,6 +19,7 @@ public class ThrowingPower : MonoBehaviour
     public bool shot = true;
     public bool canShot = false;
     public bool powercount  = false;
+    public bool powercount10 = true;
 
     private kinds kindScript;
 
@@ -34,8 +35,10 @@ public class ThrowingPower : MonoBehaviour
     {
         if (!this.canShot) return;
         Key();
+        
         if (Input.GetMouseButtonUp(0))
         {
+            if(powercount10 == false)
             Debug.Log(Power + "放した");
             //Throw();
             TargetDistance();
@@ -44,6 +47,7 @@ public class ThrowingPower : MonoBehaviour
             Power = 0;
             landing = false;
             shot = false;
+            powercount10 = true;
         }
         
     }
@@ -54,15 +58,20 @@ public class ThrowingPower : MonoBehaviour
     /// </summary>
     public void Key()
     {
+        
         if (Input.GetMouseButton(0))
         {
             if (powercount == false)
             {
-                if ((int)Power <= 100)
+                if ((int)Power <= MaxPower)
                 {
                     Power += 0.1f;
                     Debug.Log(Power + "増えてる");
-                    if((int)Power == MaxPower)
+                    if (Power == 10)
+                    {
+                        powercount10 = false;
+                    }
+                    if ((int)Power == MaxPower)
                     {
                         powercount = true;
                     }    
@@ -82,36 +91,9 @@ public class ThrowingPower : MonoBehaviour
 
     public void TargetDistance()
     {
-        targetobject.transform.position = new Vector3(0,0, Power);
+        targetobject.transform.position = new Vector3(0, 0, Power);
     }
 
-    /// <summary>
-    /// 投げる関数
-    /// </summary>
-    public void Throw()
-    {
-        //Debug.Log(kindScript.firstObject.name);
-        //Debug.Log(kindScript.weight);
-        //if (kindScript.firstObject.name == kindScript._name[kindScript.index])
-        //{
-           
-        //}
-        //力の方向
-        //Trash_box = GameObject.Find("TrashBox");
-        //Vector3 pos = Trash_box.transform.position * Power - Player.transform.position;
-        //50度
-        Vector3 forceDirection = new Vector3(0, Power / kindScript.weight * 9.8f / 100f, Power / 100f);
-        //if(pos.z <= forceDirection.z)
-        //{
-        //    forceDirection = new Vector3(0, Power  * 9.8f * 3, Power);
-        //}
-        float forceMagnitude = 10.0f;
-        Vector3 force = forceMagnitude * forceDirection;
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.AddForce(force, ForceMode.Impulse);
-        rb.useGravity = true;
-
-    }
 
     /// <summary>
     /// 投げる関数
@@ -120,7 +102,7 @@ public class ThrowingPower : MonoBehaviour
     {
             // 標的の座標
             Vector3 targetPosition = targetobject.transform.position;
-        Debug.Log(targetPosition);
+        //Debug.Log(targetPosition);
 
             // 射出角度
             float angle = Angle;
@@ -129,9 +111,10 @@ public class ThrowingPower : MonoBehaviour
             Vector3 velocity = CalculateVelocity(this.transform.position, targetPosition, angle);
 
             // 射出
-            Rigidbody rb = GetComponent<Rigidbody>();
+          Debug.Log(velocity);
+        Debug.Log(kindScript.weight);
+          Rigidbody rb = GetComponent<Rigidbody>();
            rb.AddForce(velocity * rb.mass / kindScript.weight, ForceMode.Impulse);
-        Debug.Log(velocity);
         rb.useGravity = true;
 
     }
