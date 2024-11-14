@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Delete : MonoBehaviour
 {
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.tag == "Floor")
+        if(other.gameObject.tag == "Floor")
         {
             Destroy(gameObject);
         }

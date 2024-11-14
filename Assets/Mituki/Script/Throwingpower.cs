@@ -38,27 +38,28 @@ public class ThrowingPower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(time.GetComponent<TimeCounter>().start == false)
-        if (!this.canShot) return;
-        Key();
-        
-        if (Input.GetMouseButtonUp(0))
+        if(time.GetComponent<TimeCounter>().start == true)
         {
-            if(powercount10 == false)
-            Debug.Log(Power + "•ú‚µ‚½");
-            //Throw();
-            TargetDistance();
-            Gauge();
+            if (!this.canShot) return;
+            Key();
 
-            //BoxCollider boxCollider = GetComponent<BoxCollider>();
-            //boxCollider.isTrigger = true;
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (powercount10 == false)
+                    Debug.Log(Power + "•ú‚µ‚½");
+                //Throw();
+                TargetDistance();
+                Gauge();
 
-            Power = 0;
-            landing = false;
-            shot = false;
-            powercount10 = true;
-        }
-        
+                //BoxCollider boxCollider = GetComponent<BoxCollider>();
+                //boxCollider.isTrigger = true;
+
+                Power = 0;
+                landing = false;
+                shot = false;
+                powercount10 = true;
+            }
+        } 
     }
 
 
