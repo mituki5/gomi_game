@@ -29,10 +29,16 @@ public class ThrowingPower : MonoBehaviour
         kindScript = kind;
         this.canShot = canShot;
     }
-    
+
+    private GameObject time;
+    private void Start()
+    {
+        time = GameObject.Find("TimeObject");
+    }
     // Update is called once per frame
     void Update()
     {
+        //if(time.GetComponent<TimeCounter>().start == false)
         if (!this.canShot) return;
         Key();
         
@@ -43,6 +49,9 @@ public class ThrowingPower : MonoBehaviour
             //Throw();
             TargetDistance();
             Gauge();
+
+            //BoxCollider boxCollider = GetComponent<BoxCollider>();
+            //boxCollider.isTrigger = true;
 
             Power = 0;
             landing = false;
