@@ -20,7 +20,7 @@ public class PlasticBox : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         /*if (collision.gameObject.tag == "moerugomi")
         {
@@ -42,32 +42,32 @@ public class PlasticBox : MonoBehaviour
             isEnter = true;
             Destroy(collision.gameObject);
         }*/
-        switch (collision.gameObject.tag)
+        switch (other.gameObject.tag)
         {
             case "moerugomi":
                 mistake = true;
                 Debug.Log("間違えた");
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
                 break;
             case "plasticgomi":
                 isEnter_p = true;
                 Debug.Log("プラゴミ入った");
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
                 break;
             case "plasticbottle":
                 mistake = true;
                 Debug.Log("間違えた");
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
                 break;
             case "bottle":
                 mistake = true;
                 Debug.Log("間違えた");
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
                 break;
             case "cap":
                 isEnter_c = true;
                 Debug.Log("キャップ入った");
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
                 break;
         }
     }
