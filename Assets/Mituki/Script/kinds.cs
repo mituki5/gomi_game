@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 //種類と分解
-public class kinds : MonoBehaviour, IPointerClickHandler
+public class kinds : MonoBehaviour//, IPointerClickHandler
 {
     public GameObject firstObject;
     public GameObject nextObject;
@@ -16,14 +16,11 @@ public class kinds : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject trashBox;
     private enum TrashType
     {
-        //plasticbottle,
-        //bottle,
-        //cap,
-        //Trash,
-        //plastic,
-        trash,
-        trash2,
-            trash3,
+        plasticbottle,
+        bottle,
+        cap,
+        Trash,
+        plastic,
     }
     [SerializeField] List<GameObject> trashPrefabs = new List<GameObject>();
     private ThrowingPower firstThrowingpower;
@@ -54,6 +51,7 @@ public class kinds : MonoBehaviour, IPointerClickHandler
                 firstThrowingpower.landing = true;
                 firstThrowingpower.shot = true;
             }
+        
     }
 
     private void FirstInstantiateTrash()
@@ -122,22 +120,24 @@ public class kinds : MonoBehaviour, IPointerClickHandler
         Destroy(firstObject);
         Destroy(nextObject);
         //投げる場所に分解したfirstObjectを置く
-        Instantiate(trashPrefabs[(int)TrashType.trash2], firstObject.transform);
+        Instantiate(trashPrefabs[(int)TrashType.bottle], firstObject.transform);
         //次のところ
-        Instantiate(trashPrefabs[(int)TrashType.trash2], nextObject.transform);
+        Instantiate(trashPrefabs[(int)TrashType.cap], nextObject.transform);
     }
 
-    /// <summary>
-    /// クリックによる分解をする関数
-    /// </summary>
-    /// <param name="eventData"></param>
+    ///// <summary>
+    ///// クリックによる分解をする関数
+    ///// </summary>
+    ///// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.pointerId == -1)
         {
-            if (_name[index] == "cap")
+            Debug.Log("分解");
+
+            if (_name[index] == "plasticbottle")
             {
-                Debug.Log("分解");
+            Debug.Log("分解");
                 Separation();
             }
         }

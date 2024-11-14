@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -38,27 +39,29 @@ public class ThrowingPower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(time.GetComponent<TimeCounter>().start == false)
+        //if(time.GetComponent<TimeCounter>().start == false){
         if (!this.canShot) return;
         Key();
-        
+
         if (Input.GetMouseButtonUp(0))
         {
-            if(powercount10 == false)
-            Debug.Log(Power + "ï˙ÇµÇΩ");
-            //Throw();
-            TargetDistance();
-            Gauge();
+            if (powercount10 == false)
+            {
+                Debug.Log(Power + "ï˙ÇµÇΩ");
+                //Throw();
+                TargetDistance();
+                Gauge();
 
-            //BoxCollider boxCollider = GetComponent<BoxCollider>();
-            //boxCollider.isTrigger = true;
+                //BoxCollider boxCollider = GetComponent<BoxCollider>();
+                //boxCollider.isTrigger = true;
 
-            Power = 0;
-            landing = false;
-            shot = false;
-            powercount10 = true;
+                Power = 0;
+                landing = false;
+                shot = false;
+                powercount10 = true;
+            }
         }
-        
+    //}
     }
 
 
@@ -76,7 +79,7 @@ public class ThrowingPower : MonoBehaviour
                 {
                     Power += 0.1f;
                     Debug.Log(Power + "ëùÇ¶ÇƒÇÈ");
-                    if (Power == 10)
+                    if ((int)Power == 10)
                     {
                         powercount10 = false;
                     }
