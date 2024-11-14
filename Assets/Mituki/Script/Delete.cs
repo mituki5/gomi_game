@@ -4,22 +4,11 @@ using UnityEngine;
 
 public class Delete : MonoBehaviour
 {
-    private int Objectcount;
-    private ThrowingPower ThrowingPower;
-
-    public void Destroy()
+    public void OnCollisionEnter(Collision collision)
     {
-        //ƒSƒ~‚ªÁ‚¦‚éðŒ
-        Vector3 pos = new Vector3(0, 0, 30);
-        if (this.transform.position.z > pos.z)
+        if(collision.gameObject.tag == "Floor")
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
-    }
-
-    public void Deprive()
-    {
-        //ƒSƒ~‚É‚Â‚¢‚½Throwingpower‚Ì–³Œø‰»
-        
     }
 }
