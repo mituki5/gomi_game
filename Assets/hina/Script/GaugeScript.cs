@@ -10,6 +10,7 @@ public class GaugeScript : MonoBehaviour
     public float Power = 0; // Œ»İ‚Ì’l
     public float minPower = 0;
     private bool isIncreasing = true; // Max‚É‚È‚Á‚½‚©‚Ì”»’è
+    public float gaugeSpeed = 0; // ƒQ[ƒW‚Ì‘¬‚³
 
     void Update()
     {
