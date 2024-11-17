@@ -53,7 +53,7 @@ public class GaugeScript : MonoBehaviour
 
     private void GaugeUp()
     {
-        Power += 0.2f;
+        Power += gaugeSpeed;
 
         if (Power > maxPower)
         {
@@ -63,7 +63,7 @@ public class GaugeScript : MonoBehaviour
 
     private void GaugeDown()
     {
-        Power -= 0.2f;
+        Power -= gaugeSpeed;
 
         if(Power < minPower)
         {
