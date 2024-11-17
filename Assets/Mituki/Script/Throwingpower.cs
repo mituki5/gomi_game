@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using TMPro.EditorUtilities;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class ThrowingPower : MonoBehaviour
@@ -13,7 +14,7 @@ public class ThrowingPower : MonoBehaviour
     public float MinPower = 0;
     public float MaxPower = 100;
     public float Angle = 50.0f;
-    public float speed = 10;
+    public float speedZ = 2;
     public GameObject Trash_box;
     public GameObject Player;
     public GameObject targetobject;
@@ -59,7 +60,7 @@ public class ThrowingPower : MonoBehaviour
                 Gauge();
 
                 child = kindScript.transform.GetChild(0).gameObject;
-                child.transform.Rotate(0, 0, 1);
+               
 
                 Power = 0;
                 landing = false;
@@ -124,7 +125,7 @@ public class ThrowingPower : MonoBehaviour
 
     public void TargetDistance()
     {
-        targetobject.transform.position = new Vector3(0, speed, Power);
+        targetobject.transform.position = new Vector3(0, 0, Power);
     }
 
 
@@ -135,7 +136,6 @@ public class ThrowingPower : MonoBehaviour
     {
             // 標的の座標
             Vector3 targetPosition = targetobject.transform.position;
-
             // 射出角度
             float angle = Angle;
 
@@ -145,12 +145,12 @@ public class ThrowingPower : MonoBehaviour
 
         child = kindScript.transform.GetChild(0).gameObject;
         Vector3 childpos = child.transform.position;
-        childpos.y = speed;
+        childpos.y = speedZ;
 
 
         // 射出
         Rigidbody rb = GetComponent<Rigidbody>();
-           rb.AddForce(velocity * rb.mass / kindScript.weight, ForceMode.Impulse);
+           rb.AddForce(velocity * (rb.mass * 2)/ kindScript.weight, ForceMode.Impulse);
         rb.useGravity = true;
 
     }
@@ -172,10 +172,10 @@ public class ThrowingPower : MonoBehaviour
 
 
         // 垂直方向の距離y
-        float y = pointA.y - pointB.y;
+        float y = (pointA.y - pointB.y);
 
         // 斜方投射の公式を初速度について解く
-        float speed = Mathf.Sqrt(-Physics.gravity.y * Mathf.Pow(x, 2) / (2 * Mathf.Pow(Mathf.Cos(rad), 2) * (x * Mathf.Tan(rad) + y)));
+        float speed = Mathf.Sqrt(-Physics.gravity.y * Mathf.Pow(x, 2) / (2 * Mathf.Pow(Mathf.Cos(rad), 2) * (x * Mathf.Tan(rad) + y))) * speedZ;
 
         if (float.IsNaN(speed))
         {
