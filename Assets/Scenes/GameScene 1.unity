@@ -1266,7 +1266,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &237634126
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3113,7 +3113,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &488570210
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8966,7 +8966,7 @@ Transform:
   m_GameObject: {fileID: 1233521972}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -959.6, y: -540.83, z: -2.56}
+  m_LocalPosition: {x: -959.6, y: -541, z: -2.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8997,6 +8997,8 @@ MonoBehaviour:
   - {fileID: 8373360561285141372, guid: 40a0c79ea54a3ba48af732e823ac72f9, type: 3}
   - {fileID: 7074895528951235237, guid: 261e6548d5c53f647833c2311a7b1e8d, type: 3}
   weight: 5
+  totalnumber: 30
+  number: 0
 --- !u!114 &1233521976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9547,6 +9549,8 @@ MonoBehaviour:
   trashBox: {fileID: 0}
   trashPrefabs: []
   weight: 0
+  totalnumber: 30
+  number: 0
 --- !u!1 &1318378787
 GameObject:
   m_ObjectHideFlags: 0
@@ -10252,7 +10256,7 @@ GameObject:
   - component: {fileID: 1506930406}
   m_Layer: 0
   m_Name: Floor1_5
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11352,7 +11356,7 @@ GameObject:
   - component: {fileID: 1639424567}
   m_Layer: 0
   m_Name: Floor1_2
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12614,7 +12618,7 @@ GameObject:
   - component: {fileID: 1820233420}
   m_Layer: 0
   m_Name: Floor1_4
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12892,7 +12896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1825863383
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13912,7 +13916,7 @@ GameObject:
   - component: {fileID: 1913515621}
   m_Layer: 0
   m_Name: Floor1_3
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

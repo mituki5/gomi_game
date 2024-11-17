@@ -39,15 +39,16 @@ public class ThrowingPower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(time.GetComponent<TimeCounter>().start == false){
-        if (!this.canShot) return;
-        Key();
-
-        if (Input.GetMouseButtonUp(0))
+        //if(time.GetComponent<TimeCounter>().start == true)
         {
-            if (powercount10 == false)
+            if (!this.canShot) return;
+            Key();
+
+            if (Input.GetMouseButtonUp(0))
             {
-                Debug.Log(Power + "•ú‚µ‚½");
+                if (powercount10 == false)
+                    Debug.Log(Power + "æ”¾ã—ãŸ");
+
                 //Throw();
                 TargetDistance();
                 Gauge();
@@ -61,12 +62,11 @@ public class ThrowingPower : MonoBehaviour
                 powercount10 = true;
             }
         }
-    //}
     }
 
 
     /// <summary>
-    /// ‰Ÿ‚µ‚Ä‚¢‚éŠÔPower‚ğ‚½‚ß‚éŠÖ”iŒJ‚è•Ô‚·j
+    /// æŠ¼ã—ã¦ã„ã‚‹é–“Powerã‚’ãŸã‚ã‚‹é–¢æ•°ï¼ˆç¹°ã‚Šè¿”ã™ï¼‰
     /// </summary>
     public void Key()
     {
@@ -78,7 +78,7 @@ public class ThrowingPower : MonoBehaviour
                 if ((int)Power <= MaxPower)
                 {
                     Power += 0.1f;
-                    Debug.Log(Power + "‘‚¦‚Ä‚é");
+                    Debug.Log(Power + "å¢—ãˆã¦ã‚‹");
                     if ((int)Power == 10)
                     {
                         powercount10 = false;
@@ -92,7 +92,7 @@ public class ThrowingPower : MonoBehaviour
             if (powercount == true)
             {
                 Power -= 0.1f;
-                Debug.Log(Power + "Œ¸‚Á‚Ä‚é");
+                Debug.Log(Power + "æ¸›ã£ã¦ã‚‹");
                 if ((int)Power == MinPower)
                 {
                     powercount = false;
@@ -108,21 +108,21 @@ public class ThrowingPower : MonoBehaviour
 
 
     /// <summary>
-    /// “Š‚°‚éŠÖ”
+    /// æŠ•ã’ã‚‹é–¢æ•°
     /// </summary>
     public void Gauge()
     {
-            // •W“I‚ÌÀ•W
+            // æ¨™çš„ã®åº§æ¨™
             Vector3 targetPosition = targetobject.transform.position;
         //Debug.Log(targetPosition);
 
-            // ËoŠp“x
+            // å°„å‡ºè§’åº¦
             float angle = Angle;
 
-            // Ëo‘¬“x‚ğZo
+            // å°„å‡ºé€Ÿåº¦ã‚’ç®—å‡º
             Vector3 velocity = CalculateVelocity(this.transform.position, targetPosition, angle);
 
-            // Ëo
+            // å°„å‡º
           Debug.Log(velocity);
         Debug.Log(kindScript.weight);
           Rigidbody rb = GetComponent<Rigidbody>();
@@ -132,30 +132,30 @@ public class ThrowingPower : MonoBehaviour
     }
 
     /// <summary>
-    /// •W“I‚É–½’†‚·‚éËo‘¬“x‚ÌŒvZ
+    /// æ¨™çš„ã«å‘½ä¸­ã™ã‚‹å°„å‡ºé€Ÿåº¦ã®è¨ˆç®—
     /// </summary>
-    /// <param name="pointA">ËoŠJnÀ•W</param>
-    /// <param name="pointB">•W“I‚ÌÀ•W</param>
-    /// <returns>Ëo‘¬“x</returns>
+    /// <param name="pointA">å°„å‡ºé–‹å§‹åº§æ¨™</param>
+    /// <param name="pointB">æ¨™çš„ã®åº§æ¨™</param>
+    /// <returns>å°„å‡ºé€Ÿåº¦</returns>
     private Vector3 CalculateVelocity(Vector3 pointA, Vector3 pointB, float angle)
     {
-        // ËoŠp‚ğƒ‰ƒWƒAƒ“‚É•ÏŠ·
+        // å°„å‡ºè§’ã‚’ãƒ©ã‚¸ã‚¢ãƒ³ã«å¤‰æ›
         float rad = angle * Mathf.PI / 180;
 
-        // …•½•ûŒü‚Ì‹——£x
+        // æ°´å¹³æ–¹å‘ã®è·é›¢x
         float x = Vector2.Distance(new Vector2(pointA.x, pointA.z), new Vector2(pointB.x, pointB.z));
 
 
 
-        // ‚’¼•ûŒü‚Ì‹——£y
+        // å‚ç›´æ–¹å‘ã®è·é›¢y
         float y = pointA.y - pointB.y;
 
-        // Î•û“ŠË‚ÌŒö®‚ğ‰‘¬“x‚É‚Â‚¢‚Ä‰ğ‚­
+        // æ–œæ–¹æŠ•å°„ã®å…¬å¼ã‚’åˆé€Ÿåº¦ã«ã¤ã„ã¦è§£ã
         float speed = Mathf.Sqrt(-Physics.gravity.y * Mathf.Pow(x, 2) / (2 * Mathf.Pow(Mathf.Cos(rad), 2) * (x * Mathf.Tan(rad) + y)));
 
         if (float.IsNaN(speed))
         {
-            // ğŒ‚ğ–‚½‚·‰‘¬‚ğZo‚Å‚«‚È‚¯‚ê‚ÎVector3.zero‚ğ•Ô‚·
+            // æ¡ä»¶ã‚’æº€ãŸã™åˆé€Ÿã‚’ç®—å‡ºã§ããªã‘ã‚Œã°Vector3.zeroã‚’è¿”ã™
             return Vector3.zero;
         }
         else

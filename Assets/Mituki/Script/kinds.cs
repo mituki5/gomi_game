@@ -28,6 +28,10 @@ public class kinds : MonoBehaviour//, IPointerClickHandler
     public int totalnumber = 30;
     public int number;
 
+    private GameObject TrashImage;
+    private GameObject PlasticImage;
+    private GameObject BottleImage;
+
     public void Start()
     {
         int tmpIndex = Random.Range(0, _name.Count);
@@ -39,6 +43,13 @@ public class kinds : MonoBehaviour//, IPointerClickHandler
         tmpIndex = Random.Range(0, _name.Count);
         nextObject = Instantiate(trashPrefabs[tmpIndex], nextObject.transform);
         nextIndex = tmpIndex;
+
+        TrashImage = GameObject.Find("TrashImage");
+        TrashImage.SetActive(false);
+        PlasticImage = GameObject.Find("PlasticImage");
+        PlasticImage.SetActive(false);
+        BottleImage = GameObject.Find("BottleImage");
+        BottleImage.SetActive(false);
     }
 
     private void Update()
