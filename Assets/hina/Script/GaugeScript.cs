@@ -12,16 +12,16 @@ public class GaugeScript : MonoBehaviour
     private bool isIncreasing = true; // MaxÇ…Ç»Ç¡ÇΩÇ©ÇÃîªíË
     public float gaugeSpeed = 0; // ÉQÅ[ÉWÇÃë¨Ç≥
 
-    private GameObject time;
+    private GameObject _time;
 
     void Start()
     {
-        time = GameObject.Find("TimeObject");
+        _time = GameObject.Find("TimeObject");
     }
 
     void Update()
     {
-        if (time.GetComponent<TimeCounter>().start == true)
+        if (_time.GetComponent<Title>().start == true)
         {
             if (Input.GetMouseButton(0))
             {

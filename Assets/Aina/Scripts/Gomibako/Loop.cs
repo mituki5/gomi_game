@@ -10,16 +10,16 @@ public class Loop : MonoBehaviour
     [SerializeField] Transform pointB;
     [SerializeField] Transform pointC;
 
-    private GameObject time;
+    private GameObject _time;
 
     private void Start()
     {
-        time = GameObject.Find("TimeObject");
+        _time = GameObject.Find("TimeObject");
     }
 
     void Update()
     {
-        if (time.GetComponent<TimeCounter>().start == true) 
+        if (_time.GetComponent<Title>().start == true) 
         {
             if (count == 0)
                 transform.position = Vector3.MoveTowards(transform.position, pointA.position, speed * Time.deltaTime);
