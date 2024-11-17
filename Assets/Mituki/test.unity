@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2240f12e61de93644a0b6044681c6cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstObject: {fileID: 0}
+  firstObject: {fileID: 1063783382}
   nextObject: {fileID: 278481902}
   _name:
   - plasticbottle

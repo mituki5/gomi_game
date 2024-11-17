@@ -13,7 +13,7 @@ public class ThrowingPower : MonoBehaviour
     public float MinPower = 0;
     public float MaxPower = 100;
     public float Angle = 50.0f;
-    public float speed = 2;
+    public float speed = 10;
     public GameObject Trash_box;
     public GameObject Player;
     public GameObject targetobject;
@@ -25,7 +25,9 @@ public class ThrowingPower : MonoBehaviour
     public bool powercount10 = true;
 
     private kinds kindScript;
-    private Rotate rotateScript;
+
+    private GameObject child;
+
 
     public void SetScript(GameObject trashBox, kinds kind, bool canShot)
     {
@@ -56,14 +58,14 @@ public class ThrowingPower : MonoBehaviour
                 TargetDistance();
                 Gauge();
 
-
-                //BoxCollider boxCollider = GetComponent<BoxCollider>();
-                //boxCollider.isTrigger = true;
+                child = kindScript.transform.GetChild(0).gameObject;
+                child.transform.Rotate(0, 0, 1);
 
                 Power = 0;
                 landing = false;
                 shot = false;
                 powercount10 = true;
+                ThrowingPower.Destroy(this);
             }
         }
     }
@@ -81,9 +83,9 @@ public class ThrowingPower : MonoBehaviour
             {
                 if ((int)Power <= MaxPower)
                 {
-                    if(Power == 50)
+                    if(Power >= 50)
                     {
-                        Power += 0.2f;
+                        Power += 0.6f;
                     }
                     else
                     {
@@ -103,9 +105,15 @@ public class ThrowingPower : MonoBehaviour
             }
             if (powercount == true)
             {
-                
-                Power -= 0.1f;
-                Debug.Log(Power + "減ってる");
+                if (Power >= 50)
+                {
+                    Power -= 0.6f;
+                }
+                else
+                {
+                    Power -= 0.1f;
+                    Debug.Log(Power + "減ってる");
+                }
                 if ((int)Power == MinPower)
                 {
                     powercount = false;
@@ -116,7 +124,7 @@ public class ThrowingPower : MonoBehaviour
 
     public void TargetDistance()
     {
-        targetobject.transform.position = new Vector3(0, 0, Power);
+        targetobject.transform.position = new Vector3(0, speed, Power);
     }
 
 
@@ -134,9 +142,15 @@ public class ThrowingPower : MonoBehaviour
             // 射出速度を算出
             Vector3 velocity = CalculateVelocity(this.transform.position, targetPosition, angle);
 
-            // 射出
-          Rigidbody rb = GetComponent<Rigidbody>();
-           rb.AddForce(velocity  * rb.mass / kindScript.weight, ForceMode.Impulse);
+
+        child = kindScript.transform.GetChild(0).gameObject;
+        Vector3 childpos = child.transform.position;
+        childpos.y = speed;
+
+
+        // 射出
+        Rigidbody rb = GetComponent<Rigidbody>();
+           rb.AddForce(velocity * rb.mass / kindScript.weight, ForceMode.Impulse);
         rb.useGravity = true;
 
     }
