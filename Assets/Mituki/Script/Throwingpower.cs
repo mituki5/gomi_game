@@ -38,7 +38,7 @@ public class ThrowingPower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(time.GetComponent<TimeCounter>().start == true)
+        //if(time.GetComponent<TimeCounter>().start == true)
         {
             if (!this.canShot) return;
             Key();
