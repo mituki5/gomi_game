@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class ThrowingPower : MonoBehaviour
@@ -12,6 +13,7 @@ public class ThrowingPower : MonoBehaviour
     public float MinPower = 0;
     public float MaxPower = 100;
     public float Angle = 50.0f;
+    public float speed = 2;
     public GameObject Trash_box;
     public GameObject Player;
     public GameObject targetobject;
@@ -23,6 +25,7 @@ public class ThrowingPower : MonoBehaviour
     public bool powercount10 = true;
 
     private kinds kindScript;
+    private Rotate rotateScript;
 
     public void SetScript(GameObject trashBox, kinds kind, bool canShot)
     {
@@ -53,6 +56,7 @@ public class ThrowingPower : MonoBehaviour
                 TargetDistance();
                 Gauge();
 
+
                 //BoxCollider boxCollider = GetComponent<BoxCollider>();
                 //boxCollider.isTrigger = true;
 
@@ -77,8 +81,16 @@ public class ThrowingPower : MonoBehaviour
             {
                 if ((int)Power <= MaxPower)
                 {
-                    Power += 0.1f;
-                    Debug.Log(Power + "増えてる");
+                    if(Power == 50)
+                    {
+                        Power += 0.2f;
+                    }
+                    else
+                    {
+                        Power += 0.1f;
+                        Debug.Log(Power + "増えてる");
+                    }
+
                     if ((int)Power == 10)
                     {
                         powercount10 = false;
@@ -91,6 +103,7 @@ public class ThrowingPower : MonoBehaviour
             }
             if (powercount == true)
             {
+                
                 Power -= 0.1f;
                 Debug.Log(Power + "減ってる");
                 if ((int)Power == MinPower)
@@ -114,7 +127,6 @@ public class ThrowingPower : MonoBehaviour
     {
             // 標的の座標
             Vector3 targetPosition = targetobject.transform.position;
-        //Debug.Log(targetPosition);
 
             // 射出角度
             float angle = Angle;
@@ -123,10 +135,8 @@ public class ThrowingPower : MonoBehaviour
             Vector3 velocity = CalculateVelocity(this.transform.position, targetPosition, angle);
 
             // 射出
-          Debug.Log(velocity);
-        Debug.Log(kindScript.weight);
           Rigidbody rb = GetComponent<Rigidbody>();
-           rb.AddForce(velocity * rb.mass / kindScript.weight, ForceMode.Impulse);
+           rb.AddForce(velocity  * rb.mass / kindScript.weight, ForceMode.Impulse);
         rb.useGravity = true;
 
     }
