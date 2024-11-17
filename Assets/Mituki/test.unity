@@ -269,16 +269,20 @@ MonoBehaviour:
   firstObject: {fileID: 0}
   nextObject: {fileID: 278481902}
   _name:
-  - Bottle
-  - Cap
+  - plasticbottle
+  - bottle
+  - cap
   - Trash
   index: 0
   trashBox: {fileID: 1542104112}
   trashPrefabs:
+  - {fileID: 7608051752013143209, guid: 4efbf686aa70d6c47909844721e28c62, type: 3}
+  - {fileID: 7335773958864978630, guid: ebd536b9016d10d40a5df98296b6c25c, type: 3}
   - {fileID: 8301393549835201551, guid: 1e92e044dd7d2554dbfe5d13e3f28a64, type: 3}
   - {fileID: 8706815323055326940, guid: 3667cf3674d65d34bac9dfe35a481f19, type: 3}
-  - {fileID: 7335773958864978630, guid: ebd536b9016d10d40a5df98296b6c25c, type: 3}
   weight: 0
+  totalnumber: 30
+  number: 0
 --- !u!1 &1143095647
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7359591222662505690
 Transform:
   m_ObjectHideFlags: 0
@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Power: 0
+  MinPower: 0
+  MaxPower: 100
   Angle: 50
   Trash_box: {fileID: 0}
   Player: {fileID: 7608051752013143209}
@@ -130,6 +132,7 @@ MonoBehaviour:
   shot: 0
   canShot: 0
   powercount: 0
+  powercount10: 1
 --- !u!54 &9020624913877782274
 Rigidbody:
   m_ObjectHideFlags: 0
