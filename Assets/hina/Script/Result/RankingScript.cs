@@ -18,9 +18,7 @@ public class RankingScript : MonoBehaviour
 
     void Start()
     {
-        Ranking_1 = 0;
-        Ranking_2 = 0;
-        Ranking_3 = 0;
+
     }
 
     void Update()
@@ -38,12 +36,12 @@ public class RankingScript : MonoBehaviour
             Ranking_1 = Ranking_2;
             score1 = Ranking_1;
         }
-        else if(score1 >= Ranking_2)
+        else if(score1 <= Ranking_1 || score1 >= Ranking_2)
         {
             Ranking_2 = Ranking_3;
             score1 = Ranking_2;
         }
-        else if(score1 >= Ranking_3)
+        else if(score1 <= Ranking_2 || score1 >= Ranking_3)
         {
             score1 = Ranking_3;
         }
