@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class TimeCounter : MonoBehaviour
+public class TimeCounter1 : MonoBehaviour
 {
     [SerializeField] int timeLimit;
     [SerializeField] Text timeText;
@@ -17,17 +17,13 @@ public class TimeCounter : MonoBehaviour
     private GameObject CountDownImage;
     private GameObject CountDownText;
 
-    //public bool start;
-
-    private GameObject _time;
+    public bool start;
 
     void Start()
     {
         BlackImage = GameObject.Find("BlackImage");
         CountDownImage = GameObject.Find("CountDownImage");
         CountDownText = GameObject.Find("CountDownText");
-
-        _time = GameObject.Find("TimeObject");
     }
 
     void Update()
@@ -44,11 +40,9 @@ public class TimeCounter : MonoBehaviour
             CountDownImage.SetActive(false);
             CountDownText.SetActive(false);
 
-            //start = true;
-
-            _time.GetComponent<Title>().start = true;
+            start = true;
         }
-        if (_time.GetComponent<Title>().start == true)
+        if (start == true)
         {
             int remaining = timeLimit - (int)time;
             timeText.text = $"êßå¿éûä‘ÅF{remaining.ToString("D2")}";
