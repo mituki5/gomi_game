@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
 
@@ -11,7 +12,9 @@ public class Score : MonoBehaviour
     private GameObject trash;
     private GameObject plastic;
     private GameObject bottle;
-    public int score = 0;
+    public static int score = 0;
+
+
     void Start()
     {
         ScoreText.text = $"スコア：{score.ToString("D3")}";
@@ -19,6 +22,17 @@ public class Score : MonoBehaviour
         trash = GameObject.Find("Moeru_Gomibako");
         plastic = GameObject.Find("Plastic_Gomibako");
         bottle = GameObject.Find("Bottle_Gomibako");
+
+        score = PlayerPrefs.GetInt("SCORE", 0);
+
+    }
+
+    // 削除時の処理
+    void OnDestroy()
+    {
+        // スコアを保存
+        //PlayerPrefs.SetInt("SCORE", score);
+        //PlayerPrefs.Save();
     }
 
     void Update()
@@ -67,5 +81,15 @@ public class Score : MonoBehaviour
                 bottle.GetComponent<BottleBox>().mistake = false;
             }
         }
+
+        //if (PlayerPrefs.HasKey("SCORE"))
+        //{
+        //    PlayerPrefs.DeleteKey("SCORE");
+        //}
+        //else
+        //{
+        //    PlayerPrefs.SetInt("SCORE", score);
+        //    PlayerPrefs.Save();
+        //}
     }
 }

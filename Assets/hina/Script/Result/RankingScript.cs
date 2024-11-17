@@ -10,13 +10,12 @@ public class RankingScript : MonoBehaviour
     [SerializeField] Text RankingText_2;
     [SerializeField] Text RankingText_3;
 
-    private float Ranking_1;
-    private float Ranking_2;
-    private float Ranking_3;
+    private int Ranking_1;
+    private int Ranking_2;
+    private int Ranking_3;
 
-    public static float score;
+    int score1 = Score.score;
 
-    // Start is called before the first frame update
     void Start()
     {
         Ranking_1 = 0;
@@ -24,7 +23,6 @@ public class RankingScript : MonoBehaviour
         Ranking_3 = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         RankingText_1.text = "1F" + Ranking_1.ToString();
@@ -34,26 +32,26 @@ public class RankingScript : MonoBehaviour
 
     public void RankingChange()
     {
-        if(score >= Ranking_1)
+        if(score1 >= Ranking_1)
         {
             Ranking_2 = Ranking_3;
             Ranking_1 = Ranking_2;
-            score = Ranking_1;
+            score1 = Ranking_1;
         }
-        else if(score >= Ranking_2)
+        else if(score1 >= Ranking_2)
         {
             Ranking_2 = Ranking_3;
-            score = Ranking_2;
+            score1 = Ranking_2;
         }
-        else if(score >= Ranking_3)
+        else if(score1 >= Ranking_3)
         {
-            score = Ranking_3;
+            score1 = Ranking_3;
         }
     }
 
-    public void UpdateScore(float newScore)
+    public void UpdateScore(int newScore)
     {
-        score = newScore;
+        score1 = newScore;
         RankingChange();
     }
 }
