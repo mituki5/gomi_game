@@ -18,9 +18,7 @@ public class RankingScript : MonoBehaviour
 
     void Start()
     {
-        Ranking_1 = 0;
-        Ranking_2 = 0;
-        Ranking_3 = 0;
+
     }
 
     void Update()
@@ -38,12 +36,12 @@ public class RankingScript : MonoBehaviour
             Ranking_1 = Ranking_2;
             score1 = Ranking_1;
         }
-        else if(score1 >= Ranking_2)
+        else if(score1 <= Ranking_1 || score1 >= Ranking_2)
         {
             Ranking_2 = Ranking_3;
             score1 = Ranking_2;
         }
-        else if(score1 >= Ranking_3)
+        else if(score1 <= Ranking_2 || score1 >= Ranking_3)
         {
             score1 = Ranking_3;
         }
@@ -54,4 +52,15 @@ public class RankingScript : MonoBehaviour
         score1 = newScore;
         RankingChange();
     }
+
+/*    void AddHighScore(int newScore)
+    {
+        highScores.Add(newScore);
+        highScores.Sort((a, b) => b.CompareTo(a)); // 降順にソート
+        if (highScores.Count > rankingTexts.Length)
+        {
+            highScores.RemoveAt(highScores.Count - 1); // ランキング表示数を超えたら削除
+        }
+        SaveHighScores();
+    }*/
 }
