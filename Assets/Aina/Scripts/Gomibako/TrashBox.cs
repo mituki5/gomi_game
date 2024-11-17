@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class TrashBox : MonoBehaviour
 {
-    [SerializeField] private GameObject trash;
-    [SerializeField] private GameObject plastic;
-    [SerializeField] private GameObject bottle;
     public bool isEnter;
     public bool mistake;
     void Start()
@@ -21,7 +18,7 @@ public class TrashBox : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         /*if (collision.gameObject.tag == "moerugomi")
         {
@@ -43,22 +40,32 @@ public class TrashBox : MonoBehaviour
             isEnter = true;
             Destroy(collision.gameObject);
         }*/
-        switch (collision.gameObject.tag)
+        switch (other.gameObject.tag)
         {
             case "moerugomi":
                 isEnter = true;
                 Debug.Log("”R‚¦‚éƒSƒ~“ü‚Á‚½");
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
                 break;
             case "plasticgomi":
                 mistake = true;
                 Debug.Log("ŠÔˆá‚¦‚½");
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
                 break;
             case "plasticbottle":
                 mistake = true;
                 Debug.Log("ŠÔˆá‚¦‚½");
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
+                break;
+            case "cap":
+                mistake = true;
+                Debug.Log("ŠÔˆá‚¦‚½");
+                Destroy(other.gameObject);
+                break;
+            case "bottle":
+                mistake = true;
+                Debug.Log("ŠÔˆá‚¦‚½");
+                Destroy(other.gameObject);
                 break;
         }
     }

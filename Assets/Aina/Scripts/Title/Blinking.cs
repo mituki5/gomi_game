@@ -10,24 +10,25 @@ public class Blinking : MonoBehaviour
 
     //private
     private Text Holdtext;
+    private GameObject TitleImage;
     private GameObject Titletext;
     private Image image;
     private float time;
 
-    // Start is called before the first frame update
     void Start()
     {
         Holdtext = this.gameObject.GetComponent<Text>();
-        Titletext = GameObject.Find("TitleNameText");
+        TitleImage = GameObject.Find("TitleNameImage");
+        //Titletext = GameObject.Find("TitleNameText");
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             this.gameObject.SetActive(false);
-            Titletext.SetActive(false);
+            TitleImage.SetActive(false);
+            //Titletext.SetActive(false);
         }
         Holdtext.color = GetAlphaColor(Holdtext.color);
     }

@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 //種類と分解
-public class kinds : MonoBehaviour, IPointerClickHandler
+public class kinds : MonoBehaviour//, IPointerClickHandler
 {
     public GameObject firstObject;
     public GameObject nextObject;
@@ -16,38 +16,24 @@ public class kinds : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject trashBox;
     private enum TrashType
     {
-        //Plastic_bottle,
-        trash3,//bottle
-        teash2,//cap
-        trash,//paper
-        //LunchBox
-    }
-    private enum Disassembled
-    {
-        BottelObject,
-        CapObject,
+        plasticbottle,
+        bottle,
+        cap,
+        Trash,
+        plastic,
     }
     [SerializeField] List<GameObject> trashPrefabs = new List<GameObject>();
-    //生成されるごみ
-    //[SerializeField] public GameObject Plastic_bottle;
-    //[SerializeField] public GameObject bottelObject;
-    //[SerializeField] public GameObject capObject;
-    //[SerializeField] public GameObject trash_paper;
-    //[SerializeField] public GameObject lunch_box;
-
     private ThrowingPower firstThrowingpower;
     [SerializeField] public float weight;
+    public int totalnumber = 30;
+    public int number;
+
+    private GameObject TrashImage;
+    private GameObject PlasticImage;
+    private GameObject BottleImage;
 
     public void Start()
     {
-        //_name.Add("plastic_bottle");
-        //_name.Add("bottle");
-        //_name.Add("cap");
-        //_name.Add("trash_paper");
-        //_name.Add("lunch_box");
-        //Vector3 firstpos = firstObject.transform.position;
-        //Vector3 nextpos = nextObject.transform.position;
-
         int tmpIndex = Random.Range(0, _name.Count);
         firstObject = Instantiate(trashPrefabs[tmpIndex], this.transform);
         firstThrowingpower = firstObject.GetComponent<ThrowingPower>();
@@ -55,27 +41,28 @@ public class kinds : MonoBehaviour, IPointerClickHandler
         firstThrowingpower.SetScript(trashBox, this, true);
         Kinds();
         tmpIndex = Random.Range(0, _name.Count);
-        //nextのオブジェクトも開始直後同じ場所に生成されている↓
         nextObject = Instantiate(trashPrefabs[tmpIndex], nextObject.transform);
         nextIndex = tmpIndex;
+
+        TrashImage = GameObject.Find("TrashImage");
+        TrashImage.SetActive(false);
+        PlasticImage = GameObject.Find("PlasticImage");
+        PlasticImage.SetActive(false);
+        BottleImage = GameObject.Find("BottleImage");
+        BottleImage.SetActive(false);
     }
 
     private void Update()
     {
         if (firstThrowingpower.landing == false)
-        {
-            FirstInstantiateTrash();
-            //SecondInstantiateTrash();
-            Kinds();
-            firstThrowingpower.landing = true;
-            firstThrowingpower.shot = true;
-        }
-
-        //if(firstObject.transform.position.y < -5 || firstObject.transform.position.y > 10.0f)
-        //{
-        //    Destroy(firstObject);
-        //    Debug.Log(firstObject.name);
-        //}
+            {
+                FirstInstantiateTrash();
+                //SecondInstantiateTrash();
+                Kinds();
+                firstThrowingpower.landing = true;
+                firstThrowingpower.shot = true;
+            }
+        
     }
 
     private void FirstInstantiateTrash()
@@ -97,24 +84,42 @@ public class kinds : MonoBehaviour, IPointerClickHandler
     public void Kinds()
     {
         switch (_name[index])
-            {
-                //ペットボトルの場合のみ分解
-                case "plastic_bottle":
-                    weight = 3.0f;
+        {
+            //ペットボトルの場合のみ分解
+            case "plasticbottle":
+                weight = 3.0f;
+                number = 6;
+                nextIndex = Random.Range(0, number);
+                Count();
                 break;
-                case "trash3":
-                    weight = 3.0f;
+            case "bottle":
+                weight = 3.0f;
+                number = 6;
+                nextIndex = Random.Range(number, 12);
+                Count();
                 break;
-                case "trash2":
-                    weight = 1.0f;
+            case "cap":
+                weight = 1.0f;
+                number = 6;
+                nextIndex = Random.Range(number, 18);
+                Count();
                 break;
-                case "trash":
-                    weight = 1.0f;
+            case "Trash":
+                weight = 1.0f;
+                number = 6;
+                nextIndex = Random.Range(number, 24);
+                Count();
                 break;
-                case "lunch_box":
-                    weight = 5.0f;
+            case "plastic":
+                weight = 5.0f;
+                number = 6;
+                nextIndex = Random.Range(number, totalnumber);
+                Count();
                 break;
-            }    
+            default:
+                weight = 1.0f;
+                break;
+        }
     }
 
     /// <summary>
@@ -126,27 +131,36 @@ public class kinds : MonoBehaviour, IPointerClickHandler
         Destroy(firstObject);
         Destroy(nextObject);
         //投げる場所に分解したfirstObjectを置く
-        Instantiate(trashPrefabs[(int)Disassembled.BottelObject], firstObject.transform);
+        Instantiate(trashPrefabs[(int)TrashType.bottle], firstObject.transform);
         //次のところ
-        Instantiate(trashPrefabs[(int)Disassembled.CapObject], nextObject.transform);
+        Instantiate(trashPrefabs[(int)TrashType.cap], nextObject.transform);
     }
 
-    /// <summary>
-    /// クリックによる分解をする関数
-    /// </summary>
-    /// <param name="eventData"></param>
-    
-    
+    ///// <summary>
+    ///// クリックによる分解をする関数
+    ///// </summary>
+    ///// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.pointerId == -1)
         {
-            if (_name[index] == "Plastic_bottle")
+            Debug.Log("分解");
+
+            if (_name[index] == "plasticbottle")
             {
-                Debug.Log("分解");
+            Debug.Log("分解");
                 Separation();
             }
         }
 
+    }
+
+    public void Count()
+    {
+        if(nextObject.name == _name[index])
+        {
+            totalnumber--;
+            number--;
+        }
     }
 }

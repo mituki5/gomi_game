@@ -1,25 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
-public class ResultScript : MonoBehaviour
+public class PozuScript : MonoBehaviour
 {
-
-    [SerializeField] Text ScoreText;
-
-    public static float score;
+    static float time;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        ScoreText.text = "ScoreÅF" + score.ToString();
+        
     }
 }

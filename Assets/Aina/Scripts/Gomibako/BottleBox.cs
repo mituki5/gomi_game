@@ -5,14 +5,13 @@ using UnityEngine;
 
 public class BottleBox : MonoBehaviour
 {
-    [SerializeField] private GameObject trash;
-    [SerializeField] private GameObject plastic;
-    [SerializeField] private GameObject bottle;
-    public bool isEnter;
+    public bool isEnter_p;
+    public bool isEnter_b;
     public bool mistake;
     void Start()
     {
-        isEnter = false;
+        isEnter_p = false;
+        isEnter_b = false;
         mistake = false;
     }
 
@@ -21,7 +20,7 @@ public class BottleBox : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         /*if (collision.gameObject.tag == "moerugomi")
         {
@@ -43,22 +42,32 @@ public class BottleBox : MonoBehaviour
             isEnter = true;
             Destroy(collision.gameObject);
         }*/
-        switch (collision.gameObject.tag)
+        switch (other.gameObject.tag)
         {
             case "moerugomi":
                 mistake = true;
                 Debug.Log("間違えた");
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
                 break;
             case "plasticgomi":
                 mistake = true;
                 Debug.Log("間違えた");
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
                 break;
             case "plasticbottle":
-                isEnter = true;
+                isEnter_p = true;
                 Debug.Log("ペットボトル入った");
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
+                break;
+            case "bottle":
+                isEnter_b = true;
+                Debug.Log("ボトル入った");
+                Destroy(other.gameObject);
+                break;
+            case "cap":
+                mistake = true;
+                Debug.Log("間違えた");
+                Destroy(other.gameObject);
                 break;
         }
     }

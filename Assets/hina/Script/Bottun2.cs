@@ -15,4 +15,8 @@ public class Bottun2 : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene 1");
     }
+
+
+
+
 }

@@ -10,39 +10,50 @@ public class GaugeScript : MonoBehaviour
     public float Power = 0; // 現在の値
     public float minPower = 0;
     private bool isIncreasing = true; // Maxになったかの判定
+    public float gaugeSpeed = 0; // ゲージの速さ
+
+    private GameObject time;
+
+    void Start()
+    {
+        time = GameObject.Find("TimeObject");
+    }
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (time.GetComponent<TimeCounter>().start == true)
         {
-            if (isIncreasing)
+            if (Input.GetMouseButton(0))
             {
-                GaugeUp();
-                if(Power >= maxPower)
+                if (isIncreasing)
                 {
-                    isIncreasing = false;
+                    GaugeUp();
+                    if (Power >= maxPower)
+                    {
+                        isIncreasing = false;
+                    }
+                }
+                else
+                {
+                    GaugeDown();
+                    if (Power <= minPower)
+                    {
+                        isIncreasing = true;
+                    }
                 }
             }
-            else
+            if (Input.GetMouseButtonUp(0))
             {
-                GaugeDown();
-                if (Power <= minPower)
-                {
-                    isIncreasing = true;
-                }
-            }
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
                 Power = minPower;
+            }
+            // ゲージの画像を更新
+            gaugeImage1.fillAmount = Power / maxPower;
         }
-        // ゲージの画像を更新
-        gaugeImage1.fillAmount = Power / maxPower;
     }
 
     private void GaugeUp()
     {
-        Power += 0.2f;
+        Power += gaugeSpeed;
 
         if (Power > maxPower)
         {
@@ -52,7 +63,7 @@ public class GaugeScript : MonoBehaviour
 
     private void GaugeDown()
     {
-        Power -= 0.2f;
+        Power -= gaugeSpeed;
 
         if(Power < minPower)
         {

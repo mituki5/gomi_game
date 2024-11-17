@@ -11,6 +11,9 @@ TagManager:
   - plasticgomi
   - plasticbottle_box
   - plasticbottle
+  - cap
+  - bottle
+  - Floor
   layers:
   - Default
   - TransparentFX

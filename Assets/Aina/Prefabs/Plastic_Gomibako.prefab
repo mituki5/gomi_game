@@ -232,6 +232,7 @@ GameObject:
   - component: {fileID: 2137991857867971939}
   - component: {fileID: 8925105112847312029}
   - component: {fileID: 6503235367993668338}
+  - component: {fileID: 946678412570966573}
   m_Layer: 0
   m_Name: Plastic_Gomibako
   m_TagString: plasticgomi_box
@@ -370,3 +371,17 @@ MonoBehaviour:
   pointA: {fileID: 0}
   pointB: {fileID: 0}
   pointC: {fileID: 0}
+--- !u!114 &946678412570966573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5827396345530142948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ccd4847ecb376479ccf549812e6af5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnter: 0
+  mistake: 0

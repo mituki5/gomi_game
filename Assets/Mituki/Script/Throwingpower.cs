@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class ThrowingPower : MonoBehaviour
@@ -11,6 +13,7 @@ public class ThrowingPower : MonoBehaviour
     public float MinPower = 0;
     public float MaxPower = 100;
     public float Angle = 50.0f;
+    public float speed = 2;
     public GameObject Trash_box;
     public GameObject Player;
     public GameObject targetobject;
@@ -19,8 +22,10 @@ public class ThrowingPower : MonoBehaviour
     public bool shot = true;
     public bool canShot = false;
     public bool powercount  = false;
+    public bool powercount10 = true;
 
     private kinds kindScript;
+    private Rotate rotateScript;
 
     public void SetScript(GameObject trashBox, kinds kind, bool canShot)
     {
@@ -28,41 +33,69 @@ public class ThrowingPower : MonoBehaviour
         kindScript = kind;
         this.canShot = canShot;
     }
-    
+
+    private GameObject time;
+    private void Start()
+    {
+        time = GameObject.Find("TimeObject");
+    }
     // Update is called once per frame
     void Update()
     {
-        if (!this.canShot) return;
-        Key();
-        if (Input.GetMouseButtonUp(0))
+        //if(time.GetComponent<TimeCounter>().start == true)
         {
-            Debug.Log(Power + "•ú‚µ‚½");
-            //Throw();
-            TargetDistance();
-            Gauge();
+            if (!this.canShot) return;
+            Key();
 
-            Power = 0;
-            landing = false;
-            shot = false;
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (powercount10 == false)
+                    Debug.Log(Power + "æ”¾ã—ãŸ");
+
+                //Throw();
+                TargetDistance();
+                Gauge();
+
+
+                //BoxCollider boxCollider = GetComponent<BoxCollider>();
+                //boxCollider.isTrigger = true;
+
+                Power = 0;
+                landing = false;
+                shot = false;
+                powercount10 = true;
+            }
         }
-        
     }
 
 
     /// <summary>
-    /// ‰Ÿ‚µ‚Ä‚¢‚éŠÔPower‚ğ‚½‚ß‚éŠÖ”iŒJ‚è•Ô‚·j
+    /// æŠ¼ã—ã¦ã„ã‚‹é–“Powerã‚’ãŸã‚ã‚‹é–¢æ•°ï¼ˆç¹°ã‚Šè¿”ã™ï¼‰
     /// </summary>
     public void Key()
     {
+        
         if (Input.GetMouseButton(0))
         {
             if (powercount == false)
             {
-                if ((int)Power <= 100)
+                if ((int)Power <= MaxPower)
                 {
-                    Power += 0.1f;
-                    Debug.Log(Power + "‘‚¦‚Ä‚é");
-                    if((int)Power == MaxPower)
+                    if(Power == 50)
+                    {
+                        Power += 0.2f;
+                    }
+                    else
+                    {
+                        Power += 0.1f;
+                        Debug.Log(Power + "å¢—ãˆã¦ã‚‹");
+                    }
+
+                    if ((int)Power == 10)
+                    {
+                        powercount10 = false;
+                    }
+                    if ((int)Power == MaxPower)
                     {
                         powercount = true;
                     }    
@@ -70,8 +103,9 @@ public class ThrowingPower : MonoBehaviour
             }
             if (powercount == true)
             {
+                
                 Power -= 0.1f;
-                Debug.Log(Power + "Œ¸‚Á‚Ä‚é");
+                Debug.Log(Power + "æ¸›ã£ã¦ã‚‹");
                 if ((int)Power == MinPower)
                 {
                     powercount = false;
@@ -82,85 +116,56 @@ public class ThrowingPower : MonoBehaviour
 
     public void TargetDistance()
     {
-        targetobject.transform.position = new Vector3(0,0, Power);
+        targetobject.transform.position = new Vector3(0, 0, Power);
     }
 
-    /// <summary>
-    /// “Š‚°‚éŠÖ”
-    /// </summary>
-    public void Throw()
-    {
-        //Debug.Log(kindScript.firstObject.name);
-        //Debug.Log(kindScript.weight);
-        //if (kindScript.firstObject.name == kindScript._name[kindScript.index])
-        //{
-           
-        //}
-        //—Í‚Ì•ûŒü
-        //Trash_box = GameObject.Find("TrashBox");
-        //Vector3 pos = Trash_box.transform.position * Power - Player.transform.position;
-        //50“x
-        Vector3 forceDirection = new Vector3(0, Power / kindScript.weight * 9.8f / 100f, Power / 100f);
-        //if(pos.z <= forceDirection.z)
-        //{
-        //    forceDirection = new Vector3(0, Power  * 9.8f * 3, Power);
-        //}
-        float forceMagnitude = 10.0f;
-        Vector3 force = forceMagnitude * forceDirection;
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.AddForce(force, ForceMode.Impulse);
-        rb.useGravity = true;
-
-    }
 
     /// <summary>
-    /// “Š‚°‚éŠÖ”
+    /// æŠ•ã’ã‚‹é–¢æ•°
     /// </summary>
     public void Gauge()
     {
-            // •W“I‚ÌÀ•W
+            // æ¨™çš„ã®åº§æ¨™
             Vector3 targetPosition = targetobject.transform.position;
-        Debug.Log(targetPosition);
 
-            // ËoŠp“x
+            // å°„å‡ºè§’åº¦
             float angle = Angle;
 
-            // Ëo‘¬“x‚ğZo
+            // å°„å‡ºé€Ÿåº¦ã‚’ç®—å‡º
             Vector3 velocity = CalculateVelocity(this.transform.position, targetPosition, angle);
 
-            // Ëo
-            Rigidbody rb = GetComponent<Rigidbody>();
-           rb.AddForce(velocity * rb.mass / kindScript.weight, ForceMode.Impulse);
-        Debug.Log(velocity);
+            // å°„å‡º
+          Rigidbody rb = GetComponent<Rigidbody>();
+           rb.AddForce(velocity  * rb.mass / kindScript.weight, ForceMode.Impulse);
         rb.useGravity = true;
 
     }
 
     /// <summary>
-    /// •W“I‚É–½’†‚·‚éËo‘¬“x‚ÌŒvZ
+    /// æ¨™çš„ã«å‘½ä¸­ã™ã‚‹å°„å‡ºé€Ÿåº¦ã®è¨ˆç®—
     /// </summary>
-    /// <param name="pointA">ËoŠJnÀ•W</param>
-    /// <param name="pointB">•W“I‚ÌÀ•W</param>
-    /// <returns>Ëo‘¬“x</returns>
+    /// <param name="pointA">å°„å‡ºé–‹å§‹åº§æ¨™</param>
+    /// <param name="pointB">æ¨™çš„ã®åº§æ¨™</param>
+    /// <returns>å°„å‡ºé€Ÿåº¦</returns>
     private Vector3 CalculateVelocity(Vector3 pointA, Vector3 pointB, float angle)
     {
-        // ËoŠp‚ğƒ‰ƒWƒAƒ“‚É•ÏŠ·
+        // å°„å‡ºè§’ã‚’ãƒ©ã‚¸ã‚¢ãƒ³ã«å¤‰æ›
         float rad = angle * Mathf.PI / 180;
 
-        // …•½•ûŒü‚Ì‹——£x
+        // æ°´å¹³æ–¹å‘ã®è·é›¢x
         float x = Vector2.Distance(new Vector2(pointA.x, pointA.z), new Vector2(pointB.x, pointB.z));
 
 
 
-        // ‚’¼•ûŒü‚Ì‹——£y
+        // å‚ç›´æ–¹å‘ã®è·é›¢y
         float y = pointA.y - pointB.y;
 
-        // Î•û“ŠË‚ÌŒö®‚ğ‰‘¬“x‚É‚Â‚¢‚Ä‰ğ‚­
+        // æ–œæ–¹æŠ•å°„ã®å…¬å¼ã‚’åˆé€Ÿåº¦ã«ã¤ã„ã¦è§£ã
         float speed = Mathf.Sqrt(-Physics.gravity.y * Mathf.Pow(x, 2) / (2 * Mathf.Pow(Mathf.Cos(rad), 2) * (x * Mathf.Tan(rad) + y)));
 
         if (float.IsNaN(speed))
         {
-            // ğŒ‚ğ–‚½‚·‰‘¬‚ğZo‚Å‚«‚È‚¯‚ê‚ÎVector3.zero‚ğ•Ô‚·
+            // æ¡ä»¶ã‚’æº€ãŸã™åˆé€Ÿã‚’ç®—å‡ºã§ããªã‘ã‚Œã°Vector3.zeroã‚’è¿”ã™
             return Vector3.zero;
         }
         else
