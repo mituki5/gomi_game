@@ -6,10 +6,12 @@ using UnityEngine;
 public class TrashBox : MonoBehaviour
 {
     public bool isEnter;
+    public bool isEnter2;
     public bool mistake;
     void Start()
     {
         isEnter = false;
+        isEnter2 = false;
         mistake = false;
     }
 
@@ -42,6 +44,11 @@ public class TrashBox : MonoBehaviour
         }*/
         switch (other.gameObject.tag)
         {
+            case "startball":
+                isEnter2 = true;
+                Debug.Log("スタートが入った");
+                Destroy(other.gameObject);
+                break;
             case "moerugomi":
                 isEnter = true;
                 Debug.Log("燃えるゴミ入った");

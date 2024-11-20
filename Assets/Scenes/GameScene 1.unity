@@ -808,6 +808,7 @@ GameObject:
   m_Component:
   - component: {fileID: 167474526}
   - component: {fileID: 167474525}
+  - component: {fileID: 167474527}
   m_Layer: 0
   m_Name: TimeObject
   m_TagString: Untagged
@@ -831,7 +832,6 @@ MonoBehaviour:
   timeText: {fileID: 396145947}
   timeLimit1: 3
   timeText1: {fileID: 780476727}
-  start: 0
 --- !u!4 &167474526
 Transform:
   m_ObjectHideFlags: 0
@@ -847,6 +847,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &167474527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167474524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00df7d533e62a6d44ab400be1a9b5215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start: 0
 --- !u!1 &185947495
 GameObject:
   m_ObjectHideFlags: 0
@@ -6395,7 +6408,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreText: {fileID: 865628083}
-  score: 0
 --- !u!1 &866935649
 GameObject:
   m_ObjectHideFlags: 0
@@ -8767,7 +8779,7 @@ MonoBehaviour:
   MinPower: 0
   MaxPower: 100
   Angle: 50
-  speed: 10
+  speedZ: 2
   Trash_box: {fileID: 0}
   Player: {fileID: 0}
   targetobject: {fileID: 0}
@@ -9524,7 +9536,7 @@ MonoBehaviour:
   MinPower: 0
   MaxPower: 100
   Angle: 50
-  speed: 10
+  speedZ: 2
   Trash_box: {fileID: 0}
   Player: {fileID: 1277479063}
   targetobject: {fileID: 0}

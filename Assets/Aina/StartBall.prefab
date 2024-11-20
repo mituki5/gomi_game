@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3923786155573744947}
   m_Layer: 0
   m_Name: StartBall
-  m_TagString: moerugomi
+  m_TagString: startball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   MinPower: 0
   MaxPower: 100
   Angle: 50
-  speed: 2
+  speedZ: 2
   Trash_box: {fileID: 0}
   Player: {fileID: 0}
   targetobject: {fileID: 7496919824475447461, guid: 75e902d151b82774b83efffd2b25c422, type: 3}
