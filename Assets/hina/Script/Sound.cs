@@ -5,25 +5,30 @@ using UnityEngine;
 public class Sound : MonoBehaviour
 {
     [SerializeField]
-    private AudioSource source; //スピーカー・CDプレイヤー
+    private SoundManager soundManager;
 
     [SerializeField]
-    private AudioClip clip1; //音源データ1
+    private AudioClip clip1; //音源データ
 
     [SerializeField]
-    private AudioClip clip2; //音源データ2
+    private AudioClip clip2;
+
+    [SerializeField]
+    private AudioClip clip3;
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) //左クリック
         {
-            source.clip = clip1; //再生したいclipを指定して
-            source.Play(); //再生
+            soundManager.Play(clip1);
         }
         if (Input.GetMouseButtonDown(1)) //右クリック
         {
-            source.clip = clip2; //再生したいclipを指定して
-            source.Play(); //再生
+            soundManager.Play(clip2);
+        }
+        if(Input.GetMouseButtonUp(0))
+        {
+            soundManager.Play(clip3);
         }
     }
 }
