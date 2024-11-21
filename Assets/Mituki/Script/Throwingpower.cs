@@ -136,6 +136,7 @@ public class ThrowingPower : MonoBehaviour
     {
             // 標的の座標
             Vector3 targetPosition = targetobject.transform.position;
+        targetPosition.y = speedZ;
             // 射出角度
             float angle = Angle;
 
@@ -150,7 +151,7 @@ public class ThrowingPower : MonoBehaviour
 
         // 射出
         Rigidbody rb = GetComponent<Rigidbody>();
-           rb.AddForce(velocity * (rb.mass * 2)/ kindScript.weight, ForceMode.Impulse);
+           rb.AddForce(velocity * rb.mass / kindScript.weight, ForceMode.Impulse);
         rb.useGravity = true;
 
     }
@@ -175,7 +176,7 @@ public class ThrowingPower : MonoBehaviour
         float y = (pointA.y - pointB.y);
 
         // 斜方投射の公式を初速度について解く
-        float speed = Mathf.Sqrt(-Physics.gravity.y * Mathf.Pow(x, 2) / (2 * Mathf.Pow(Mathf.Cos(rad), 2) * (x * Mathf.Tan(rad) + y))) * speedZ;
+        float speed = Mathf.Sqrt(-Physics.gravity.y * Mathf.Pow(x, 2) / (2 * Mathf.Pow(Mathf.Cos(rad), 2) * (x * Mathf.Tan(rad) + y)));
 
         if (float.IsNaN(speed))
         {
@@ -184,6 +185,7 @@ public class ThrowingPower : MonoBehaviour
         }
         else
         {
+            speed += speedZ;
             return (new Vector3(pointB.x - pointA.x, x * Mathf.Tan(rad), pointB.z - pointA.z).normalized * speed);
         }
     }
