@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ThrowingScript : MonoBehaviour
 {
+    public float Power = 0;
+    public float MinPower = 0;
+    public float MaxPower = 100;
+    public bool powercount = false;
+    public bool powercount10 = true;
+
     /// <summary>
     /// 射出するオブジェクト
     /// </summary>
@@ -19,27 +26,85 @@ public class ThrowingScript : MonoBehaviour
     /// <summary>
     /// 射出角度
     /// </summary>
-    [SerializeField, Range(0F, 90F), Tooltip("射出する角度")]
-    private float ThrowingAngle;
+    [SerializeField,Tooltip("射出する角度")]
+    private float ThrowingAngle = 50.0f;
 
     private void Start()
     {
-        Collider collider = GetComponent<Collider>();
-        if (collider != null)
-        {
-            // 干渉しないようにisTriggerをつける
-            collider.isTrigger = true;
-        }
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        Key();
+
+        if (Input.GetMouseButtonUp(0))
         {
-            // マウス左クリックでボールを射出する
+            if (powercount10 == false)
+                Debug.Log(Power + "放した");
+            TargetDistance();
             ThrowingBall();
+            Power = 0;
+            powercount10 = true;
+            ThrowingPower.Destroy(this);
         }
     }
+
+    /// <summary>
+    /// 押している間Powerをためる関数（繰り返す）
+    /// </summary>
+    public void Key()
+    {
+
+        if (Input.GetMouseButton(0))
+        {
+            if (powercount == false)
+            {
+                if ((int)Power <= MaxPower)
+                {
+                    if (Power >= 50)
+                    {
+                        Power += 0.6f;
+                    }
+                    else
+                    {
+                        Power += 0.1f;
+                        Debug.Log(Power + "増えてる");
+                    }
+
+                    if ((int)Power == 10)
+                    {
+                        powercount10 = false;
+                    }
+                    if ((int)Power == MaxPower)
+                    {
+                        powercount = true;
+                    }
+                }
+            }
+            if (powercount == true)
+            {
+                if (Power >= 50)
+                {
+                    Power -= 0.6f;
+                }
+                else
+                {
+                    Power -= 0.1f;
+                    Debug.Log(Power + "減ってる");
+                }
+                if ((int)Power == MinPower)
+                {
+                    powercount = false;
+                }
+            }
+        }
+    }
+
+    public void TargetDistance()
+    {
+        TargetObject.transform.position = new Vector3(0, 0, Power);
+    }
+
 
     /// <summary>
     /// ボールを射出する
