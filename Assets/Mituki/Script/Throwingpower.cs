@@ -53,9 +53,8 @@ public class ThrowingPower : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 if (powercount10 == false)
-                    Debug.Log(Power + "放した");
+                    //Debug.Log(Power + "放した");
 
-                //Throw();
                 TargetDistance();
                 Gauge();
 
@@ -91,7 +90,7 @@ public class ThrowingPower : MonoBehaviour
                     else
                     {
                         Power += 0.1f;
-                        Debug.Log(Power + "増えてる");
+                        //Debug.Log(Power + "増えてる");
                     }
 
                     if ((int)Power == 10)
@@ -113,7 +112,7 @@ public class ThrowingPower : MonoBehaviour
                 else
                 {
                     Power -= 0.1f;
-                    Debug.Log(Power + "減ってる");
+                    //Debug.Log(Power + "減ってる");
                 }
                 if ((int)Power == MinPower)
                 {
