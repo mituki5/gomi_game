@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 //種類と分解
-public class kinds : MonoBehaviour//, IPointerClickHandler
+public class kinds : MonoBehaviour ,IPointerClickHandler
 {
     public GameObject firstObject;
     public GameObject nextObject;
@@ -27,6 +27,8 @@ public class kinds : MonoBehaviour//, IPointerClickHandler
     [SerializeField] public float weight;
     public int totalnumber = 30;
     public int number;
+
+    public bool separation = true;
 
     private GameObject TrashImage;
     private GameObject PlasticImage;
@@ -55,13 +57,13 @@ public class kinds : MonoBehaviour//, IPointerClickHandler
     private void Update()
     {
         if (firstThrowingpower.landing == false)
-            {
-                FirstInstantiateTrash();
-                //SecondInstantiateTrash();
-                Kinds();
-                firstThrowingpower.landing = true;
-                firstThrowingpower.shot = true;
-            }
+        {
+            //SecondInstantiateTrash();
+            FirstInstantiateTrash();
+            Kinds();
+            firstThrowingpower.landing = true;
+            firstThrowingpower.shot = true;
+        }
         
     }
 
@@ -127,9 +129,10 @@ public class kinds : MonoBehaviour//, IPointerClickHandler
     /// </summary>
     public void Separation()
     {
+        Debug.Log("aaa");
         //分解前のペットボトルを消す
-        Destroy(firstObject);
-        Destroy(nextObject);
+        Destroy(firstObject.transform.GetChild(0).gameObject);
+        Destroy(nextObject.transform.GetChild(0).gameObject);
         //投げる場所に分解したfirstObjectを置く
         Instantiate(trashPrefabs[(int)TrashType.bottle], firstObject.transform);
         //次のところ
@@ -144,15 +147,13 @@ public class kinds : MonoBehaviour//, IPointerClickHandler
     {
         if (eventData.pointerId == -1)
         {
-            Debug.Log("分解");
-
             if (_name[index] == "plasticbottle")
             {
-            Debug.Log("分解");
+                Debug.Log("分解");
                 Separation();
             }
         }
-
+        
     }
 
     public void Count()
