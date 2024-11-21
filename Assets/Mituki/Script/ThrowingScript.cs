@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ThrowingScript : MonoBehaviour
 {
+    public float Angle = 50.0f;
+
     /// <summary>
     /// 射出するオブジェクト
     /// </summary>
