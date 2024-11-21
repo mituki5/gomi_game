@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8244996914962481066}
   - component: {fileID: 8550041349383162667}
   - component: {fileID: 3923786155573744947}
+  - component: {fileID: -2461554707009542202}
   m_Layer: 0
   m_Name: StartBall
   m_TagString: startball
@@ -177,6 +178,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-2461554707009542202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3696302850412107338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a9170050422434f9d6072a0caf4d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startball: {fileID: 0}
+  gameobject: {fileID: 0}
 --- !u!1 &7004316668650266680
 GameObject:
   m_ObjectHideFlags: 0
