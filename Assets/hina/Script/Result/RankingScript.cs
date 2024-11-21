@@ -52,15 +52,4 @@ public class RankingScript : MonoBehaviour
         score1 = newScore;
         RankingChange();
     }
-
-/*    void AddHighScore(int newScore)
-    {
-        highScores.Add(newScore);
-        highScores.Sort((a, b) => b.CompareTo(a)); // 降順にソート
-        if (highScores.Count > rankingTexts.Length)
-        {
-            highScores.RemoveAt(highScores.Count - 1); // ランキング表示数を超えたら削除
-        }
-        SaveHighScores();
-    }*/
 }
