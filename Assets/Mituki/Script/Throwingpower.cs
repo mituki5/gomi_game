@@ -10,53 +10,36 @@ using UnityEngine;
 
 public class ThrowingPower : MonoBehaviour
 {
-    [Header("Power Settings")]
-    public float Power = 0; //現在のPower
-    public float MinPower = 0;//最大Power
-    public float MaxPower = 100; //最小Power
-    public float PowerIncreaseRate = 0.1f;
-    public float PowerDecreaseRate = 0.6f;
-    private bool isIncreasingPower = true; //Powerを増加させるフラグ
-    private bool NegatePower = false;
-    public float SpeedMultiplier = 2.0f; // 射出速度の倍率
+    public float Power = 0;
+    public float MinPower = 0;
+    public float MaxPower = 100;
     public float Angle = 50.0f;
-
-    [Header("References")]
-    public GameObject TrashBox;
+    public float speedZ = 2;
+    public GameObject Trash_box;
     public GameObject Player;
-    public GameObject TargetObject;
+    public GameObject targetobject;
 
-    private GameObject time;
-    private GameObject child;
+    public bool landing = true;
+    public bool shot = true;
+    public bool canShot = false;
+    public bool powercount  = false;
+    public bool powercount10 = true;
 
-    public bool canShoot = false;
-
-    //public bool landing = true;
-    //public bool shot = true;
-    //public bool powercount  = false;
-    //public bool powercount10 = true;
-
-    private Rigidbody rb;
     private kinds kindScript;
 
+    private GameObject child;
 
 
     public void SetScript(GameObject trashBox, kinds kind, bool canShot)
     {
-        TrashBox = trashBox;
+        Trash_box = trashBox;
         kindScript = kind;
-        this.canShoot = canShot;
-    }
-    private void ResetThrow()
-    {
-        Power = 0;
-        canShoot = false;
-        isIncreasingPower = true;
+        this.canShot = canShot;
     }
 
+    private GameObject time;
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
         time = GameObject.Find("TimeObject");
     }
     // Update is called once per frame
@@ -64,95 +47,84 @@ public class ThrowingPower : MonoBehaviour
     {
         //if(time.GetComponent<TimeCounter>().start == true)
         {
-            if (!this.canShoot) return;
-            HandlePowerInput();
+            if (!this.canShot) return;
+            Key();
 
             if (Input.GetMouseButtonUp(0))
             {
-                    Debug.Log(Power + "放した");
+                if (powercount10 == false)
+                    //Debug.Log(Power + "放した");
+
+                TargetDistance();
+                Gauge();
+
+                child = kindScript.transform.GetChild(0).gameObject;
+               
+
                 Power = 0;
-                    TargetDistance();
-                    Gauge();
-                    ResetThrow();
-                    ThrowingPower.Destroy(this);
+                landing = false;
+                shot = false;
+                powercount10 = true;
+                ThrowingPower.Destroy(this);
             }
         }
     }
 
-    public void CheckPowerStatus()
-    {
-        // PowerがMaxPowerに達したら増加を停止
-        if ((int)Power >= MaxPower)
-        {
-            isIncreasingPower = false;
-        }
-        // PowerがMinPowerに達したら減少を停止
-        else if ((int)Power <= MinPower)
-        {
-            isIncreasingPower = true;
-        }
-
-        // Powerが0または10以下の場合、NegatePowerフラグを設定
-        if ((int)Power <= 10 || (int)Power == 0)
-        {
-            NegatePower = false;
-            if (isIncreasingPower)
-            {
-                NegatePower = true; // 増加中ならNegatePowerをtrueに設定
-            }
-        }
-    }
 
     /// <summary>
-    /// マウスを押している間にPowerを増減する処理
+    /// 押している間Powerをためる関数（繰り返す）
     /// </summary>
-    public void HandlePowerInput()
+    public void Key()
     {
-        if (Input.GetMouseButton(0)) // マウス左ボタンが押されている間
+        
+        if (Input.GetMouseButton(0))
         {
-            CheckPowerStatus();
-            if (isIncreasingPower)
+            if (powercount == false)
             {
-                // Powerを増加させる
-                Power += PowerIncreaseRate;
-                Debug.Log(Power + " 増えてる");
+                if ((int)Power <= MaxPower)
+                {
+                    if(Power >= 50)
+                    {
+                        Power += 0.6f;
+                    }
+                    else
+                    {
+                        Power += 0.1f;
+                        //Debug.Log(Power + "増えてる");
+                    }
 
-                // Powerが50以上の場合、増加速度を上げる
-                if ((int)Power >= 50)
-                {
-                    Power += PowerDecreaseRate; // 50を超えると速く増える
-                    Debug.Log(Power + " 増えてる");
-                }
-                // PowerがMaxPowerを超えないように制限
-                if ((int)Power == MaxPower)
-                {
-                    Power = MaxPower;
+                    if ((int)Power == 10)
+                    {
+                        powercount10 = false;
+                    }
+                    if ((int)Power == MaxPower)
+                    {
+                        powercount = true;
+                    }    
                 }
             }
-            else if(!isIncreasingPower)
+            if (powercount == true)
             {
-                // Powerを減少させる
-                Power -= PowerIncreaseRate;
-                Debug.Log(Power + " 減ってる");
-                // Powerが50以上の場合、減少速度を上げる
-                if ((int)Power >= 50)
+                if (Power >= 50)
                 {
-                    Power -= PowerDecreaseRate; // 50を超えると速く減る
-                    Debug.Log(Power + " 減ってる");
+                    Power -= 0.6f;
                 }
-                // PowerがMinPowerを下回らないように制限
+                else
+                {
+                    Power -= 0.1f;
+                    //Debug.Log(Power + "減ってる");
+                }
                 if ((int)Power == MinPower)
                 {
-                    Power = MinPower;
-                }         
+                    powercount = false;
+                }
             }
         }
     }
-
 
     public void TargetDistance()
     {
-        TargetObject.transform.position = new Vector3(0, 0, Power);
+        targetobject.transform.position = new Vector3(0, 0, Power);
     }
 
 
@@ -162,7 +134,8 @@ public class ThrowingPower : MonoBehaviour
     public void Gauge()
     {
             // 標的の座標
-            Vector3 targetPosition = TargetObject.transform.position;
+            Vector3 targetPosition = targetobject.transform.position;
+        targetPosition.y = speedZ;
             // 射出角度
             float angle = Angle;
 
@@ -170,9 +143,15 @@ public class ThrowingPower : MonoBehaviour
             Vector3 velocity = CalculateVelocity(this.transform.position, targetPosition, angle);
 
 
+        child = kindScript.transform.GetChild(0).gameObject;
+        Vector3 childpos = child.transform.position;
+        childpos.y = speedZ;
+
+
         // 射出
+        Rigidbody rb = GetComponent<Rigidbody>();
            rb.AddForce(velocity * rb.mass / kindScript.weight, ForceMode.Impulse);
-           rb.useGravity = true;
+        rb.useGravity = true;
 
     }
 
@@ -188,33 +167,25 @@ public class ThrowingPower : MonoBehaviour
         float rad = angle * Mathf.PI / 180;
 
         // 水平方向の距離x
-        float x = Vector3.Distance(new Vector3(pointA.x, 0, pointA.z), new Vector3(pointB.x, 0, pointB.z));
+        float x = Vector2.Distance(new Vector2(pointA.x, pointA.z), new Vector2(pointB.x, pointB.z));
+
+
 
         // 垂直方向の距離y
-        float y = pointA.y - pointB.y;
+        float y = (pointA.y - pointB.y);
 
-        // 射出速度を計算
-        float g = -Physics.gravity.y; // 重力加速度
-        float tan = Mathf.Tan(rad);
+        // 斜方投射の公式を初速度について解く
+        float speed = Mathf.Sqrt(-Physics.gravity.y * Mathf.Pow(x, 2) / (2 * Mathf.Pow(Mathf.Cos(rad), 2) * (x * Mathf.Tan(rad) + y)));
 
-        // 速度を増加させるためのスケールファクター
-        float speedMultiplier = 1.5f; // 1より大きい値を設定して速度を上げる
-
-        // 必要な初速度を計算（公式に基づく）
-        float initialSpeed = Mathf.Sqrt((g * x * x) / (2 * Mathf.Pow(Mathf.Cos(rad), 2) * (x * tan + y)));
-
-        // 初速度に倍率を適用
-        initialSpeed *= speedMultiplier;
-        if (float.IsNaN(initialSpeed))
+        if (float.IsNaN(speed))
         {
             // 条件を満たす初速を算出できなければVector3.zeroを返す
             return Vector3.zero;
         }
         else
         {
-            // 射出速度を算出
-            Vector3 direction = new Vector3(pointB.x - pointA.x, x * tan, pointB.z - pointA.z).normalized;
-            return direction * initialSpeed;
+            speed += speedZ;
+            return (new Vector3(pointB.x - pointA.x, x * Mathf.Tan(rad), pointB.z - pointA.z).normalized * speed);
         }
     }
 }
