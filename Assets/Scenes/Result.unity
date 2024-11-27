@@ -471,9 +471,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dbcabe81435b324d8a8a5e179bd479d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RankingText_1: {fileID: 1529280379}
-  RankingText_2: {fileID: 1094229781}
-  RankingText_3: {fileID: 597837298}
+  rankingText:
+  - {fileID: 1529280379}
+  - {fileID: 1094229781}
+  - {fileID: 597837298}
 --- !u!4 &481700643
 Transform:
   m_ObjectHideFlags: 0
