@@ -2,54 +2,68 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using static UnityEditor.Progress;
 
 public class RankingScript : MonoBehaviour
 {
-    [SerializeField] Text RankingText_1;
-    [SerializeField] Text RankingText_2;
-    [SerializeField] Text RankingText_3;
-
-    private int Ranking_1;
-    private int Ranking_2;
-    private int Ranking_3;
-
     int score1 = Score.score;
 
+    string[] ranking = { "1位", "2位", "3位"};
+    int[] rankingValue = new int[3];
+
+    [SerializeField, Header("表示させるテキスト")]
+    Text[] rankingText = new Text[3];
+
+    // Use this for initialization
     void Start()
     {
+        GetRanking();
 
+        SetRanking(score1);
+
+        for (int i = 0; i < rankingText.Length; i++)
+        {
+            rankingText[i].text = rankingValue[i].ToString();
+        }
     }
 
-    void Update()
+    /// <summary>
+    /// ランキング呼び出し
+    /// </summary>
+    void GetRanking()
     {
-        RankingText_1.text = "1：" + Ranking_1.ToString();
-        RankingText_2.text = "2：" + Ranking_2.ToString();
-        RankingText_3.text = "3：" + Ranking_3.ToString();
+        //ランキング呼び出し
+        for (int i = 0; i < ranking.Length; i++)
+        {
+            rankingValue[i] = PlayerPrefs.GetInt(ranking[i]);
+        }
     }
-
-    public void RankingChange()
+    /// <summary>
+    /// ランキング書き込み
+    /// </summary>
+    void SetRanking(int _value)
     {
-        if(score1 >= Ranking_1)
+        //書き込み用
+        for (int i = 0; i < ranking.Length; i++)
         {
-            Ranking_2 = Ranking_3;
-            Ranking_1 = Ranking_2;
-            score1 = Ranking_1;
+            //取得した値とRankingの値を比較して入れ替え
+            if (_value > rankingValue[i])
+            {
+                var change = rankingValue[i];
+                rankingValue[i] = _value;
+                _value = change;
+            }
         }
-        else if(score1 <= Ranking_1 || score1 >= Ranking_2)
+
+        //入れ替えた値を保存
+        for (int i = 0; i < ranking.Length; i++)
         {
-            Ranking_2 = Ranking_3;
-            score1 = Ranking_2;
-        }
-        else if(score1 <= Ranking_2 || score1 >= Ranking_3)
-        {
-            score1 = Ranking_3;
+            PlayerPrefs.SetInt(ranking[i], rankingValue[i]);
         }
     }
-
     public void UpdateScore(int newScore)
     {
         score1 = newScore;
-        RankingChange();
     }
 }
