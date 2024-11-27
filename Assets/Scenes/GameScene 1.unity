@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6025,7 +6025,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808391876}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3a5842e96e6fec479515455fd59f876, type: 3}
   m_Name: 
@@ -9013,6 +9013,7 @@ MonoBehaviour:
   weight: 5
   totalnumber: 30
   number: 0
+  separation: 1
 --- !u!114 &1233521976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9025,9 +9026,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c16dcdbc113ac8c41bb11d304811a605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThrowingObject: {fileID: 7074895528951235237, guid: 261e6548d5c53f647833c2311a7b1e8d, type: 3}
-  TargetObject: {fileID: 1344354857}
-  ThrowingAngle: 29.4
 --- !u!1 &1244905570
 GameObject:
   m_ObjectHideFlags: 0
@@ -9566,6 +9564,7 @@ MonoBehaviour:
   weight: 0
   totalnumber: 30
   number: 0
+  separation: 1
 --- !u!1 &1318378787
 GameObject:
   m_ObjectHideFlags: 0
@@ -9700,11 +9699,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1344354857 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 287479710543177700, guid: f7ffa918a8d7f794bb05605b073f850b, type: 3}
-  m_PrefabInstance: {fileID: 311161971}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1360387221
 GameObject:
   m_ObjectHideFlags: 0
