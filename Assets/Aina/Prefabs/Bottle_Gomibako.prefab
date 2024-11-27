@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9079876805766104613}
   - component: {fileID: 184846488928941923}
   - component: {fileID: 1253416431726015997}
+  - component: {fileID: 551658245609069684}
   m_Layer: 0
   m_Name: plasticbottle_box
   m_TagString: plasticbottle_box
@@ -130,10 +131,32 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 2.1847582, y: 0.36640692, z: 0.2}
   m_Center: {x: -0.0034804344, y: 1.0841262, z: 0}
+--- !u!64 &551658245609069684
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126463458683255359}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &2606934056145584276
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,5 +406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fadb47f3b2470843a8662f42362a75e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnter: 0
+  isEnter_p: 0
+  isEnter_b: 0
   mistake: 0
