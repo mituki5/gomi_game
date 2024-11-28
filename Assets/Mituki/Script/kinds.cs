@@ -4,12 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-//種類と分解
-public class kinds : MonoBehaviour ,IPointerClickHandler
+public class kinds : MonoBehaviour
 {
     public GameObject firstObject;
     public GameObject nextObject;
-    //[SerializeField] public string _name;
     public List<string> _name = new List<string>();
     public int index;
     private int nextIndex;
@@ -22,13 +20,14 @@ public class kinds : MonoBehaviour ,IPointerClickHandler
         Trash,
         plastic,
     }
-    [SerializeField] List<GameObject> trashPrefabs = new List<GameObject>();
+    [SerializeField] private List<GameObject> trashPrefabs = new List<GameObject>();
     private ThrowingPower firstThrowingpower;
     [SerializeField] public float weight;
     public int totalnumber = 30;
     public int number;
-
     public bool separation = true;
+
+    public bool isJudging = true;
 
     private GameObject TrashImage;
     private GameObject PlasticImage;
@@ -36,86 +35,124 @@ public class kinds : MonoBehaviour ,IPointerClickHandler
 
     public void Start()
     {
+        // 初期化: 最初のゴミを生成
         int tmpIndex = Random.Range(0, _name.Count);
         firstObject = Instantiate(trashPrefabs[tmpIndex], this.transform);
         firstThrowingpower = firstObject.GetComponent<ThrowingPower>();
         index = tmpIndex;
         firstThrowingpower.SetScript(trashBox, this, true);
+
         Kinds();
+
+        // 次のゴミを生成
         tmpIndex = Random.Range(0, _name.Count);
-        nextObject = Instantiate(trashPrefabs[tmpIndex], nextObject.transform);
+        nextObject = Instantiate(trashPrefabs[tmpIndex], this.transform);
         nextIndex = tmpIndex;
 
-        TrashImage = GameObject.Find("TrashImage");
-        TrashImage.SetActive(false);
-        PlasticImage = GameObject.Find("PlasticImage");
-        PlasticImage.SetActive(false);
-        BottleImage = GameObject.Find("BottleImage");
-        BottleImage.SetActive(false);
+        //// UI 初期化
+        //TrashImage = GameObject.Find("TrashImage");
+        //TrashImage.SetActive(false);
+        //PlasticImage = GameObject.Find("PlasticImage");
+        //PlasticImage.SetActive(false);
+        //BottleImage = GameObject.Find("BottleImage");
+        //BottleImage.SetActive(false);
     }
 
     private void Update()
     {
-        if (firstThrowingpower.landing == false)
+        // ゴミが着地していれば、新しいゴミを生成
+        if (firstThrowingpower.iscanShoot == false)
         {
-            //SecondInstantiateTrash();
-            FirstInstantiateTrash();
-            Kinds();
-            firstThrowingpower.landing = true;
-            firstThrowingpower.shot = true;
+            FirstInstantiateTrash(); //firstObjectを更新
+            SecondInstantiateTrash(); //次のゴミを生成
+            Kinds(); // 種類を更新
+            firstThrowingpower.iscanShoot = true;
         }
-        
+
+        if (Input.GetMouseButtonDown(0)) // 左クリック
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            // Raycastでオブジェクトを検出
+            if (Physics.Raycast(ray, out hit))
+            {
+                GameObject hitObject = hit.collider.gameObject;
+
+                Debug.Log($"Raycastが検出: {hitObject.name}");
+
+                // 分解対象が`plasticbottle`の場合のみ処理
+                if (_name.Contains(hitObject.name) && hitObject.name == "plasticbottle")
+                {
+                    Debug.Log("分解を実行");
+                    Separation(hitObject);
+                }
+            }
+        }
+
+        //合計数（totalnumber）が0に達した場合、リセットして新しい個数を設定
+        if (totalnumber <= 0){
+            ResetTrashCounts();
+        }
     }
 
     private void FirstInstantiateTrash()
     {
-        SecondInstantiateTrash();
+        // 次のゴミを現在のゴミに移動
         firstObject.name = nextObject.name;
         firstObject = nextObject;
         firstThrowingpower = firstObject.GetComponent<ThrowingPower>();
         firstThrowingpower.SetScript(trashBox, this, true);
         index = nextIndex;
+
+        // 古い子オブジェクトを削除
+        if (firstObject.transform.childCount > 0)
+        {
+            Destroy(firstObject.transform.GetChild(0).gameObject);
+        }
     }
 
     private void SecondInstantiateTrash()
     {
-        nextIndex = (int)Random.Range(0.0f, _name.Count);
-        nextObject.name = _name[index];
-        nextObject = Instantiate(trashPrefabs[index], transform);
+        // 新しいゴミを生成
+        nextIndex = Random.Range(0, _name.Count);
+        nextObject.name = _name[nextIndex];
+        nextObject = Instantiate(trashPrefabs[nextIndex], transform);
     }
+
     public void Kinds()
     {
+        // ゴミの種類に応じて設定
         switch (_name[index])
         {
-            //ペットボトルの場合のみ分解
             case "plasticbottle":
                 weight = 3.0f;
                 number = 6;
-                nextIndex = Random.Range(0, number);
+                //nextIndex = Random.Range(0, number);
                 Count();
                 break;
             case "bottle":
                 weight = 3.0f;
                 number = 6;
-                nextIndex = Random.Range(number, 12);
+                //nextIndex = Random.Range(number, 12);
                 Count();
                 break;
             case "cap":
                 weight = 1.0f;
                 number = 6;
-                nextIndex = Random.Range(number, 18);
+                //nextIndex = Random.Range(number, 18);
                 Count();
                 break;
             case "Trash":
                 weight = 1.0f;
                 number = 6;
-                nextIndex = Random.Range(number, 24);
+                //nextIndex = Random.Range(number, 24);
                 Count();
                 break;
             case "plastic":
                 weight = 5.0f;
                 number = 6;
-                nextIndex = Random.Range(number, totalnumber);
+                //nextIndex = Random.Range(number, totalnumber);
                 Count();
                 break;
             default:
@@ -125,43 +162,54 @@ public class kinds : MonoBehaviour ,IPointerClickHandler
     }
 
     /// <summary>
-    /// 分解する関数
+    /// ゴミを分解する関数
     /// </summary>
-    public void Separation()
+    private void Separation(GameObject targetObject)
     {
-        Debug.Log("aaa");
-        //分解前のペットボトルを消す
-        Destroy(firstObject.transform.GetChild(0).gameObject);
-        Destroy(nextObject.transform.GetChild(0).gameObject);
-        //投げる場所に分解したfirstObjectを置く
-        Instantiate(trashPrefabs[(int)TrashType.bottle], firstObject.transform);
-        //次のところ
-        Instantiate(trashPrefabs[(int)TrashType.cap], nextObject.transform);
-    }
+        Debug.Log("分解処理を実行");
 
-    ///// <summary>
-    ///// クリックによる分解をする関数
-    ///// </summary>
-    ///// <param name="eventData"></param>
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (eventData.pointerId == -1)
+        if (targetObject.transform.childCount > 0)
         {
-            if (_name[index] == "plasticbottle")
-            {
-                Debug.Log("分解");
-                Separation();
-            }
+            Destroy(targetObject.transform.GetChild(0).gameObject);
         }
-        
+
+        // 分解後のゴミを生成
+        firstObject = Instantiate(trashPrefabs[(int)TrashType.bottle], firstObject.transform);
+        //GameObject bottle = Instantiate(trashPrefabs[(int)TrashType.bottle], targetObject.transform);
+        //bottle.transform.localPosition = Vector3.zero;
+
+        nextObject = Instantiate(trashPrefabs[(int)TrashType.cap], nextObject.transform);
+        //GameObject cap = Instantiate(trashPrefabs[(int)TrashType.cap], targetObject.transform);
+        //cap.transform.localPosition = new Vector3(0, -0.5f, 0); // キャップを少し下に配置
+
+        Debug.Log("分解完了: ボトルとキャップを生成");
     }
 
+    /// <summary>
+    /// 数を管理する関数
+    /// </summary>
     public void Count()
     {
-        if(nextObject.name == _name[index])
+        if (nextObject.name == _name[index])
         {
             totalnumber--;
             number--;
+        }
+    }
+
+    private void ResetTrashCounts()
+    {
+        Debug.Log("総合計数が0に達したため、カウントをリセット");
+
+        totalnumber = 30; // 新しい総合計数を設定
+
+        // 各ゴミの個数をランダムに設定 (例として最大10個を設定可能にする)
+        int maxPerType = 10;
+        for (int i = 0; i < _name.Count; i++)
+        {
+            int count = Random.Range(1, maxPerType + 1);
+            Debug.Log($"ゴミ種類: {_name[i]}, 設定個数: {count}");
+            // 必要に応じて各種類のゴミ個数を管理するリストや辞書を用意
         }
     }
 }

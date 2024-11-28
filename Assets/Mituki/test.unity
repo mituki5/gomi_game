@@ -263,7 +263,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1063783382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2240f12e61de93644a0b6044681c6cda, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f444bead71c5ca4aba5f096c3605e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   firstObject: {fileID: 1063783382}
@@ -273,6 +273,7 @@ MonoBehaviour:
   - bottle
   - cap
   - Trash
+  - plastic
   index: 0
   trashBox: {fileID: 1542104112}
   trashPrefabs:
@@ -280,9 +281,12 @@ MonoBehaviour:
   - {fileID: 7335773958864978630, guid: ebd536b9016d10d40a5df98296b6c25c, type: 3}
   - {fileID: 8301393549835201551, guid: 1e92e044dd7d2554dbfe5d13e3f28a64, type: 3}
   - {fileID: 8706815323055326940, guid: 3667cf3674d65d34bac9dfe35a481f19, type: 3}
+  - {fileID: 8285195888269818234, guid: 7f703fed2d98c2a428b4970d3c502c8f, type: 3}
   weight: 0
   totalnumber: 30
   number: 0
+  separation: 1
+  isJudging: 1
 --- !u!1 &1143095647
 GameObject:
   m_ObjectHideFlags: 0
