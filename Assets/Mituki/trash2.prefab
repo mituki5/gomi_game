@@ -121,18 +121,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Power: 0
-  MinPower: 0
-  MaxPower: 100
-  Angle: 50
-  speedZ: 60
-  Trash_box: {fileID: 0}
+  PowerIncreaseRate: 0.1
+  PowerDecreaseRate: 0.6
+  SpeedMultiplier: 2
+  TrashBox: {fileID: 0}
   Player: {fileID: 8706815323055326940}
-  targetobject: {fileID: 7496919824475447461, guid: 75e902d151b82774b83efffd2b25c422, type: 3}
-  landing: 1
-  shot: 1
-  canShot: 0
-  powercount: 0
-  powercount10: 1
+  TargetObject: {fileID: 7496919824475447461, guid: 75e902d151b82774b83efffd2b25c422, type: 3}
+  iscanShoot: 1
+  iscanRotate: 1
 --- !u!54 &1400659871223737111
 Rigidbody:
   m_ObjectHideFlags: 0

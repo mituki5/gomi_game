@@ -126,16 +126,14 @@ MonoBehaviour:
   Power: 0
   MinPower: 0
   MaxPower: 100
+  PowerIncreaseRate: 0.1
+  PowerDecreaseRate: 0.6
+  SpeedMultiplier: 2
   Angle: 50
-  speedZ: 2
-  Trash_box: {fileID: 0}
+  TrashBox: {fileID: 0}
   Player: {fileID: 7608051752013143209}
-  targetobject: {fileID: 7496919824475447461, guid: 75e902d151b82774b83efffd2b25c422, type: 3}
-  landing: 1
-  shot: 1
-  canShot: 0
-  powercount: 0
-  powercount10: 1
+  TargetObject: {fileID: 7496919824475447461, guid: 75e902d151b82774b83efffd2b25c422, type: 3}
+  canShoot: 0
 --- !u!54 &9020624913877782274
 Rigidbody:
   m_ObjectHideFlags: 0

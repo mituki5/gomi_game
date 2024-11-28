@@ -20,7 +20,7 @@ public class Rotator : MonoBehaviour
 
     private void Update()
     {
-        if(throwingPower.landing == false)
+        if(throwingPower.iscanRotate == false)
         {
             gameObject.transform.Rotate(new Vector3(rotateX,rotateY,rotateZ) * Time.deltaTime);
         }
