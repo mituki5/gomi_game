@@ -23,11 +23,12 @@ public class kinds : MonoBehaviour
     [SerializeField] private List<GameObject> trashPrefabs = new List<GameObject>();
     private ThrowingPower firstThrowingpower;
     [SerializeField] public float weight;
-    public int totalnumber = 30;
-    public int number;
+    public int totalnumber = 10;
     public bool separation = true;
 
     public bool isJudging = true;
+
+    private Dictionary<string, int> trashCounts = new Dictionary<string, int>();
 
     private GameObject TrashImage;
     private GameObject PlasticImage;
@@ -35,6 +36,13 @@ public class kinds : MonoBehaviour
 
     public void Start()
     {
+        // ゴミの種類ごとの初期値を設定 (指定された個数)
+        trashCounts["plasticbottle"] = 2;
+        trashCounts["bottle"] = 1;
+        trashCounts["cap"] = 1;
+        trashCounts["Trash"] = 3;
+        trashCounts["plastic"] = 3;
+
         // 初期化: 最初のゴミを生成
         int tmpIndex = Random.Range(0, _name.Count);
         firstObject = Instantiate(trashPrefabs[tmpIndex], this.transform);
@@ -74,6 +82,9 @@ public class kinds : MonoBehaviour
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+            // Raycastを可視化 (デバッグ用)
+            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1f);
+
             // Raycastでオブジェクトを検出
             if (Physics.Raycast(ray, out hit))
             {
@@ -82,10 +93,15 @@ public class kinds : MonoBehaviour
                 Debug.Log($"Raycastが検出: {hitObject.name}");
 
                 // 分解対象が`plasticbottle`の場合のみ処理
-                if (_name.Contains(hitObject.name) && hitObject.name == "plasticbottle")
+                //ゴミが投げられた場合、その種類に応じてカウントを減らす
+                //if (_name.Contains(hitObject.name) && hitObject.name == "plasticbottle")
+                //if(hitObject.CompareTag("PlasticBottle"))
+                if(_name.Contains(hitObject.name))
                 {
                     Debug.Log("分解を実行");
                     Separation(hitObject);
+                    // 分解対象がそのゴミの名前に一致する場合のみ処理
+                    DecreaseTrashCount(hitObject.name);
                 }
             }
         }
@@ -115,9 +131,9 @@ public class kinds : MonoBehaviour
     private void SecondInstantiateTrash()
     {
         // 新しいゴミを生成
-        nextIndex = Random.Range(0, _name.Count);
-        nextObject.name = _name[nextIndex];
-        nextObject = Instantiate(trashPrefabs[nextIndex], transform);
+        nextIndex = (int)Random.Range(0, _name.Count);
+        nextObject.name = _name[index];
+        nextObject = Instantiate(trashPrefabs[index], transform);
     }
 
     public void Kinds()
@@ -127,33 +143,18 @@ public class kinds : MonoBehaviour
         {
             case "plasticbottle":
                 weight = 3.0f;
-                number = 6;
-                //nextIndex = Random.Range(0, number);
-                Count();
                 break;
             case "bottle":
                 weight = 3.0f;
-                number = 6;
-                //nextIndex = Random.Range(number, 12);
-                Count();
                 break;
             case "cap":
                 weight = 1.0f;
-                number = 6;
-                //nextIndex = Random.Range(number, 18);
-                Count();
                 break;
             case "Trash":
                 weight = 1.0f;
-                number = 6;
-                //nextIndex = Random.Range(number, 24);
-                Count();
                 break;
             case "plastic":
                 weight = 5.0f;
-                number = 6;
-                //nextIndex = Random.Range(number, totalnumber);
-                Count();
                 break;
             default:
                 weight = 1.0f;
@@ -186,14 +187,30 @@ public class kinds : MonoBehaviour
     }
 
     /// <summary>
-    /// 数を管理する関数
+    /// ゴミの種類を判定して数を減らす処理
     /// </summary>
-    public void Count()
+    private void DecreaseTrashCount(string trashName)
     {
-        if (nextObject.name == _name[index])
+        // ゴミの種類ごとに個数を減らす
+        if (trashCounts.ContainsKey(trashName))
         {
-            totalnumber--;
-            number--;
+            trashCounts[trashName]--;
+            totalnumber--; // 合計数を減らす
+            Debug.Log($"{trashName}の数を1減らしました。残り数: {trashCounts[trashName]}");
+
+            // ゴミが分解された場合
+            if (trashName == "plasticbottle")
+            {
+                // 分解後、bottle と cap を増やす
+                trashCounts["bottle"]++;
+                trashCounts["cap"]++;
+                Debug.Log("plasticbottle を分解して bottle と cap を増やしました");
+            }
+
+            if (trashCounts[trashName] <= 0)
+            {
+                Debug.Log($"{trashName}はもう残っていません");
+            }
         }
     }
 
@@ -201,15 +218,19 @@ public class kinds : MonoBehaviour
     {
         Debug.Log("総合計数が0に達したため、カウントをリセット");
 
-        totalnumber = 30; // 新しい総合計数を設定
+        totalnumber = 10; // 合計数は10に設定
 
-        // 各ゴミの個数をランダムに設定 (例として最大10個を設定可能にする)
-        int maxPerType = 10;
-        for (int i = 0; i < _name.Count; i++)
+        // 各ゴミの個数をリセット (指定された個数)
+        trashCounts["plasticbottle"] = 2;
+        trashCounts["bottle"] = 1;
+        trashCounts["cap"] = 1;
+        trashCounts["Trash"] = 3;
+        trashCounts["plastic"] = 3;
+
+        // 各ゴミの個数をデバッグログに出力
+        foreach (var entry in trashCounts)
         {
-            int count = Random.Range(1, maxPerType + 1);
-            Debug.Log($"ゴミ種類: {_name[i]}, 設定個数: {count}");
-            // 必要に応じて各種類のゴミ個数を管理するリストや辞書を用意
+            Debug.Log($"ゴミ種類: {entry.Key}, 設定個数: {entry.Value}");
         }
     }
 }

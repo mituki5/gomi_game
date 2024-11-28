@@ -17,8 +17,8 @@ GameObject:
   - component: {fileID: 406024826882848601}
   - component: {fileID: -462813325144259687}
   m_Layer: 0
-  m_Name: plastic_bottle
-  m_TagString: Untagged
+  m_Name: plasticbottle
+  m_TagString: plasticbottle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,16 +124,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Power: 0
-  MinPower: 0
-  MaxPower: 100
   PowerIncreaseRate: 0.1
   PowerDecreaseRate: 0.6
   SpeedMultiplier: 2
-  Angle: 50
   TrashBox: {fileID: 0}
   Player: {fileID: 7608051752013143209}
   TargetObject: {fileID: 7496919824475447461, guid: 75e902d151b82774b83efffd2b25c422, type: 3}
-  canShoot: 0
+  iscanShoot: 1
+  iscanRotate: 1
 --- !u!54 &9020624913877782274
 Rigidbody:
   m_ObjectHideFlags: 0
