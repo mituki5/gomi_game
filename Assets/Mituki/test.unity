@@ -284,7 +284,6 @@ MonoBehaviour:
   - {fileID: 8285195888269818234, guid: 7f703fed2d98c2a428b4970d3c502c8f, type: 3}
   weight: 0
   totalnumber: 30
-  number: 0
   separation: 1
   isJudging: 1
 --- !u!1 &1143095647
