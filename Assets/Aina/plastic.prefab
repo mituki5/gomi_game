@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 556332069849234663}
   - component: {fileID: 8189098891076884838}
   - component: {fileID: 412752987603813043}
+  - component: {fileID: -6715526326207939261}
   m_Layer: 0
   m_Name: plastic
   m_TagString: plasticgomi
@@ -218,3 +219,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-6715526326207939261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878055780521267457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb93b783df97ad244a5f7081302b76d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Power: 0
+  PowerIncreaseRate: 0.1
+  PowerDecreaseRate: 0.6
+  SpeedMultiplier: 2
+  TrashBox: {fileID: 0}
+  Player: {fileID: 878055780521267457}
+  TargetObject: {fileID: 7496919824475447461, guid: 75e902d151b82774b83efffd2b25c422, type: 3}
+  iscanShoot: 1
+  iscanRotate: 1
