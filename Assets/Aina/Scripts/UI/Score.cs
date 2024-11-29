@@ -15,6 +15,7 @@ public class Score : MonoBehaviour
     public static int score = 0;
 
 
+
     void Start()
     {
         ScoreText.text = $"スコア：{score.ToString("D3")}";
