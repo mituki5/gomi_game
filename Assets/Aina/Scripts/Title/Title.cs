@@ -38,10 +38,15 @@ public class Title : MonoBehaviour
         // スタートボールが入ったら
         if (Trash.GetComponent<TrashBox>().isEnter2 == true)
         {
-            SceneManager.LoadScene("GameScene 1"); // ゲームシーンに移動
+            Invoke(nameof(SceneChange), 0.7f);
             //time.GetComponent<TimeCounter>().start = false;
 
             start =  false;
         }
+    }
+
+    void SceneChange()
+    {
+        SceneManager.LoadScene("GameScene 1"); // ゲームシーンに移動
     }
 }
