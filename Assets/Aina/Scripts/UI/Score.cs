@@ -99,6 +99,11 @@ public class Score : MonoBehaviour
         //{
         //    PlayerPrefs.SetInt("SCORE", score);
         //    PlayerPrefs.Save();
-        //}
+        //}]
+
+        if(SceneManager.GetActiveScene().name == "GameScene 1")
+        {
+            score = 0;
+        }
     }
 }
