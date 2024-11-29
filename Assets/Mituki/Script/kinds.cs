@@ -10,7 +10,7 @@ public class kinds : MonoBehaviour
     public GameObject nextObject;
     public List<string> _name = new List<string>();
     public int index;
-    private int nextIndex;
+    public int nextIndex;
     [SerializeField] private GameObject trashBox;
     private enum TrashType
     {
@@ -22,6 +22,7 @@ public class kinds : MonoBehaviour
     }
     [SerializeField] private List<GameObject> trashPrefabs = new List<GameObject>();
     private ThrowingPower firstThrowingpower;
+    private KindsSub kindsSub;
     [SerializeField] public float weight;
     public int totalnumber = 10;
     public bool separation = true;
@@ -54,7 +55,7 @@ public class kinds : MonoBehaviour
 
         Kinds();
 
-        // 次のゴミを生成
+        //次のゴミを生成
         tmpIndex = Random.Range(0, _name.Count);
         nextObject = Instantiate(trashPrefabs[tmpIndex], nextObject.transform);
         nextIndex = tmpIndex;
@@ -74,6 +75,7 @@ public class kinds : MonoBehaviour
         if (isGround == false && isProcessing == true)
         {
             FirstInstantiateTrash(); //firstObjectを更新
+            //kindsSub.SecondInstantiateTrash(); //次のゴミを生成
             SecondInstantiateTrash(); //次のゴミを生成
             Kinds(); // 種類を更新
             isGround = true;
@@ -119,17 +121,17 @@ public class kinds : MonoBehaviour
     {
         // 次のゴミを現在のゴミに移動
         //Destroy(firstObject);
-        firstObject.name = nextObject.name;
-        firstObject = nextObject.transform;
+        //firstObject =  nextObject.transform.GetChild(0).gameObject;
+        firstObject = nextObject;
         firstThrowingpower = firstObject.GetComponent<ThrowingPower>();
         firstThrowingpower.SetScript(trashBox, this, true);
         index = nextIndex;
 
         // 古い子オブジェクトを削除
-        for (int i = firstObject.transform.childCount - 1; i >= 0; i--)
-        {
-            Destroy(firstObject.transform.GetChild(i).gameObject);
-        }
+        //for (int i = firstObject.transform.childCount - 1; i >= 0; i--)
+        //{
+        //    Destroy(firstObject.transform.GetChild(i).gameObject);
+        //}
     }
 
     private void SecondInstantiateTrash()
@@ -137,14 +139,14 @@ public class kinds : MonoBehaviour
         // 新しいゴミを生成
         nextIndex = (int)Random.Range(0, _name.Count);
         nextObject.name = _name[index];
-        nextObject = Instantiate(trashPrefabs[index], nextObject.transform);
-        // 分解対象がそのゴミの名前に一致する場合のみ処理
+        nextObject = Instantiate(trashPrefabs[index], this.transform);
+        // ゴミの個数を減らす
         DecreaseTrashCount(nextObject.name);
         // 古い子オブジェクトを削除
-        for (int i = firstObject.transform.childCount - 1; i >= 0; i--)
-        {
-            Destroy(firstObject.transform.GetChild(i).gameObject);
-        }
+        //for (int i = firstObject.transform.childCount - 1; i >= 0; i--)
+        //{
+        //    Destroy(firstObject.transform.GetChild(i).gameObject);
+        //}
     }
 
     public void Kinds()

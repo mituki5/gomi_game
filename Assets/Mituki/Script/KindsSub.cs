@@ -6,27 +6,27 @@ using Random = UnityEngine.Random;
 
 public class KindsSub : MonoBehaviour
 {
-    //public GameObject nextObject;
-    //private kinds kindScript;
-    //private ThrowingPower firstThrowingpower;
+    public GameObject nextObject;
+    private kinds kindScript;
+    private ThrowingPower firstThrowingpower;
 
-    //[SerializeField] private List<GameObject> trashPrefabs = new List<GameObject>();
+    [SerializeField] private List<GameObject> trashPrefabs = new List<GameObject>();
 
-    //// Ÿ‚ÌƒSƒ~‚ğ¶¬
-    //public void StartnextObjectInstantiate()
-    //{
-    //    int tmpIndex = Random.Range(0, kindScript._name.Count);
-    //    kindScript.nextObject = Instantiate(trashPrefabs[tmpIndex], this.transform);
-    //    kindScript.nextIndex = tmpIndex;
+    // Ÿ‚ÌƒSƒ~‚ğ¶¬
+    public void StartnextObjectInstantiate()
+    {
+        int tmpIndex = Random.Range(0, kindScript._name.Count);
+        kindScript.nextObject = Instantiate(trashPrefabs[tmpIndex], this.transform);
+        kindScript.nextIndex = tmpIndex;
 
-    //}
+    }
 
-    //public void SecondInstantiateTrash()
-    //{
-    //    // V‚µ‚¢ƒSƒ~‚ğ¶¬
-    //    kindScript.nextIndex = (int)Random.Range(0,kindScript._name.Count);
-    //    kindScript.nextObject.name = kindScript._name[kindScript.index];
-    //    kindScript.nextObject = Instantiate(trashPrefabs[kindScript.index], transform);
-    //}
+    public void SecondInstantiateTrash()
+    {
+        // V‚µ‚¢ƒSƒ~‚ğ¶¬
+        kindScript.nextIndex = (int)Random.Range(0, kindScript._name.Count);
+        kindScript.nextObject.name = kindScript._name[kindScript.index];
+        kindScript.nextObject = Instantiate(trashPrefabs[kindScript.index], transform);
+    }
 
 }
