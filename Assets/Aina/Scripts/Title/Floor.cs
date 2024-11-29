@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class Floor : MonoBehaviour
 {
-    private GameObject StartBall;
-    [SerializeField] public bool preparation;
+    private GameObject StartBall; // スタートボールオブジェクト
+    [SerializeField] public bool preparation; // スタートボールが準備できているかどうか
 
     void Start()
     {
+        // ヒエラルキーから探す
         StartBall = GameObject.Find("StartBall");
+
         preparation = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        // スタートボールに当たったら
         if (other.gameObject.tag == "startball")
         {
             Destroy(other.gameObject);
-            Invoke(nameof(StartBallActive), 0.5f);
+            Invoke(nameof(StartBallPreparation), 0.5f); // 0.5f待つ
         }
     }
 
-    void StartBallActive()
+    void StartBallPreparation()
     {
         StartBall.SetActive(true);
         preparation = true;

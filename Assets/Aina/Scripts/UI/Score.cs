@@ -7,9 +7,9 @@ using static UnityEditor.Progress;
 
 public class Score : MonoBehaviour
 {
-    [SerializeField] Text ScoreText;
+    [SerializeField] Text ScoreText; // スコアテキスト
 
-    private GameObject trash;
+    private GameObject trash;        
     private GameObject plastic;
     private GameObject bottle;
     public static int score = 0;
@@ -19,6 +19,7 @@ public class Score : MonoBehaviour
     {
         ScoreText.text = $"スコア：{score.ToString("D3")}";
 
+        // ヒエラルキーから探す
         trash = GameObject.Find("Moeru_Gomibako");
         plastic = GameObject.Find("Plastic_Gomibako");
         bottle = GameObject.Find("Bottle_Gomibako");
@@ -37,6 +38,7 @@ public class Score : MonoBehaviour
 
     void Update()
     {
+        // 紙くずが入ったら
         if (trash.GetComponent<TrashBox>().isEnter == true)
         {
             score += 30;
@@ -44,12 +46,15 @@ public class Score : MonoBehaviour
             trash.GetComponent<TrashBox>().isEnter = false;
         }
 
+        // 弁当箱が入ったら
         if (plastic.GetComponent<PlasticBox>().isEnter_p == true)
         {
             score += 80;
             ScoreText.text = $"スコア：{score.ToString("D3")}";
             plastic.GetComponent<PlasticBox>().isEnter_p = false;
         }
+
+        // キャップが入ったら
         if (plastic.GetComponent<PlasticBox>().isEnter_c == true)
         {
             score += 20;
@@ -57,12 +62,15 @@ public class Score : MonoBehaviour
             plastic.GetComponent<PlasticBox>().isEnter_c = false;
         }
 
+        // ペットボトルが入ったら
         if (bottle.GetComponent<BottleBox>().isEnter_p == true)
         {
             score += 80;
             ScoreText.text = $"スコア：{score.ToString("D3")}";
             bottle.GetComponent<BottleBox>().isEnter_p = false;
         }
+
+        // ボトルが入ったら
         if (bottle.GetComponent<BottleBox>().isEnter_b == true)
         {
             score += 100;
@@ -70,6 +78,7 @@ public class Score : MonoBehaviour
             bottle.GetComponent<BottleBox>().isEnter_b = false;
         }
 
+        // 間違ったところに入ったら
         if (trash.GetComponent<TrashBox>().mistake == true || plastic.GetComponent<PlasticBox>().mistake == true || bottle.GetComponent<BottleBox>().mistake == true)
         {
             if (score > 0)

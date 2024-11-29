@@ -5,19 +5,14 @@ using UnityEngine;
 
 public class TrashBox : MonoBehaviour
 {
-    public bool isEnter;
-    public bool isEnter2;
-    public bool mistake;
+    public bool isEnter;  // (紙くず)ゴミが入ったかどうか
+    public bool isEnter2; // スタートボールが入ったかどうか
+    public bool mistake;  // ゴミが間違ったところに入ったかどうか
     void Start()
     {
         isEnter = false;
         isEnter2 = false;
         mistake = false;
-    }
-
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,34 +37,41 @@ public class TrashBox : MonoBehaviour
             isEnter = true;
             Destroy(collision.gameObject);
         }*/
+
         switch (other.gameObject.tag)
         {
-            case "startball":
+            // スタートボール
+            case "startball":     
                 isEnter2 = true;
-                Debug.Log("スタートが入った");
+                Debug.Log("スタートボールが入った");
                 Destroy(other.gameObject);
                 break;
-            case "moerugomi":
+            // 紙くず
+            case "moerugomi":     
                 isEnter = true;
-                Debug.Log("燃えるゴミ入った");
+                Debug.Log("紙くずが入った");
                 Destroy(other.gameObject);
                 break;
-            case "plasticgomi":
+            // 弁当箱
+            case "plasticgomi":   
                 mistake = true;
                 Debug.Log("間違えた");
                 Destroy(other.gameObject);
                 break;
-            case "plasticbottle":
+            // ペットボトル
+            case "plasticbottle": 
                 mistake = true;
                 Debug.Log("間違えた");
                 Destroy(other.gameObject);
                 break;
-            case "cap":
+            // ボトル
+            case "bottle":        
                 mistake = true;
                 Debug.Log("間違えた");
                 Destroy(other.gameObject);
                 break;
-            case "bottle":
+            // キャップ
+            case "cap":           
                 mistake = true;
                 Debug.Log("間違えた");
                 Destroy(other.gameObject);
