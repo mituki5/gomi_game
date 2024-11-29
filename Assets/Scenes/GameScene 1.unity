@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3351,7 +3351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &474380425
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6564,8 +6564,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0023346, y: -45.999973}
-  m_SizeDelta: {x: 275.6573, y: 291.1857}
+  m_AnchoredPosition: {x: -0.0023346, y: -5}
+  m_SizeDelta: {x: 275, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &780476727
 MonoBehaviour:
@@ -9463,18 +9463,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Power: 0
-  MinPower: 0
-  MaxPower: 100
-  Angle: 50
-  speedZ: 2
-  Trash_box: {fileID: 0}
+  PowerIncreaseRate: 0.1
+  PowerDecreaseRate: 0.6
+  SpeedMultiplier: 2
+  TrashBox: {fileID: 0}
   Player: {fileID: 0}
-  targetobject: {fileID: 0}
-  landing: 1
-  shot: 1
-  canShot: 0
-  powercount: 0
-  powercount10: 1
+  TargetObject: {fileID: 0}
+  iscanShoot: 1
+  iscanRotate: 1
 --- !u!1 &1189283160
 GameObject:
   m_ObjectHideFlags: 0
@@ -9685,22 +9681,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2240f12e61de93644a0b6044681c6cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstObject: {fileID: 0}
-  nextObject: {fileID: 1193477673}
-  _name:
-  - bottle
-  - cap
-  - Trash
-  index: 0
-  trashBox: {fileID: 0}
-  trashPrefabs:
-  - {fileID: 8999785880462900969, guid: 4cf13c9e68213c94f9ce7697b638cd87, type: 3}
-  - {fileID: 8373360561285141372, guid: 40a0c79ea54a3ba48af732e823ac72f9, type: 3}
-  - {fileID: 7074895528951235237, guid: 261e6548d5c53f647833c2311a7b1e8d, type: 3}
-  weight: 5
-  totalnumber: 30
-  number: 0
-  separation: 1
 --- !u!114 &1233521976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10218,18 +10198,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Power: 0
-  MinPower: 0
-  MaxPower: 100
-  Angle: 50
-  speedZ: 2
-  Trash_box: {fileID: 0}
+  PowerIncreaseRate: 0.1
+  PowerDecreaseRate: 0.6
+  SpeedMultiplier: 2
+  TrashBox: {fileID: 0}
   Player: {fileID: 1277479063}
-  targetobject: {fileID: 0}
-  landing: 1
-  shot: 1
-  canShot: 0
-  powercount: 0
-  powercount10: 1
+  TargetObject: {fileID: 0}
+  iscanShoot: 1
+  iscanRotate: 1
 --- !u!114 &1277479072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10242,16 +10218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2240f12e61de93644a0b6044681c6cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstObject: {fileID: 0}
-  nextObject: {fileID: 0}
-  _name: []
-  index: 0
-  trashBox: {fileID: 0}
-  trashPrefabs: []
-  weight: 0
-  totalnumber: 30
-  number: 0
-  separation: 1
 --- !u!1 &1318378787
 GameObject:
   m_ObjectHideFlags: 0
