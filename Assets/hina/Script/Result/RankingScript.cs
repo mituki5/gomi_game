@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static UnityEditor.Progress;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class RankingScript : MonoBehaviour
 {
@@ -26,8 +27,6 @@ public class RankingScript : MonoBehaviour
         {
             rankingText[i].text = rankingValue[i].ToString();
         }
-
-        ScoreDataDelete();
     }
 
     /// <summary>
@@ -63,11 +62,6 @@ public class RankingScript : MonoBehaviour
         {
             PlayerPrefs.SetInt(ranking[i], rankingValue[i]);
         }
-    }
-
-    void ScoreDataDelete()
-    {
-        PlayerPrefs.DeleteKey("score");
     }
     public void UpdateScore(int newScore)
     {
