@@ -21,6 +21,9 @@ public class TimeCounter : MonoBehaviour
 
     private GameObject _time;
 
+    [SerializeField] private SoundManager soundManager;
+    [SerializeField] private AudioClip clip5; // ゲームの残り時間を知らせる音
+
     void Start()
     {
         // ヒエラルキーから探す
@@ -53,6 +56,10 @@ public class TimeCounter : MonoBehaviour
         {
             int remaining = timeLimit - (int)time;
             timeText.text = $"制限時間：{remaining.ToString("D2")}";
+            if (remaining == 5)
+            {
+                soundManager.Play(clip5);
+            }
             if (remaining == 0)
             {
                 SceneManager.LoadScene("Result");
