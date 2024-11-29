@@ -1823,6 +1823,81 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &289723711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 289723712}
+  - component: {fileID: 289723714}
+  - component: {fileID: 289723713}
+  m_Layer: 5
+  m_Name: pozu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &289723712
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289723711}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1615113459}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 823.5186, y: -403.74}
+  m_SizeDelta: {x: 218.8693, y: 218.87}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &289723713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289723711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 43bd17ac058d3cf45bf6b4ccc7333027, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &289723714
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289723711}
+  m_CullTransparentMesh: 1
 --- !u!1 &290482555
 GameObject:
   m_ObjectHideFlags: 0
@@ -3413,12 +3488,12 @@ GameObject:
   - component: {fileID: 474380427}
   - component: {fileID: 474380426}
   m_Layer: 5
-  m_Name: Image
+  m_Name: pozuImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &474380425
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3439,7 +3514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0023346, y: 0.000011921}
+  m_AnchoredPosition: {x: 44, y: -32}
   m_SizeDelta: {x: 713.5511, y: 743.92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &474380426
@@ -4122,6 +4197,7 @@ GameObject:
   - component: {fileID: 531397243}
   - component: {fileID: 531397245}
   - component: {fileID: 531397244}
+  - component: {fileID: 531397246}
   m_Layer: 5
   m_Name: BlackImage
   m_TagString: Untagged
@@ -4186,6 +4262,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531397242}
   m_CullTransparentMesh: 1
+--- !u!114 &531397246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531397242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb84139ce96da84a83e2b1ee3f39c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pozu: {fileID: 474380424}
+  RE_Bottun: {fileID: 1604722371}
 --- !u!1 &532406419
 GameObject:
   m_ObjectHideFlags: 0
@@ -9535,7 +9625,7 @@ MonoBehaviour:
   SpeedMultiplier: 2
   TrashBox: {fileID: 0}
   Player: {fileID: 0}
-  TargetObject: {fileID: 0}
+  TargetObject: {fileID: 7496919824475447461, guid: 75e902d151b82774b83efffd2b25c422, type: 3}
   iscanShoot: 1
   iscanRotate: 1
 --- !u!1 &1189283160
@@ -11929,6 +12019,7 @@ RectTransform:
   - {fileID: 780476726}
   - {fileID: 1360387224}
   - {fileID: 331090728}
+  - {fileID: 289723712}
   - {fileID: 474380425}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
