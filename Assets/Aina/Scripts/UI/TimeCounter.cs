@@ -23,6 +23,7 @@ public class TimeCounter : MonoBehaviour
 
     void Start()
     {
+        // ƒqƒGƒ‰ƒ‹ƒL[‚©‚ç’T‚·
         BlackImage = GameObject.Find("BlackImage");
         CountDownImage = GameObject.Find("CountDownImage");
         CountDownText = GameObject.Find("CountDownText");

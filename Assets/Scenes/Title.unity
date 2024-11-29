@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -428,31 +428,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 287479710543177700, guid: f7ffa918a8d7f794bb05605b073f850b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 209490972}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7ffa918a8d7f794bb05605b073f850b, type: 3}
---- !u!1 &209490965 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 287479710543177700, guid: f7ffa918a8d7f794bb05605b073f850b, type: 3}
-  m_PrefabInstance: {fileID: 209490964}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &209490972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209490965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f7859ea70cd0504ab191b5d6363742e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isEnter: 0
-  isEnter2: 0
-  mistake: 0
 --- !u!1 &595816825
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,7 +859,7 @@ PrefabInstance:
     - target: {fileID: 8344114325494773357, guid: 51e29b0bed412d84eac8b98f532890e7, type: 3}
       propertyPath: ThrowingObject
       value: 
-      objectReference: {fileID: 4889073731323247982, guid: f1df61d7c2064a04990fdb182458c17e, type: 3}
+      objectReference: {fileID: 5054076048280067649, guid: 24550967ce7196b49ae47bb92649bda7, type: 3}
     - target: {fileID: 9190548264645491240, guid: 51e29b0bed412d84eac8b98f532890e7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1801,6 +1778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d959dcbd1b52e924bac3f1f276043cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  preparation: 0
 --- !u!1 &1829275955
 GameObject:
   m_ObjectHideFlags: 0
@@ -2034,6 +2012,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 341773288652906633, guid: 24550967ce7196b49ae47bb92649bda7, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4409340135645574303, guid: 24550967ce7196b49ae47bb92649bda7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
