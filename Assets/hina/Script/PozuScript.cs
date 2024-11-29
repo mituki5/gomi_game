@@ -9,21 +9,25 @@ public class PozuScript : MonoBehaviour
 {
     static float time;
 
+    [SerializeField] GameObject pozu;
+    [SerializeField] GameObject RE_Bottun;
+
     // Start is called before the first frame update
     void Start()
     {
-        Pozu_Bottun();
+        pozu.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+       
     }
 
     public void Pozu_Bottun()
     {
         PozuGame();
+        pozu.SetActive(true);
     }
 
     public void PozuGame()
