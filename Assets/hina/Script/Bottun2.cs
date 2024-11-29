@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class Bottun2 : MonoBehaviour
 {
+    GameObject pozu;
+    
+
     public static float Score;
     public void Title_Bottun()
     {
@@ -18,10 +21,15 @@ public class Bottun2 : MonoBehaviour
         SceneManager.LoadScene("GameScene 1");
     }
 
-    public void REGame_Bottun()
+    public void RTGame_Bottun()
     {
         Score = 0;
         SceneManager.LoadScene("GameScene 1");
+    }
+
+    public void REGame_Bottun()
+    {
+        pozu.SetActive(true);
     }
 
 

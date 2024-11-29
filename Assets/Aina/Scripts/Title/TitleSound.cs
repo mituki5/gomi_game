@@ -8,10 +8,11 @@ public class TitleSound : MonoBehaviour
 
     //[SerializeField]
     //private AudioClip clip1; // “Š‚°‚½‚Ì‰¹
+     
+    [SerializeField]
+    private AudioClip clip2; // ³‚µ‚¢êŠ‚ÉƒSƒ~‚ª“ü‚Á‚½‰¹   
 
-    [SerializeField] private AudioClip clip2; // ³‚µ‚¢êŠ‚ÉƒSƒ~‚ª“ü‚Á‚½‰¹  
-
-    private GameObject StartBall;
+    //private GameObject StartBall;
     private GameObject Trash;
 
     void Start()

@@ -825,7 +825,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 722021939}
         m_TargetAssemblyTypeName: Bottun2, Assembly-CSharp
-        m_MethodName: Game_Bottun
+        m_MethodName: MainGame_Bottun
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
