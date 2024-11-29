@@ -31,6 +31,9 @@ public class ThrowingScript1 : MonoBehaviour
 
     private GameObject StartBall;
 
+    [SerializeField] private SoundManager soundManager;
+    [SerializeField] private AudioClip clip; // “Š‚°‚½Žž‚Ì‰¹   
+
     private void Start()
     {
         StartBall = GameObject.Find("Floor");
@@ -44,6 +47,7 @@ public class ThrowingScript1 : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 Debug.Log(Power + "•ú‚µ‚½");
+                soundManager.Play(clip);
                 TargetDistance();
                 ThrowingBall();
                 Power = 0;

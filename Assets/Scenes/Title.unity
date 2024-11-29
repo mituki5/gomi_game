@@ -377,6 +377,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4315600398121544107, guid: f7ffa918a8d7f794bb05605b073f850b, type: 3}
+      propertyPath: clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3166c7888381b9d4b8fea02283691498, type: 3}
+    - target: {fileID: -4315600398121544107, guid: f7ffa918a8d7f794bb05605b073f850b, type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 981203993}
     - target: {fileID: 287479710543177700, guid: f7ffa918a8d7f794bb05605b073f850b, type: 3}
       propertyPath: m_Name
       value: Moeru_Gomibako
@@ -441,6 +449,7 @@ GameObject:
   - component: {fileID: 544198497}
   - component: {fileID: 544198495}
   - component: {fileID: 544198498}
+  - component: {fileID: 544198499}
   m_Layer: 0
   m_Name: Sound
   m_TagString: Untagged
@@ -458,7 +467,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 676a2b95fdab74b40bcb1652381c64f2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -572,8 +581,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundManager: {fileID: 981203993}
-  clip1: {fileID: 8300000, guid: 4d62c937e73133741849ab148d9713b2, type: 3}
   clip2: {fileID: 8300000, guid: 3166c7888381b9d4b8fea02283691498, type: 3}
+--- !u!114 &544198499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544198494}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceba4210dff2a3648a63c4fa2e418027, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundManager: {fileID: 981203993}
+  clip1: {fileID: 8300000, guid: 4d62c937e73133741849ab148d9713b2, type: 3}
+  clip2: {fileID: 0}
+  clip3: {fileID: 0}
 --- !u!1 &595816825
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,7 +610,6 @@ GameObject:
   - component: {fileID: 595816829}
   - component: {fileID: 595816828}
   - component: {fileID: 595816827}
-  - component: {fileID: 595816826}
   - component: {fileID: 595816831}
   m_Layer: 0
   m_Name: Cube
@@ -595,18 +618,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &595816826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 595816825}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c16dcdbc113ac8c41bb11d304811a605, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &595816827
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -996,6 +1007,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameObject
       objectReference: {fileID: 0}
+    - target: {fileID: 8344114325494773357, guid: 51e29b0bed412d84eac8b98f532890e7, type: 3}
+      propertyPath: clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4d62c937e73133741849ab148d9713b2, type: 3}
+    - target: {fileID: 8344114325494773357, guid: 51e29b0bed412d84eac8b98f532890e7, type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 981203993}
     - target: {fileID: 8344114325494773357, guid: 51e29b0bed412d84eac8b98f532890e7, type: 3}
       propertyPath: ThrowingAngle
       value: 70

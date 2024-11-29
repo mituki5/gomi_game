@@ -21,7 +21,7 @@ public class Floor : MonoBehaviour
         if (other.gameObject.tag == "startball")
         {
             Destroy(other.gameObject);
-            Invoke(nameof(StartBallPreparation), 0.5f); // 0.5f‘Ò‚Â
+            Invoke(nameof(StartBallPreparation), 0.3f); // 0.5f‘Ò‚Â
         }
     }
 
