@@ -75,7 +75,6 @@ public class kinds : MonoBehaviour
         if (isGround == false && isProcessing == true)
         {
             FirstInstantiateTrash(); //firstObjectを更新
-            //kindsSub.SecondInstantiateTrash(); //次のゴミを生成
             SecondInstantiateTrash(); //次のゴミを生成
             Kinds(); // 種類を更新
             isGround = true;
@@ -98,7 +97,7 @@ public class kinds : MonoBehaviour
 
                 // 分解対象が`plasticbottle`の場合のみ処理
                 //ゴミが投げられた場合、その種類に応じてカウントを減らす
-                if (_name.Contains(hitObject.name) && hitObject.name == "plasticbottle")
+                if (_name.Contains(hitObject.name) || hitObject.name == "plasticbottle")
                 //if(hitObject.CompareTag("PlasticBottle"))
                 //if(_name.Contains(hitObject.name))
                 { 
@@ -110,6 +109,7 @@ public class kinds : MonoBehaviour
                 }
             }
         }
+
 
         //合計数（totalnumber）が0に達した場合、リセットして新しい個数を設定
         if (totalnumber <= 0){
@@ -136,17 +136,16 @@ public class kinds : MonoBehaviour
 
     private void SecondInstantiateTrash()
     {
-        // 新しいゴミを生成
-        nextIndex = (int)Random.Range(0, _name.Count);
-        nextObject.name = _name[index];
-        nextObject = Instantiate(trashPrefabs[index], this.transform);
-        // ゴミの個数を減らす
-        DecreaseTrashCount(nextObject.name);
-        // 古い子オブジェクトを削除
-        //for (int i = firstObject.transform.childCount - 1; i >= 0; i--)
-        //{
-        //    Destroy(firstObject.transform.GetChild(i).gameObject);
-        //}
+            // 新しいゴミを生成
+            nextIndex = (int)Random.Range(0, _name.Count);
+            nextObject.name = _name[index];
+            nextObject = Instantiate(trashPrefabs[index], this.transform);
+            // 古い子オブジェクトを削除
+            //for (int i = firstObject.transform.childCount - 1; i >= 0; i--)
+            //{
+            //    Destroy(firstObject.transform.GetChild(i).gameObject);
+            //}
+
     }
 
     public void Kinds()
@@ -161,16 +160,16 @@ public class kinds : MonoBehaviour
                 weight = 3.0f;
                 break;
             case "cap":
-                weight = 1.0f;
+                weight = 2.0f;
                 break;
             case "Trash":
-                weight = 1.0f;
+                weight = 2.0f;
                 break;
             case "plastic":
                 weight = 5.0f;
                 break;
             default:
-                weight = 1.0f;
+                weight = 2.0f;
                 break;
         }
     }
@@ -189,12 +188,8 @@ public class kinds : MonoBehaviour
 
         // 分解後のゴミを生成
         firstObject = Instantiate(trashPrefabs[(int)TrashType.bottle], firstObject.transform);
-        //GameObject bottle = Instantiate(trashPrefabs[(int)TrashType.bottle], targetObject.transform);
-        //bottle.transform.localPosition = Vector3.zero;
 
         nextObject = Instantiate(trashPrefabs[(int)TrashType.cap], nextObject.transform);
-        //GameObject cap = Instantiate(trashPrefabs[(int)TrashType.cap], targetObject.transform);
-        //cap.transform.localPosition = new Vector3(0, -0.5f, 0); // キャップを少し下に配置
 
         Debug.Log("分解完了: ボトルとキャップを生成");
         isProcessing = true;
@@ -207,10 +202,12 @@ public class kinds : MonoBehaviour
     {
         Debug.Log("出来てる") ;
         // ゴミの種類ごとに個数を減らす
-        if (trashCounts.ContainsKey(trashName))
+        SecondInstantiateTrash();
+        if (trashName == nextObject.name)
         {
             trashCounts[trashName]--;
             totalnumber--; // 合計数を減らす
+                SecondInstantiateTrash();
             Debug.Log($"{trashName}の数を1減らしました。残り数: {trashCounts[trashName]}");
 
             // ゴミが分解された場合
@@ -226,6 +223,10 @@ public class kinds : MonoBehaviour
             {
                 Debug.Log($"{trashName}はもう残っていません");
             }
+        }
+        else
+        {
+            Debug.Log("aaaaaaaaaaaaaa");
         }
     }
 
