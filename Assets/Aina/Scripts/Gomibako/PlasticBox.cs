@@ -5,19 +5,14 @@ using UnityEngine;
 
 public class PlasticBox : MonoBehaviour
 {
-    public bool isEnter_p;
-    public bool isEnter_c;
-    public bool mistake;
+    public bool isEnter_p; // (弁当)ゴミが入ったかどうか
+    public bool isEnter_c; // (キャップ)ゴミが入ったかどうか
+    public bool mistake;   // ゴミが間違ったところに入ったかどうか
     void Start()
     {
         isEnter_p = false;
         isEnter_c = false;
         mistake = false;
-    }
-
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,31 +37,37 @@ public class PlasticBox : MonoBehaviour
             isEnter = true;
             Destroy(collision.gameObject);
         }*/
+
         switch (other.gameObject.tag)
         {
-            case "moerugomi":
+            // 紙くず
+            case "moerugomi":     
                 mistake = true;
                 Debug.Log("間違えた");
                 Destroy(other.gameObject);
                 break;
-            case "plasticgomi":
+            // 弁当箱
+            case "plasticgomi":   
                 isEnter_p = true;
-                Debug.Log("プラゴミ入った");
+                Debug.Log("弁当箱が入った");
                 Destroy(other.gameObject);
                 break;
-            case "plasticbottle":
+            // ペットボトル
+            case "plasticbottle": 
                 mistake = true;
                 Debug.Log("間違えた");
                 Destroy(other.gameObject);
                 break;
-            case "bottle":
+            // ボトル
+            case "bottle":        
                 mistake = true;
                 Debug.Log("間違えた");
                 Destroy(other.gameObject);
                 break;
-            case "cap":
+            // キャップ
+            case "cap":           
                 isEnter_c = true;
-                Debug.Log("キャップ入った");
+                Debug.Log("キャップが入った");
                 Destroy(other.gameObject);
                 break;
         }

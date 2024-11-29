@@ -29,23 +29,30 @@ public class ThrowingScript1 : MonoBehaviour
     [SerializeField,Tooltip("éÀèoÇ∑ÇÈäpìx")]
     private float ThrowingAngle = 50.0f;
 
+    private GameObject StartBall;
+
     private void Start()
     {
+        StartBall = GameObject.Find("Floor");
     }
 
     private void Update()
     {
-        Key();
-
-        if (Input.GetMouseButtonUp(0))
+        if (StartBall.GetComponent<Floor>().preparation == true)
         {
-            if (powercount10 == false)
+            Key();
+            if (Input.GetMouseButtonUp(0))
+            {
                 Debug.Log(Power + "ï˙ÇµÇΩ");
-            TargetDistance();
-            ThrowingBall();
-            Power = 0;
-            powercount10 = true;
-            ThrowingPower.Destroy(this);
+                TargetDistance();
+                ThrowingBall();
+                Power = 0;
+                StartBall.GetComponent<Floor>().preparation = false;
+                //if (powercount10 == false)
+
+                //powercount10 = true;
+                ////ThrowingPower.Destroy(this);
+            }
         }
     }
 

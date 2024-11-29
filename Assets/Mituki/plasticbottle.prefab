@@ -17,8 +17,8 @@ GameObject:
   - component: {fileID: 406024826882848601}
   - component: {fileID: -462813325144259687}
   m_Layer: 0
-  m_Name: plastic_bottle
-  m_TagString: Untagged
+  m_Name: plasticbottle
+  m_TagString: plasticbottle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -124,18 +124,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Power: 0
-  MinPower: 0
-  MaxPower: 100
-  Angle: 50
-  speedZ: 2
-  Trash_box: {fileID: 0}
+  PowerIncreaseRate: 0.1
+  PowerDecreaseRate: 0.6
+  SpeedMultiplier: 2
+  TrashBox: {fileID: 0}
   Player: {fileID: 7608051752013143209}
-  targetobject: {fileID: 7496919824475447461, guid: 75e902d151b82774b83efffd2b25c422, type: 3}
-  landing: 1
-  shot: 1
-  canShot: 0
-  powercount: 0
-  powercount10: 1
+  TargetObject: {fileID: 7496919824475447461, guid: 75e902d151b82774b83efffd2b25c422, type: 3}
+  iscanShoot: 1
+  iscanRotate: 1
 --- !u!54 &9020624913877782274
 Rigidbody:
   m_ObjectHideFlags: 0
