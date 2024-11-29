@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 736817754889487568}
   - component: {fileID: 6739494291611710445}
   - component: {fileID: -7234213492387622340}
-  - component: {fileID: 849620785218023415}
   - component: {fileID: -4965271663815934588}
   m_Layer: 0
   m_Name: lunch_box
@@ -32,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 8285195888269818234}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.645112, y: 16.417908, z: 7.2850266}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -103,7 +102,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -122,12 +121,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Power: 0
-  MinPower: 0
-  MaxPower: 100
   PowerIncreaseRate: 0.1
   PowerDecreaseRate: 0.6
   SpeedMultiplier: 2
-  Angle: 50
   TrashBox: {fileID: 0}
   Player: {fileID: 8285195888269818234}
   TargetObject: {fileID: 7496919824475447461, guid: 75e902d151b82774b83efffd2b25c422, type: 3}
@@ -160,27 +156,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &849620785218023415
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8285195888269818234}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-4965271663815934588
 MonoBehaviour:
   m_ObjectHideFlags: 0

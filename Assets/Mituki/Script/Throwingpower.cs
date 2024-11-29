@@ -77,6 +77,7 @@ public class ThrowingPower : MonoBehaviour
                     iscanShoot = false;
                     iscanRotate = false;
                     Power = 0;
+                kindScript.isGround = false;
                     ThrowingPower.Destroy(this);
                 
             }
@@ -119,13 +120,13 @@ public class ThrowingPower : MonoBehaviour
             {
                 // Powerを増加させる
                 Power += PowerIncreaseRate;
-                Debug.Log(Power + " 増えてる");
+                //Debug.Log(Power + " 増えてる");
 
                 // Powerが50以上の場合、増加速度を上げる
                 if ((int)Power >= 50)
                 {
                     Power += PowerDecreaseRate; // 50を超えると速く増える
-                    Debug.Log(Power + " 増えてる");
+                    //Debug.Log(Power + " 増えてる");
                 }
                 // PowerがMaxPowerを超えないように制限
                 if ((int)Power == MaxPower)
@@ -137,12 +138,12 @@ public class ThrowingPower : MonoBehaviour
             {
                 // Powerを減少させる
                 Power -= PowerIncreaseRate;
-                Debug.Log(Power + " 減ってる");
+                //Debug.Log(Power + " 減ってる");
                 // Powerが50以上の場合、減少速度を上げる
                 if ((int)Power >= 50)
                 {
                     Power -= PowerDecreaseRate; // 50を超えると速く減る
-                    Debug.Log(Power + " 減ってる");
+                    //Debug.Log(Power + " 減ってる");
                 }
                 // PowerがMinPowerを下回らないように制限
                 if ((int)Power == MinPower)
@@ -165,6 +166,7 @@ public class ThrowingPower : MonoBehaviour
     /// </summary>
     public void Gauge()
     {
+        if (kindScript.firstObject == null) return;
             // 標的の座標
             Vector3 targetPosition = TargetObject.transform.position;
             // 射出角度
