@@ -10,7 +10,7 @@ public class PozuScript : MonoBehaviour
     static float time;
 
     [SerializeField] GameObject pozu;
-    [SerializeField] GameObject RE_Bottun;
+    [SerializeField] Button REGameBottun;
 
     // Start is called before the first frame update
     void Start()
@@ -35,8 +35,9 @@ public class PozuScript : MonoBehaviour
         Time.timeScale = 0;
     }
 
-    public void ResetGame()
+    public void REGame_Bottun()
     {
+        pozu.SetActive(false);
         Time.timeScale = 1;
     }
 }
