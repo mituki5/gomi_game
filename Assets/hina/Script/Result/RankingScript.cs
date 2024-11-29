@@ -26,8 +26,6 @@ public class RankingScript : MonoBehaviour
         {
             rankingText[i].text = rankingValue[i].ToString();
         }
-
-        ScoreDataDeleit();
     }
 
     /// <summary>
@@ -63,11 +61,6 @@ public class RankingScript : MonoBehaviour
         {
             PlayerPrefs.SetInt(ranking[i], rankingValue[i]);
         }
-    }
-
-    void ScoreDataDeleit()
-    {
-        PlayerPrefs.DeleteKey("score");
     }
     public void UpdateScore(int newScore)
     {
