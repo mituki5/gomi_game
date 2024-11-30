@@ -38,10 +38,10 @@ public class ThrowingPower : MonoBehaviour
     //public bool powercount10 = true;
 
     private Rigidbody rb;
-    private kinds kindScript;
+    public kinds kindScript;// kinds コンポーネントの参照
 
 
-
+    // 初期化メソッド (呼び出し順を保証)
     public void SetScript(GameObject trashBox, kinds kind, bool iscanShoot)
     {
         TrashBox = trashBox;
@@ -58,16 +58,55 @@ public class ThrowingPower : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        // time オブジェクトの確認とエラー防止
         time = GameObject.Find("TimeObject");
+        if (time == null)
+        {
+            Debug.LogError("TimeObject が見つかりません");
+            return;
+        }
+
+        // kinds コンポーネントを取得
+        kindScript = GetComponent<kinds>();
+        if (kindScript == null)
+        {
+            Debug.LogError("kinds コンポーネントが ThrowingPower にアタッチされていません");
+            return;
+        }
+
+        // 親オブジェクトから kinds コンポーネントを取得
+        kindScript = GetComponentInParent<kinds>();
+
+        if (kindScript == null)
+        {
+            Debug.LogError($"親オブジェクトに kinds コンポーネントが見つかりません (GameObject名: {gameObject.name})");
+        }
+        else
+        {
+            Debug.Log($"親オブジェクトに kinds コンポーネントが見つかりました (GameObject名: {kindScript.gameObject.name})");
+        }
+
+
+        // Rigidbody の取得
+        rb = GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            Debug.LogError("Rigidbody がアタッチされていません");
+        }
     }
     // Update is called once per frame
     void Update()
     {
         //if(time.GetComponent<TimeCounter>().start == true)
         {
-            if (!this.iscanShoot) return;
-            HandlePowerInput();
+            if (kindScript == null)
+            {
+                Debug.LogError("kinds コンポーネントが見つからないため処理を中断します");
+                return;
+            }
+            if (kindScript == null) {
+                if (!this.iscanShoot) return;
+                HandlePowerInput();
                 if (Input.GetMouseButtonUp(0))
                 {
                     Debug.Log(Power + "放した");
@@ -77,10 +116,12 @@ public class ThrowingPower : MonoBehaviour
                     iscanShoot = false;
                     iscanRotate = false;
                     Power = 0;
-                kindScript.isGround = false;
+                    kindScript.isGround = false;
                     ThrowingPower.Destroy(this);
-                
+
+                }
             }
+
         }
     }
 
@@ -166,9 +207,9 @@ public class ThrowingPower : MonoBehaviour
     /// </summary>
     public void Gauge()
     {
-        if (kindScript.firstObject == null) return;
-            // 標的の座標
-            Vector3 targetPosition = TargetObject.transform.position;
+        if (rb == null || kindScript == null) return;
+        // 標的の座標
+        Vector3 targetPosition = TargetObject.transform.position;
             // 射出角度
             float angle = Angle;
 

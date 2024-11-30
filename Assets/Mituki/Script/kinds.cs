@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class kinds : MonoBehaviour
 {
-    public GameObject firstObject;
     public GameObject nextObject;
+    public GameObject now;
+    public GameObject next;
+
     public List<string> _name = new List<string>();
     public int index;
     public int nextIndex;
@@ -21,7 +23,6 @@ public class kinds : MonoBehaviour
         plastic,
     }
     [SerializeField] private List<GameObject> trashPrefabs = new List<GameObject>();
-    private ThrowingPower firstThrowingpower;
     private KindsSub kindsSub;
     [SerializeField] public float weight;
     public int totalnumber = 10;
@@ -47,26 +48,19 @@ public class kinds : MonoBehaviour
         trashCounts["plastic"] = 3;
 
         // 初期化: 最初のゴミを生成
-        int tmpIndex = Random.Range(0, _name.Count);
-        firstObject = Instantiate(trashPrefabs[tmpIndex], this.transform);
-        firstThrowingpower = firstObject.GetComponent<ThrowingPower>();
-        index = tmpIndex;
-        firstThrowingpower.SetScript(trashBox, this, true);
+        SecondInstantiateTrash();
+        FirstInstantiateTrash();
+        SecondInstantiateTrash();
 
         Kinds();
 
-        //次のゴミを生成
-        tmpIndex = Random.Range(0, _name.Count);
-        nextObject = Instantiate(trashPrefabs[tmpIndex], nextObject.transform);
-        nextIndex = tmpIndex;
-
         //// UI 初期化
-        //TrashImage = GameObject.Find("TrashImage");
-        //TrashImage.SetActive(false);
-        //PlasticImage = GameObject.Find("PlasticImage");
-        //PlasticImage.SetActive(false);
-        //BottleImage = GameObject.Find("BottleImage");
-        //BottleImage.SetActive(false);
+        TrashImage = GameObject.Find("TrashImage");
+        TrashImage.SetActive(false);
+        PlasticImage = GameObject.Find("PlasticImage");
+        PlasticImage.SetActive(false);
+        BottleImage = GameObject.Find("BottleImage");
+        BottleImage.SetActive(false);
     }
 
     private void Update()
@@ -119,33 +113,33 @@ public class kinds : MonoBehaviour
 
     private void FirstInstantiateTrash()
     {
-        // 次のゴミを現在のゴミに移動
-        //Destroy(firstObject);
-        //firstObject =  nextObject.transform.GetChild(0).gameObject;
-        firstObject = nextObject;
-        firstThrowingpower = firstObject.GetComponent<ThrowingPower>();
-        firstThrowingpower.SetScript(trashBox, this, true);
+        //Destroy(now);
+        now = next;
+        now.transform.parent = this.transform; // 親を変更
+        now.transform.position = this.transform.position; // 座標をコピー
+        now.transform.rotation = this.transform.rotation; // 回転をコピー
+        var firstThrowingPower = now.GetComponent<ThrowingPower>();
+        firstThrowingPower.SetScript(trashBox, this, true);
         index = nextIndex;
 
-        // 古い子オブジェクトを削除
-        //for (int i = firstObject.transform.childCount - 1; i >= 0; i--)
-        //{
-        //    Destroy(firstObject.transform.GetChild(i).gameObject);
-        //}
+        // ThrowingPower の設定
+        var throwingPower = now.GetComponent<ThrowingPower>();
+        if (throwingPower != null)
+        {
+            throwingPower.SetScript(trashBox, this, true); // kinds をセット
+        }
+        else
+        {
+            Debug.LogError("ThrowingPower コンポーネントが見つかりません");
+        }
     }
 
     private void SecondInstantiateTrash()
     {
-            // 新しいゴミを生成
-            nextIndex = (int)Random.Range(0, _name.Count);
-            nextObject.name = _name[index];
-            nextObject = Instantiate(trashPrefabs[index], this.transform);
-            // 古い子オブジェクトを削除
-            //for (int i = firstObject.transform.childCount - 1; i >= 0; i--)
-            //{
-            //    Destroy(firstObject.transform.GetChild(i).gameObject);
-            //}
-
+        // 新しいゴミを生成
+        var tmpIndex = Random.Range(0, _name.Count);
+        next = Instantiate(trashPrefabs[tmpIndex], nextObject.transform);
+        nextIndex = tmpIndex;
     }
 
     public void Kinds()
@@ -187,9 +181,9 @@ public class kinds : MonoBehaviour
         }
 
         // 分解後のゴミを生成
-        firstObject = Instantiate(trashPrefabs[(int)TrashType.bottle], firstObject.transform);
+        now = Instantiate(trashPrefabs[(int)TrashType.bottle], this.transform);
 
-        nextObject = Instantiate(trashPrefabs[(int)TrashType.cap], nextObject.transform);
+        next = Instantiate(trashPrefabs[(int)TrashType.cap], next.transform);
 
         Debug.Log("分解完了: ボトルとキャップを生成");
         isProcessing = true;
