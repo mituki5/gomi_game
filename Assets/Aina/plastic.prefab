@@ -214,7 +214,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
   PowerIncreaseRate: 0.1
   PowerDecreaseRate: 0.6
   SpeedMultiplier: 2
-  TrashBox: {fileID: 0}
+  TrashBox: {fileID: 8100257714443623832, guid: c37baf1729d86454bbfcc3fe9b2d2361, type: 3}
   Player: {fileID: 878055780521267457}
   TargetObject: {fileID: 7496919824475447461, guid: 75e902d151b82774b83efffd2b25c422, type: 3}
   iscanShoot: 1

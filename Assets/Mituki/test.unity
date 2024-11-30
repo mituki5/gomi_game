@@ -286,8 +286,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f444bead71c5ca4aba5f096c3605e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstObject: {fileID: 1063783382}
   nextObject: {fileID: 278481902}
+  now: {fileID: 1063783382}
+  next: {fileID: 278481902}
   _name:
   - plasticbottle
   - bottle
@@ -298,11 +299,11 @@ MonoBehaviour:
   nextIndex: 0
   trashBox: {fileID: 1542104112}
   trashPrefabs:
-  - {fileID: 7608051752013143209, guid: 4efbf686aa70d6c47909844721e28c62, type: 3}
-  - {fileID: 7335773958864978630, guid: ebd536b9016d10d40a5df98296b6c25c, type: 3}
-  - {fileID: 8301393549835201551, guid: 1e92e044dd7d2554dbfe5d13e3f28a64, type: 3}
-  - {fileID: 8706815323055326940, guid: 3667cf3674d65d34bac9dfe35a481f19, type: 3}
-  - {fileID: 8285195888269818234, guid: 7f703fed2d98c2a428b4970d3c502c8f, type: 3}
+  - {fileID: 6545552829753390788, guid: 1017e396fd64e1741a14f8ee3e5b89f5, type: 3}
+  - {fileID: 8999785880462900969, guid: 4cf13c9e68213c94f9ce7697b638cd87, type: 3}
+  - {fileID: 8373360561285141372, guid: 40a0c79ea54a3ba48af732e823ac72f9, type: 3}
+  - {fileID: 7074895528951235237, guid: 261e6548d5c53f647833c2311a7b1e8d, type: 3}
+  - {fileID: 878055780521267457, guid: 3b01b9dd695745d4f8e875299c8ca28c, type: 3}
   weight: 0
   totalnumber: 30
   separation: 1
