@@ -20,6 +20,8 @@ public class ThrowingPower : MonoBehaviour
     private bool NegatePower = true; //無効化
     public float SpeedMultiplier = 2.0f; // 射出速度の倍率
     private float Angle = 40.0f;
+    private Dictionary<string, int> trashGravity = new Dictionary<string, int>();
+    public int _trashGravity;
 
     [Header("References")]
     public GameObject TrashBox;
@@ -38,7 +40,7 @@ public class ThrowingPower : MonoBehaviour
     //public bool powercount10 = true;
 
     private Rigidbody rb;
-    public kinds kindScript;// kinds コンポーネントの参照
+    private kinds kindScript;// kinds コンポーネントの参照
 
 
     // 初期化メソッド (呼び出し順を保証)
@@ -95,15 +97,10 @@ public class ThrowingPower : MonoBehaviour
         }
     }
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         //if(time.GetComponent<TimeCounter>().start == true)
         {
-            if (kindScript == null)
-            {
-                Debug.LogError("kinds コンポーネントが見つからないため処理を中断します");
-                return;
-            }
             if (kindScript == null) {
                 if (!this.iscanShoot) return;
                 HandlePowerInput();
@@ -112,11 +109,11 @@ public class ThrowingPower : MonoBehaviour
                     Debug.Log(Power + "放した");
                     TargetDistance();
                     Gauge();
-                    ResetThrow();
+
                     iscanShoot = false;
                     iscanRotate = false;
                     Power = 0;
-                    kindScript.isGround = false;
+                    ResetThrow();
                     ThrowingPower.Destroy(this);
 
                 }
@@ -218,7 +215,7 @@ public class ThrowingPower : MonoBehaviour
 
 
         // 射出
-           rb.AddForce(velocity * rb.mass / kindScript.weight, ForceMode.Impulse);
+           rb.AddForce(velocity * rb.mass / _trashGravity, ForceMode.Impulse);
            rb.useGravity = true;
 
     }
@@ -268,6 +265,24 @@ public class ThrowingPower : MonoBehaviour
 
             return (new Vector3(pointB.x - pointA.x, x * Mathf.Tan(rad), pointB.z - pointA.z).normalized * initialSpeed);
 
+        }
+    }
+
+    public void Quantity()
+    {
+        // ゴミの種類ごとの重力
+        trashGravity["plasticbottle"] = 3;
+        trashGravity["bottle"] = 3;
+        trashGravity["cap"] = 1;
+        trashGravity["Trash"] = 1;
+        trashGravity["plastic"] = 5;
+    }
+
+    public void DictionaryTrashGravity(string trashname)
+    {
+        if(this.name == trashname)
+        {
+            _trashGravity = trashGravity[trashname];
         }
     }
 }
