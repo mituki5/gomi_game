@@ -22,8 +22,10 @@ public class TimeCounter : MonoBehaviour
     private GameObject _time;
 
     [SerializeField] private SoundManager soundManager;
-    [SerializeField] private AudioClip clip5; // ゲームの残り時間を知らせる音
 
+    [SerializeField] public GameObject BGMSound; // BGM
+    [SerializeField] public GameObject BGMSound_twice; // 1.5倍のBGM
+    [SerializeField] public GameObject Sound5; // ゲームの残り時間を知らせる音
     void Start()
     {
         // ヒエラルキーから探す
@@ -32,6 +34,10 @@ public class TimeCounter : MonoBehaviour
         CountDownText = GameObject.Find("CountDownText");
 
         _time = GameObject.Find("TimeObject");
+
+        BGMSound.SetActive(false);
+        BGMSound_twice.SetActive(false);
+        Sound5.SetActive(false);
     }
 
     void Update()
@@ -44,6 +50,7 @@ public class TimeCounter : MonoBehaviour
         timeText1.text = remaining1.ToString("D1");
         if (remaining1 == 0)
         {
+            BGMSound.SetActive(true);
             BlackImage.SetActive(false);
             CountDownImage.SetActive(false);
             CountDownText.SetActive(false);
@@ -58,7 +65,9 @@ public class TimeCounter : MonoBehaviour
             timeText.text = $"制限時間：{remaining.ToString("D2")}";
             if (remaining == 5)
             {
-                soundManager.Play(clip5);
+                BGMSound.SetActive(false);
+                Sound5.SetActive(true);
+                BGMSound_twice.SetActive(true);
             }
             if (remaining == 0)
             {

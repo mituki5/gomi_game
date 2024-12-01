@@ -6,11 +6,11 @@ public class MainSound : MonoBehaviour
 {
     [SerializeField] private SoundManager soundManager;
 
-    [SerializeField] private AudioClip clip1; // BGM  
     [SerializeField] private AudioClip clip2; // スタートした瞬間の音
     [SerializeField] private AudioClip clip3; // 正しい場所にゴミが入った音
     [SerializeField] private AudioClip clip4; // 間違った場所にゴミが入った音
-    [SerializeField] private AudioClip clip5; // ゲームの残り時間を知らせる音
+
+    AudioSource source;
 
     bool count2;
     bool count4;
@@ -23,6 +23,10 @@ public class MainSound : MonoBehaviour
     void Start()
     {
         _time = GameObject.Find("TimeObject");
+
+        //source = GetComponent<AudioSource>();
+        //source.Play();
+
         count2 = false;
         count4 = false;
 
@@ -33,7 +37,7 @@ public class MainSound : MonoBehaviour
 
     void Update()
     {
-        Invoke(nameof(SoundPlay), 3.0f);
+        Invoke(nameof(SoundPlay), 2.8f); 
 
         if (trash.GetComponent<TrashBox>().isEnter2 == true ||
             trash.GetComponent<TrashBox>().isEnter == true ||
@@ -60,7 +64,6 @@ public class MainSound : MonoBehaviour
 
     void SoundPlay()
     {
-        //soundManager.Play(clip1);
         if (count2 == false)
         {
             soundManager.Play(clip2);
