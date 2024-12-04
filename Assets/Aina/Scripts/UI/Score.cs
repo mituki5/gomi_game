@@ -17,15 +17,15 @@ public class Score : MonoBehaviour
 
     void Start()
     {
-        ScoreText.text = $"スコア：{score.ToString("D3")}";
-
         // ヒエラルキーから探す
         trash = GameObject.Find("Moeru_Gomibako");
         plastic = GameObject.Find("Plastic_Gomibako");
         bottle = GameObject.Find("Bottle_Gomibako");
 
-        score = PlayerPrefs.GetInt("SCORE", 0);
+        //score = PlayerPrefs.GetInt("SCORE", 0);
+        score = 0;
 
+        ScoreText.text = $"スコア：{score.ToString("D3")}";
     }
 
     // 削除時の処理
@@ -100,10 +100,5 @@ public class Score : MonoBehaviour
         //    PlayerPrefs.SetInt("SCORE", score);
         //    PlayerPrefs.Save();
         //}]
-
-        if(SceneManager.GetActiveScene().name == "GameScene 1")
-        {
-            score = 0;
-        }
     }
 }

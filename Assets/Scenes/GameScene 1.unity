@@ -4275,7 +4275,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pozu: {fileID: 474380424}
-  RE_Bottun: {fileID: 1604722371}
 --- !u!1 &532406419
 GameObject:
   m_ObjectHideFlags: 0
@@ -11635,6 +11634,7 @@ GameObject:
   - component: {fileID: 1604722375}
   - component: {fileID: 1604722374}
   - component: {fileID: 1604722373}
+  - component: {fileID: 1604722377}
   m_Layer: 5
   m_Name: RE:Button
   m_TagString: Untagged
@@ -11730,6 +11730,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1604722377}
+        m_TargetAssemblyTypeName: PozuScript, Assembly-CSharp
+        m_MethodName: RTGame_Bottun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1604722375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11768,6 +11780,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604722371}
   m_CullTransparentMesh: 1
+--- !u!114 &1604722377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604722371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb84139ce96da84a83e2b1ee3f39c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pozu: {fileID: 474380424}
 --- !u!1 &1606419439
 GameObject:
   m_ObjectHideFlags: 0

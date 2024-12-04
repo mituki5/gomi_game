@@ -508,6 +508,7 @@ GameObject:
   - component: {fileID: 1108433810}
   - component: {fileID: 1108433809}
   - component: {fileID: 1108433812}
+  - component: {fileID: 1108433813}
   m_Layer: 5
   m_Name: ST:Button
   m_TagString: Untagged
@@ -581,7 +582,19 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1108433812}
         m_TargetAssemblyTypeName: Bottun2, Assembly-CSharp
-        m_MethodName: REGame_Bottun
+        m_MethodName: MainGame_Bottun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1108433813}
+        m_TargetAssemblyTypeName: PozuScript, Assembly-CSharp
+        m_MethodName: RTGame_Bottun
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -641,6 +654,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1131119ea9c4bc24d96f9550b6d4e693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1108433813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108433807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb84139ce96da84a83e2b1ee3f39c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pozu: {fileID: 375409874}
 --- !u!1 &1317559542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349,7 +1375,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 869, y: -450}
+  m_AnchoredPosition: {x: 867, y: -450}
   m_SizeDelta: {x: 133.754, y: 133.754}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2036889478
@@ -1408,6 +1434,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PozuScript, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2036889479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1459,7 +1497,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pozu: {fileID: 375409874}
-  RE_Bottun: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
