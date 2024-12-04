@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class Bottun2 : MonoBehaviour
 {
-    GameObject pozu;
-
     public static float Score;
+    PozuScript PozuScript;
+
     public void Title_Bottun()
     {
         SceneManager.LoadScene("Title");
