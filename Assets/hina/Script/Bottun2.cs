@@ -19,12 +19,4 @@ public class Bottun2 : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene 1");
     }
-
-    public void RTGame_Bottun()
-    {
-        Score = 0;
-        SceneManager.LoadScene("GameScene 1");
-    }
-
-
 }
