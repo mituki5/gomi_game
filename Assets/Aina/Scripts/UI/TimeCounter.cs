@@ -27,7 +27,7 @@ public class TimeCounter : MonoBehaviour
     [SerializeField] public GameObject BGMSound; // BGM
     [SerializeField] public GameObject BGMSound_twice; // 1.5倍のBGM
     [SerializeField] private AudioClip clip1; // カウントダウンの音
-    [SerializeField] public GameObject clip5; // ゲームの残り時間を知らせる音
+    [SerializeField] public GameObject Sound5; // ゲームの残り時間を知らせる音
 
     bool count1;
     void Start()
@@ -41,7 +41,7 @@ public class TimeCounter : MonoBehaviour
 
         BGMSound.SetActive(false);
         BGMSound_twice.SetActive(false);
-        clip5.SetActive(false);
+        Sound5.SetActive(false);
 
         count1 = false;
     }
@@ -84,7 +84,7 @@ public class TimeCounter : MonoBehaviour
             if (remaining == 5)
             {
                 BGMSound.SetActive(false);
-                clip5.SetActive(true);
+                Sound5.SetActive(true);
                 BGMSound_twice.SetActive(true);
             }
             if (remaining == 0)
