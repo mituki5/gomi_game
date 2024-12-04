@@ -14,6 +14,7 @@ public class Score : MonoBehaviour
     private GameObject bottle;
     public static int score = 0;
 
+    [SerializeField] public GameObject Sound4; // ä‘à·Ç¡ÇΩèÍèäÇ…ÉSÉ~Ç™ì¸Ç¡ÇΩâπ
 
     void Start()
     {
@@ -25,6 +26,8 @@ public class Score : MonoBehaviour
         bottle = GameObject.Find("Bottle_Gomibako");
 
         score = PlayerPrefs.GetInt("SCORE", 0);
+
+        Sound4.SetActive(false);
 
     }
 
@@ -81,6 +84,7 @@ public class Score : MonoBehaviour
         // ä‘à·Ç¡ÇΩÇ∆Ç±ÇÎÇ…ì¸Ç¡ÇΩÇÁ
         if (trash.GetComponent<TrashBox>().mistake == true || plastic.GetComponent<PlasticBox>().mistake == true || bottle.GetComponent<BottleBox>().mistake == true)
         {
+            Sound4.SetActive(true);
             if (score > 0)
             {
                 score -= 10;
@@ -88,8 +92,10 @@ public class Score : MonoBehaviour
                 trash.GetComponent<TrashBox>().mistake = false;
                 plastic.GetComponent<PlasticBox>().mistake = false;
                 bottle.GetComponent<BottleBox>().mistake = false;
+
             }
         }
+        Sound4.SetActive(false);
 
         //if (PlayerPrefs.HasKey("SCORE"))
         //{
@@ -101,7 +107,7 @@ public class Score : MonoBehaviour
         //    PlayerPrefs.Save();
         //}]
 
-        if(SceneManager.GetActiveScene().name == "GameScene 1")
+        if (SceneManager.GetActiveScene().name == "GameScene 1")
         {
             score = 0;
         }
