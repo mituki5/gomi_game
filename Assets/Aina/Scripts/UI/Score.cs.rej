@@ -1,0 +1,20 @@
+diff a/Assets/Aina/Scripts/UI/Score.cs b/Assets/Aina/Scripts/UI/Score.cs	(rejected hunks)
+@@ -17,15 +17,15 @@
+ 
+     void Start()
+     {
+-        ScoreText.text = $"�X�R�A�F{score.ToString("D3")}";
+-
+         // �q�G�����L�[����T��
+         trash = GameObject.Find("Moeru_Gomibako");
+         plastic = GameObject.Find("Plastic_Gomibako");
+         bottle = GameObject.Find("Bottle_Gomibako");
+ 
+-        score = PlayerPrefs.GetInt("SCORE", 0);
++        //score = PlayerPrefs.GetInt("SCORE", 0);
++        score = 0;
+ 
++        ScoreText.text = $"�X�R�A�F{score.ToString("D3")}";
+     }
+ 
+     // �폜���̏���
