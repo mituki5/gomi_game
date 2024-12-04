@@ -6,6 +6,7 @@ public class MainSound : MonoBehaviour
 {
     [SerializeField] private SoundManager soundManager;
 
+    [SerializeField] private AudioClip clip1; // カウントダウンの音
     [SerializeField] private AudioClip clip2; // スタートした瞬間の音
     [SerializeField] private AudioClip clip3; // 正しい場所にゴミが入った音
     [SerializeField] private AudioClip clip4; // 間違った場所にゴミが入った音
