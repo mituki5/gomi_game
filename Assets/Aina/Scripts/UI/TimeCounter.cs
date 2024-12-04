@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class TimeCounter : MonoBehaviour
 {
@@ -25,7 +26,10 @@ public class TimeCounter : MonoBehaviour
 
     [SerializeField] public GameObject BGMSound; // BGM
     [SerializeField] public GameObject BGMSound_twice; // 1.5倍のBGM
-    [SerializeField] public GameObject Sound5; // ゲームの残り時間を知らせる音
+    [SerializeField] private AudioClip clip1; // カウントダウンの音
+    [SerializeField] public GameObject clip5; // ゲームの残り時間を知らせる音
+
+    bool count1;
     void Start()
     {
         // ヒエラルキーから探す
@@ -37,7 +41,9 @@ public class TimeCounter : MonoBehaviour
 
         BGMSound.SetActive(false);
         BGMSound_twice.SetActive(false);
-        Sound5.SetActive(false);
+        clip5.SetActive(false);
+
+        count1 = false;
     }
 
     void Update()
@@ -48,16 +54,28 @@ public class TimeCounter : MonoBehaviour
         int remaining1 = timeLimit1 - (int)time;
         //timerTextを更新していく
         timeText1.text = remaining1.ToString("D1");
-        if (remaining1 == 0)
+        switch (remaining1)
         {
-            BGMSound.SetActive(true);
-            BlackImage.SetActive(false);
-            CountDownImage.SetActive(false);
-            CountDownText.SetActive(false);
+            case 3:
+                SoundPlay();
+                break;
+            case 2:
+                SoundPlay();
+                break;
+            case 1:
+                SoundPlay();
+                break;
+            case 0:
+                BGMSound.SetActive(true);
+                BlackImage.SetActive(false);
+                CountDownImage.SetActive(false);
+                CountDownText.SetActive(false);
 
-            //start = true;
+                //start = true;
 
-            _time.GetComponent<Title>().start = true;
+                _time.GetComponent<Title>().start = true;
+                break;
+
         }
         if (_time.GetComponent<Title>().start == true)
         {
@@ -66,7 +84,7 @@ public class TimeCounter : MonoBehaviour
             if (remaining == 5)
             {
                 BGMSound.SetActive(false);
-                Sound5.SetActive(true);
+                clip5.SetActive(true);
                 BGMSound_twice.SetActive(true);
             }
             if (remaining == 0)
@@ -75,4 +93,13 @@ public class TimeCounter : MonoBehaviour
             }
         }
     }
+    void SoundPlay()
+    {
+        if (count1 == false)
+        {
+            soundManager.Play(clip1);
+            count1 = true;
+        }
+    }
 }
+
