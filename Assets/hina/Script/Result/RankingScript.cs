@@ -67,4 +67,28 @@ public class RankingScript : MonoBehaviour
     {
         score1 = newScore;
     }
+
+    public void EndGame()
+    {
+        ResetRankings();
+    }
+
+    //ランキングをリセットするメソッド
+    void ResetRankings()
+    {
+        for (int i = 0; i < ranking.Length; i++)
+        {
+            rankingValue[i] = 0;
+            PlayerPrefs.SetInt(ranking[i], 0);
+        }
+    }
+
+    // ランキングテキストを更新するメソッド
+    void UpdateRankingText()
+    {
+        for (int i = 0; i < rankingText.Length; i++)
+        {
+            rankingText[i].text = rankingValue[i].ToString();
+        }
+    }
 }
