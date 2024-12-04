@@ -508,6 +508,7 @@ GameObject:
   - component: {fileID: 1108433810}
   - component: {fileID: 1108433809}
   - component: {fileID: 1108433812}
+  - component: {fileID: 1108433813}
   m_Layer: 5
   m_Name: ST:Button
   m_TagString: Untagged
@@ -579,9 +580,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1108433812}
-        m_TargetAssemblyTypeName: Bottun2, Assembly-CSharp
-        m_MethodName: REGame_Bottun
+      - m_Target: {fileID: 1108433813}
+        m_TargetAssemblyTypeName: PozuScript, Assembly-CSharp
+        m_MethodName: RTGame_Bottun
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -641,6 +642,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1131119ea9c4bc24d96f9550b6d4e693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1108433813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108433807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb84139ce96da84a83e2b1ee3f39c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pozu: {fileID: 0}
 --- !u!1 &1317559542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1459,7 +1473,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pozu: {fileID: 375409874}
-  RE_Bottun: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
