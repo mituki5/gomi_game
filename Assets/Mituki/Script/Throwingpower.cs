@@ -17,10 +17,10 @@ public class ThrowingPower : MonoBehaviour
     public float PowerIncreaseRate = 0.1f;
     public float PowerDecreaseRate = 0.6f;
     private bool isIncreasingPower = true; //Powerを増加させるフラグ
-    private bool NegatePower = true; //無効化
+    public bool NegatePower = true; //無効化
     public float SpeedMultiplier = 2.0f; // 射出速度の倍率
     private float Angle = 40.0f;
-    private Dictionary<string, int> trashGravity = new Dictionary<string, int>();
+    //private Dictionary<string, int> trashGravity = new Dictionary<string, int>();
     public int _trashGravity;
 
     [Header("References")]
@@ -60,49 +60,17 @@ public class ThrowingPower : MonoBehaviour
 
     private void Start()
     {
-        // time オブジェクトの確認とエラー防止
-        time = GameObject.Find("TimeObject");
-        if (time == null)
-        {
-            Debug.LogError("TimeObject が見つかりません");
-            return;
-        }
-
-        // kinds コンポーネントを取得
-        kindScript = GetComponent<kinds>();
-        if (kindScript == null)
-        {
-            Debug.LogError("kinds コンポーネントが ThrowingPower にアタッチされていません");
-            return;
-        }
-
-        // 親オブジェクトから kinds コンポーネントを取得
-        kindScript = GetComponentInParent<kinds>();
-
-        if (kindScript == null)
-        {
-            Debug.LogError($"親オブジェクトに kinds コンポーネントが見つかりません (GameObject名: {gameObject.name})");
-        }
-        else
-        {
-            Debug.Log($"親オブジェクトに kinds コンポーネントが見つかりました (GameObject名: {kindScript.gameObject.name})");
-        }
-
-
-        // Rigidbody の取得
+        kindScript = GameObject.Find("fistObject").GetComponent<kinds>();
         rb = GetComponent<Rigidbody>();
-        if (rb == null)
-        {
-            Debug.LogError("Rigidbody がアタッチされていません");
-        }
+
     }
     // Update is called once per frame
     public void Update()
     {
         //if(time.GetComponent<TimeCounter>().start == true)
         {
-            if (kindScript == null) {
-                if (!this.iscanShoot) return;
+            //if (kindScript == null) return;
+            //    if (!this.iscanShoot) return;
                 HandlePowerInput();
                 if (Input.GetMouseButtonUp(0))
                 {
@@ -110,14 +78,13 @@ public class ThrowingPower : MonoBehaviour
                     TargetDistance();
                     Gauge();
 
-                    iscanShoot = false;
-                    iscanRotate = false;
-                    Power = 0;
+
+                    kindScript.isGround = false;
                     ResetThrow();
                     ThrowingPower.Destroy(this);
 
                 }
-            }
+            
 
         }
     }
@@ -204,7 +171,6 @@ public class ThrowingPower : MonoBehaviour
     /// </summary>
     public void Gauge()
     {
-        if (rb == null || kindScript == null) return;
         // 標的の座標
         Vector3 targetPosition = TargetObject.transform.position;
             // 射出角度
@@ -212,10 +178,12 @@ public class ThrowingPower : MonoBehaviour
 
             // 射出速度を算出
             Vector3 velocity = CalculateVelocity(this.transform.position, targetPosition, angle);
-
+        Debug.Log(velocity);
 
         // 射出
-           rb.AddForce(velocity * rb.mass / _trashGravity, ForceMode.Impulse);
+        rb.AddForce(velocity *rb.mass / kindScript.weight, ForceMode.Impulse);
+        Debug.Log(velocity * rb.mass / kindScript.weight + name);
+        Debug.Log(kindScript.weight);
            rb.useGravity = true;
 
     }
@@ -268,21 +236,21 @@ public class ThrowingPower : MonoBehaviour
         }
     }
 
-    public void Quantity()
-    {
-        // ゴミの種類ごとの重力
-        trashGravity["plasticbottle"] = 3;
-        trashGravity["bottle"] = 3;
-        trashGravity["cap"] = 1;
-        trashGravity["Trash"] = 1;
-        trashGravity["plastic"] = 5;
-    }
+    //public void Quantity()
+    //{
+    //    // ゴミの種類ごとの重力
+    //    trashGravity["plasticbottle"] = 3;
+    //    trashGravity["bottle"] = 3;
+    //    trashGravity["cap"] = 1;
+    //    trashGravity["Trash"] = 1;
+    //    trashGravity["plastic"] = 5;
+    //}
 
-    public void DictionaryTrashGravity(string trashname)
-    {
-        if(this.name == trashname)
-        {
-            _trashGravity = trashGravity[trashname];
-        }
-    }
+    //public void DictionaryTrashGravity(string trashname)
+    //{
+    //    if(this.name == trashname)
+    //    {
+    //        _trashGravity = trashGravity[trashname];
+    //    }
+    //}
 }
