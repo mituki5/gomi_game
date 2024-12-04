@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -913,11 +913,10 @@ MonoBehaviour:
   timeLimit1: 3
   timeText1: {fileID: 780476727}
   soundManager: {fileID: 1024457865}
-  clip5: {fileID: 8300000, guid: 1ab343bfa9457a749b7fd2587e017952, type: 3}
   BGMSound: {fileID: 1092774336}
   BGMSound_twice: {fileID: 1795648988}
+  clip1: {fileID: 8300000, guid: 9b9f2fd9ca5d4344f8688fe702742e3c, type: 3}
   Sound5: {fileID: 1482036148}
-  volume: 0.5
 --- !u!4 &167474526
 Transform:
   m_ObjectHideFlags: 0
@@ -4291,7 +4290,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pozu: {fileID: 474380424}
-  REGameBottun: {fileID: 0}
 --- !u!1 &532406419
 GameObject:
   m_ObjectHideFlags: 0
@@ -8447,7 +8445,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadc338fb209df640ac62454ba33980e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sound: {fileID: 1092774336}
 --- !u!4 &1024457866
 Transform:
   m_ObjectHideFlags: 0
@@ -10129,7 +10126,6 @@ MonoBehaviour:
   clip2: {fileID: 8300000, guid: 3995fbe5b4577da489334015b6714e74, type: 3}
   clip3: {fileID: 8300000, guid: 3166c7888381b9d4b8fea02283691498, type: 3}
   clip4: {fileID: 8300000, guid: f5fef9bd02142c640afa265a2b91e083, type: 3}
-  clip5: {fileID: 0}
 --- !u!1 &1233521972
 GameObject:
   m_ObjectHideFlags: 0
