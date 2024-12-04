@@ -18,14 +18,15 @@ public class Score : MonoBehaviour
 
     void Start()
     {
-        ScoreText.text = $"スコア：{score.ToString("D3")}";
-
         // ヒエラルキーから探す
         trash = GameObject.Find("Moeru_Gomibako");
         plastic = GameObject.Find("Plastic_Gomibako");
         bottle = GameObject.Find("Bottle_Gomibako");
 
-        score = PlayerPrefs.GetInt("SCORE", 0);
+        //score = PlayerPrefs.GetInt("SCORE", 0);
+        score = 0;
+
+        ScoreText.text = $"スコア：{score.ToString("D3")}";
 
         Sound4.SetActive(false);
 
