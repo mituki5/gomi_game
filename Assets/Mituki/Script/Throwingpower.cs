@@ -21,7 +21,7 @@ public class ThrowingPower : MonoBehaviour
     public bool NegatePower = true; //無効化
     public float SpeedMultiplier = 2.0f; // 射出速度の倍率
     private float Angle = 40.0f;
-    //private Dictionary<string, int> trashGravity = new Dictionary<string, int>();
+    private Dictionary<string, int> trashGravity = new Dictionary<string, int>();
     public int _trashGravity;
 
     [Header("References")]
@@ -192,9 +192,8 @@ public class ThrowingPower : MonoBehaviour
         Debug.Log(velocity);
 
         // 射出
-        rb.AddForce(velocity *rb.mass / kindScript.weight, ForceMode.Impulse);
-        Debug.Log(velocity * rb.mass / kindScript.weight + name);
-        Debug.Log(kindScript.weight);
+        rb.AddForce(velocity *rb.mass / _trashGravity, ForceMode.Impulse);
+
            rb.useGravity = true;
 
     }
