@@ -54,12 +54,12 @@ public class MainSound : MonoBehaviour
             plastic.GetComponent<PlasticBox>().mistake == true || 
             bottle.GetComponent<BottleBox>().mistake == true)
         {
-            if (count4 == false)
-            {
-                soundManager.Play(clip4);
-                count4 = true;
+            //if (count4 == false)
+            //{
+            //    soundManager.Play(clip4);
+            //    count4 = true;
 
-            }
+            //}
         }
     }
 
