@@ -82,8 +82,10 @@ public class ThrowingPower : MonoBehaviour
                     Debug.Log(Power + "放した");
                     TargetDistance();
                     DictionaryTrashGravity(this.name);
+                    //重力がtrueになった
                     Gauge();
                     ResetThrow();
+                    //消すと次のも消えてる
                     ThrowingPower.Destroy(this);
                 }
             }
