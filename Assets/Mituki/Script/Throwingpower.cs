@@ -18,10 +18,10 @@ public class ThrowingPower : MonoBehaviour
     public float PowerIncreaseRate = 0.1f;
     public float PowerDecreaseRate = 0.6f;
     private bool isIncreasingPower = true; //Powerを増加させるフラグ
-    private bool NegatePower = true; //無効化
+    public bool NegatePower = true; //無効化
     public float SpeedMultiplier = 2.0f; // 射出速度の倍率
     private float Angle = 40.0f;
-    private Dictionary<string, int> trashGravity = new Dictionary<string, int>();
+    //private Dictionary<string, int> trashGravity = new Dictionary<string, int>();
     public int _trashGravity;
 
     [Header("References")]
@@ -73,6 +73,7 @@ public class ThrowingPower : MonoBehaviour
     {
         //if(time.GetComponent<TimeCounter>().start == true)
         {
+
             if (kindScript != null) {
                 if (!this.iscanShoot) return;
                 HandlePowerInput();
@@ -90,9 +91,6 @@ public class ThrowingPower : MonoBehaviour
             {
                 Debug.Log("失敗");
             }
-            
-
-
         }
     }
 
@@ -189,10 +187,12 @@ public class ThrowingPower : MonoBehaviour
 
             // 射出速度を算出
             Vector3 velocity = CalculateVelocity(this.transform.position, targetPosition, angle);
-
+        Debug.Log(velocity);
 
         // 射出
-           rb.AddForce(velocity * rb.mass / _trashGravity, ForceMode.Impulse);
+        rb.AddForce(velocity *rb.mass / kindScript.weight, ForceMode.Impulse);
+        Debug.Log(velocity * rb.mass / kindScript.weight + name);
+        Debug.Log(kindScript.weight);
            rb.useGravity = true;
 
     }
@@ -245,6 +245,7 @@ public class ThrowingPower : MonoBehaviour
         }
     }
 
+
     public void Quantity()
     {
         // ゴミの種類ごとの重力
@@ -261,4 +262,5 @@ public class ThrowingPower : MonoBehaviour
         _trashGravity = trashGravity[trashname];
         Debug.Log(_trashGravity);
     }
+
 }

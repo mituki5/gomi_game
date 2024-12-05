@@ -2255,6 +2255,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartBall
       objectReference: {fileID: 0}
+    - target: {fileID: 5054076048280067649, guid: 24550967ce7196b49ae47bb92649bda7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
