@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using TMPro.EditorUtilities;
+using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -56,68 +57,41 @@ public class ThrowingPower : MonoBehaviour
         iscanShoot = true;
         isIncreasingPower = true;
         iscanRotate = true;
+        kindScript.isGround = false;
     }
 
     private void Start()
     {
-        // time オブジェクトの確認とエラー防止
-        time = GameObject.Find("TimeObject");
-        if (time == null)
-        {
-            Debug.LogError("TimeObject が見つかりません");
-            return;
-        }
-
         // kinds コンポーネントを取得
-        kindScript = GetComponent<kinds>();
-        if (kindScript == null)
-        {
-            Debug.LogError("kinds コンポーネントが ThrowingPower にアタッチされていません");
-            return;
-        }
-
-        // 親オブジェクトから kinds コンポーネントを取得
-        kindScript = GetComponentInParent<kinds>();
-
-        if (kindScript == null)
-        {
-            Debug.LogError($"親オブジェクトに kinds コンポーネントが見つかりません (GameObject名: {gameObject.name})");
-        }
-        else
-        {
-            Debug.Log($"親オブジェクトに kinds コンポーネントが見つかりました (GameObject名: {kindScript.gameObject.name})");
-        }
-
+        kindScript = GameObject.Find("fistObject").GetComponent<kinds>();
 
         // Rigidbody の取得
         rb = GetComponent<Rigidbody>();
-        if (rb == null)
-        {
-            Debug.LogError("Rigidbody がアタッチされていません");
-        }
     }
     // Update is called once per frame
     public void Update()
     {
         //if(time.GetComponent<TimeCounter>().start == true)
         {
-            if (kindScript == null) {
+            if (kindScript != null) {
                 if (!this.iscanShoot) return;
                 HandlePowerInput();
                 if (Input.GetMouseButtonUp(0))
                 {
                     Debug.Log(Power + "放した");
                     TargetDistance();
+                    DictionaryTrashGravity(this.name);
                     Gauge();
-
-                    iscanShoot = false;
-                    iscanRotate = false;
-                    Power = 0;
                     ResetThrow();
                     ThrowingPower.Destroy(this);
-
                 }
             }
+            else
+            {
+                Debug.Log("失敗");
+            }
+            
+
 
         }
     }
@@ -143,6 +117,10 @@ public class ThrowingPower : MonoBehaviour
             {
                 NegatePower = true; // 増加中または、減少中ならNegatePowerをtrueに設定
             }
+        }
+        else
+        {
+            NegatePower = true;
         }
     }
 
@@ -204,7 +182,6 @@ public class ThrowingPower : MonoBehaviour
     /// </summary>
     public void Gauge()
     {
-        if (rb == null || kindScript == null) return;
         // 標的の座標
         Vector3 targetPosition = TargetObject.transform.position;
             // 射出角度
@@ -271,18 +248,17 @@ public class ThrowingPower : MonoBehaviour
     public void Quantity()
     {
         // ゴミの種類ごとの重力
-        trashGravity["plasticbottle"] = 3;
-        trashGravity["bottle"] = 3;
-        trashGravity["cap"] = 1;
-        trashGravity["Trash"] = 1;
-        trashGravity["plastic"] = 5;
+        trashGravity["plasticbottle(Clone)"] = 3;
+        trashGravity["bottle(Clone)"] = 3;
+        trashGravity["cap(Clone)"] = 1;
+        trashGravity["Trash(Clone)"] = 1;
+        trashGravity["plastic(Clone)"] = 5;
     }
 
     public void DictionaryTrashGravity(string trashname)
     {
-        if(this.name == trashname)
-        {
-            _trashGravity = trashGravity[trashname];
-        }
+        Quantity();
+        _trashGravity = trashGravity[trashname];
+        Debug.Log(_trashGravity);
     }
 }

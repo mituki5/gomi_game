@@ -14,6 +14,7 @@ public class kinds : MonoBehaviour
     public int index;
     public int nextIndex;
     [SerializeField] private GameObject trashBox;
+    private ThrowingPower throwingPower;
     private enum TrashType
     {
         plasticbottle,
@@ -23,13 +24,11 @@ public class kinds : MonoBehaviour
         plastic,
     }
     [SerializeField] private List<GameObject> trashPrefabs = new List<GameObject>();
-    //private KindsSub kindsSub;
 
     [SerializeField] public float weight;
     public int totalnumber = 10;
-    public bool separation = true;
+    //public bool separation = true;
 
-    public bool isJudging = true;
     public bool isGround = true;
     public bool isProcessing = true;
 
@@ -52,27 +51,29 @@ public class kinds : MonoBehaviour
         SecondInstantiateTrash();
         FirstInstantiateTrash();
         SecondInstantiateTrash();
-
-        //Kinds();
+        Kinds();
+        isGround = true;
 
         //// UI 初期化
-        TrashImage = GameObject.Find("TrashImage");
-        TrashImage.SetActive(false);
-        PlasticImage = GameObject.Find("PlasticImage");
-        PlasticImage.SetActive(false);
-        BottleImage = GameObject.Find("BottleImage");
-        BottleImage.SetActive(false);
+        //TrashImage = GameObject.Find("TrashImage");
+        //TrashImage.SetActive(false);
+        //PlasticImage = GameObject.Find("PlasticImage");
+        //PlasticImage.SetActive(false);
+        //BottleImage = GameObject.Find("BottleImage");
+        //BottleImage.SetActive(false);
     }
 
     private void Update()
     {
         // ゴミが着地していれば、新しいゴミを生成
-        if (isGround == false)
-        //if(throwingPower.iscanShoot == false)
+        if (isGround == false && isProcessing == true)
         {
+            //Destroy(now);
             FirstInstantiateTrash(); //firstObjectを更新
             SecondInstantiateTrash(); //次のゴミを生成
-            //Kinds(); // 種類を更新
+            Kinds(); // 種類を更新
+            isGround = true;
+
         }
 
         if (Input.GetMouseButtonDown(0)) // 左クリック
@@ -95,11 +96,11 @@ public class kinds : MonoBehaviour
                 //ゴミが投げられた場合、その種類に応じてカウントを減らす
                 if (hitObject.name == "plasticbottle(Clone)")
                 { 
-                    //isProcessing = false;
                     Debug.Log("分解を実行");
                     Separation(hitObject);
                     // 分解対象がそのゴミの名前に一致する場合のみ処理
                     DecreaseTrashCount(hitObject.name);
+                    isProcessing = true;
                 }
             }
         }
@@ -121,55 +122,41 @@ public class kinds : MonoBehaviour
         var firstThrowingPower = now.GetComponent<ThrowingPower>();
         firstThrowingPower.SetScript(trashBox, this, true);
         index = nextIndex;
-
-        // ThrowingPower の設定
-        var throwingPower = now.GetComponent<ThrowingPower>();
-        if (throwingPower != null)
-        {
-            throwingPower.SetScript(trashBox, this, true); // kinds をセット
-            isGround = true;
-        }
-        else
-        {
-            Debug.LogError("ThrowingPower コンポーネントが見つかりません");
-        }
     }
 
     private void SecondInstantiateTrash()
     {
-        //Destroy(now);
-
         // 新しいゴミを生成
         var tmpIndex = Random.Range(0, _name.Count);
         next = Instantiate(trashPrefabs[tmpIndex], nextObject.transform);
         nextIndex = tmpIndex;
     }
 
-    //public void Kinds()
-    //{
-    //    // ゴミの種類に応じて設定
-    //    switch (_name[index])
-    //    {
-    //        case "plasticbottle":
-    //            weight = 3.0f;
-    //            break;
-    //        case "bottle":
-    //            weight = 3.0f;
-    //            break;
-    //        case "cap":
-    //            weight = 2.0f;
-    //            break;
-    //        case "Trash":
-    //            weight = 2.0f;
-    //            break;
-    //        case "plastic":
-    //            weight = 5.0f;
-    //            break;
-    //        default:
-    //            weight = 2.0f;
-    //            break;
-    //    }
-    //}
+    public void Kinds()
+    {
+        // ゴミの種類に応じて設定
+        switch (_name[index])
+        {
+            case "plasticbottle":
+                weight = 3.0f;
+                break;
+            case "bottle":
+                weight = 3.0f;
+                break;
+            case "cap":
+                weight = 2.0f;
+                break;
+            case "Trash":
+                weight = 2.0f;
+                break;
+            case "plastic":
+                weight = 5.0f;
+                break;
+            default:
+                weight = 2.0f;
+                break;
+        }
+    }
 
     /// <summary>
     /// ゴミを分解する関数
@@ -177,6 +164,7 @@ public class kinds : MonoBehaviour
     private void Separation(GameObject targetObject)
     {
         Debug.Log("分解処理を実行");
+        isProcessing = false;
 
         if (targetObject.transform.childCount > 0)
         {
@@ -190,7 +178,6 @@ public class kinds : MonoBehaviour
         next = Instantiate(trashPrefabs[(int)TrashType.cap], next.transform);
 
         Debug.Log("分解完了: ボトルとキャップを生成");
-        isProcessing = true;
     }
 
     /// <summary>
