@@ -30,6 +30,9 @@ public class TimeCounter : MonoBehaviour
     [SerializeField] public GameObject Sound5; // ゲームの残り時間を知らせる音
 
     bool count1;
+    bool count2;
+    bool count3;
+
     void Start()
     {
         // ヒエラルキーから探す
@@ -44,6 +47,8 @@ public class TimeCounter : MonoBehaviour
         Sound5.SetActive(false);
 
         count1 = false;
+        count2 = false;
+        count3 = false;
     }
 
     void Update()
@@ -57,13 +62,13 @@ public class TimeCounter : MonoBehaviour
         switch (remaining1)
         {
             case 3:
-                SoundPlay();
+                Invoke(nameof(SoundPlay), 0.01f);
                 break;
             case 2:
-                SoundPlay();
+                SoundPlay2();
                 break;
             case 1:
-                SoundPlay();
+                SoundPlay3();
                 break;
             case 0:
                 BGMSound.SetActive(true);
@@ -99,6 +104,22 @@ public class TimeCounter : MonoBehaviour
         {
             soundManager.Play(clip1);
             count1 = true;
+        }
+    }
+    void SoundPlay2()
+    {
+        if (count2 == false)
+        {
+            soundManager.Play(clip1);
+            count2 = true;
+        }
+    }
+    void SoundPlay3()
+    {
+        if (count3 == false)
+        {
+            soundManager.Play(clip1);
+            count3 = true;
         }
     }
 }

@@ -142,7 +142,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5054076048280067649}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb93b783df97ad244a5f7081302b76d9, type: 3}
   m_Name: 
@@ -150,7 +150,9 @@ MonoBehaviour:
   Power: 0
   PowerIncreaseRate: 0.1
   PowerDecreaseRate: 0.6
+  NegatePower: 1
   SpeedMultiplier: 2
+  _trashGravity: 0
   TrashBox: {fileID: 0}
   Player: {fileID: 7074895528951235237, guid: 261e6548d5c53f647833c2311a7b1e8d, type: 3}
   TargetObject: {fileID: 0}

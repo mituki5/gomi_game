@@ -916,6 +916,7 @@ MonoBehaviour:
   BGMSound: {fileID: 1092774336}
   BGMSound_twice: {fileID: 1795648988}
   clip1: {fileID: 8300000, guid: 9b9f2fd9ca5d4344f8688fe702742e3c, type: 3}
+  Sound1: {fileID: 0}
   Sound5: {fileID: 1482036148}
 --- !u!4 &167474526
 Transform:
@@ -9880,6 +9881,7 @@ MonoBehaviour:
   Power: 0
   PowerIncreaseRate: 0.1
   PowerDecreaseRate: 0.6
+  NegatePower: 1
   SpeedMultiplier: 2
   _trashGravity: 0
   TrashBox: {fileID: 0}
@@ -10762,6 +10764,7 @@ MonoBehaviour:
   Power: 0
   PowerIncreaseRate: 0.1
   PowerDecreaseRate: 0.6
+  NegatePower: 1
   SpeedMultiplier: 2
   _trashGravity: 0
   TrashBox: {fileID: 0}
