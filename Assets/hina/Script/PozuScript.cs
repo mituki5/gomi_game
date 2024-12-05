@@ -39,4 +39,9 @@ public class PozuScript : MonoBehaviour
         pozu.SetActive(false);
         Time.timeScale = 1;
     }
+
+    public void Main_Bottun()
+    {
+        Time.timeScale = 1;
+    }
 }

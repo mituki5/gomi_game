@@ -142,6 +142,9 @@ public class ThrowingScript1 : MonoBehaviour
             // 射出
             Rigidbody rid = ball.GetComponent<Rigidbody>();
             rid.AddForce(velocity * rid.mass, ForceMode.Impulse);
+
+            print($"velocity = {velocity}");
+            Debug.Log(targetPosition);
         }
         else
         {
@@ -155,8 +158,10 @@ public class ThrowingScript1 : MonoBehaviour
     /// <param name="pointA">射出開始座標</param>
     /// <param name="pointB">標的の座標</param>
     /// <returns>射出速度</returns>
+    
     private Vector3 CalculateVelocity(Vector3 pointA, Vector3 pointB, float angle)
     {
+        Debug.Log("a");
         // 射出角をラジアンに変換
         float rad = angle * Mathf.PI / 180;
 
@@ -168,7 +173,7 @@ public class ThrowingScript1 : MonoBehaviour
 
         // 斜方投射の公式を初速度について解く
         float speed = Mathf.Sqrt(-Physics.gravity.y * Mathf.Pow(x, 2) / (2 * Mathf.Pow(Mathf.Cos(rad), 2) * (x * Mathf.Tan(rad) + y)));
-
+        Debug.Log(speed);
         if (float.IsNaN(speed))
         {
             // 条件を満たす初速を算出できなければVector3.zeroを返す
