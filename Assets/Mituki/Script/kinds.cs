@@ -14,6 +14,7 @@ public class kinds : MonoBehaviour
     public int index;
     public int nextIndex;
     [SerializeField] private GameObject trashBox;
+    private ThrowingPower throwingPower;
     private enum TrashType
     {
         plasticbottle,
@@ -26,9 +27,8 @@ public class kinds : MonoBehaviour
 
     [SerializeField] public float weight;
     public int totalnumber = 10;
-    public bool separation = true;
+    //public bool separation = true;
 
-    public bool isJudging = true;
     public bool isGround = true;
     public bool isProcessing = true;
 
@@ -40,21 +40,23 @@ public class kinds : MonoBehaviour
 
     public void Start()
     {
-        // ƒSƒ~‚Ìí—Ş‚²‚Æ‚Ì‰Šú’l‚ğİ’è (w’è‚³‚ê‚½ŒÂ”)
+        // ã‚´ãƒŸã®ç¨®é¡ã”ã¨ã®åˆæœŸå€¤ã‚’è¨­å®š (æŒ‡å®šã•ã‚ŒãŸå€‹æ•°)
         trashCounts["plasticbottle(Clone)"] = 2;
         trashCounts["bottle(Clone)"] = 1;
         trashCounts["cap(Clone)"] = 1;
         trashCounts["Trash(Clone)"] = 3;
         trashCounts["plastic(Clone)"] = 3;
 
-        // ‰Šú‰»: Å‰‚ÌƒSƒ~‚ğ¶¬
+        // åˆæœŸåŒ–: æœ€åˆã®ã‚´ãƒŸã‚’ç”Ÿæˆ
         SecondInstantiateTrash();
         FirstInstantiateTrash();
         SecondInstantiateTrash();
 
         Kinds();
+        isGround = true;
 
-        //// UI ‰Šú‰»
+
+        //// UI åˆæœŸåŒ–
         //TrashImage = GameObject.Find("TrashImage");
         //TrashImage.SetActive(false);
         //PlasticImage = GameObject.Find("PlasticImage");
@@ -65,47 +67,49 @@ public class kinds : MonoBehaviour
 
     private void Update()
     {
-        // ƒSƒ~‚ª’…’n‚µ‚Ä‚¢‚ê‚ÎAV‚µ‚¢ƒSƒ~‚ğ¶¬
-        //if (isGround == false)
+        // ã‚´ãƒŸãŒç€åœ°ã—ã¦ã„ã‚Œã°ã€æ–°ã—ã„ã‚´ãƒŸã‚’ç”Ÿæˆ
         if (isGround == false && isProcessing == true)
         {
-            FirstInstantiateTrash(); //firstObject‚ğXV
-            SecondInstantiateTrash(); //Ÿ‚ÌƒSƒ~‚ğ¶¬
-            Kinds(); // í—Ş‚ğXV
+            //Destroy(now);
+            FirstInstantiateTrash(); //firstObjectã‚’æ›´æ–°
+            SecondInstantiateTrash(); //æ¬¡ã®ã‚´ãƒŸã‚’ç”Ÿæˆ
+            Kinds(); // ç¨®é¡ã‚’æ›´æ–°
             isGround = true;
         }
 
-        if (Input.GetMouseButtonDown(0)) // ¶ƒNƒŠƒbƒN
+        if (Input.GetMouseButtonDown(0)) // å·¦ã‚¯ãƒªãƒƒã‚¯
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            // Raycast‚ğ‰Â‹‰» (ƒfƒoƒbƒO—p)
+            // Raycastã‚’å¯è¦–åŒ– (ãƒ‡ãƒãƒƒã‚°ç”¨)
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1f);
 
-            // Raycast‚ÅƒIƒuƒWƒFƒNƒg‚ğŒŸo
+            // Raycastã§ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ¤œå‡º
             if (Physics.Raycast(ray, out hit))
             {
                 GameObject hitObject = hit.collider.gameObject;
 
-                Debug.Log($"Raycast‚ªŒŸo: {hitObject.name}");
+                Debug.Log($"RaycastãŒæ¤œå‡º: {hitObject.name}");
                 DecreaseTrashCount(hitObject.name);
 
-                // •ª‰ğ‘ÎÛ‚ª`plasticbottle`‚Ìê‡‚Ì‚İˆ—
-                //ƒSƒ~‚ª“Š‚°‚ç‚ê‚½ê‡A‚»‚Ìí—Ş‚É‰‚¶‚ÄƒJƒEƒ“ƒg‚ğŒ¸‚ç‚·
+                // åˆ†è§£å¯¾è±¡ãŒ`plasticbottle`ã®å ´åˆã®ã¿å‡¦ç†
+                //ã‚´ãƒŸãŒæŠ•ã’ã‚‰ã‚ŒãŸå ´åˆã€ãã®ç¨®é¡ã«å¿œã˜ã¦ã‚«ã‚¦ãƒ³ãƒˆã‚’æ¸›ã‚‰ã™
                 if (hitObject.name == "plasticbottle(Clone)")
                 { 
+
                     isProcessing = false;
-                    Debug.Log("•ª‰ğ‚ğÀs");
+                    Debug.Log("åˆ†è§£ã‚’å®Ÿè¡Œ");
                     Separation(hitObject);
-                    // •ª‰ğ‘ÎÛ‚ª‚»‚ÌƒSƒ~‚Ì–¼‘O‚Éˆê’v‚·‚éê‡‚Ì‚İˆ—
+                    // åˆ†è§£å¯¾è±¡ãŒãã®ã‚´ãƒŸã®åå‰ã«ä¸€è‡´ã™ã‚‹å ´åˆã®ã¿å‡¦ç†
                     DecreaseTrashCount(hitObject.name);
+                    isProcessing = true;
                 }
             }
         }
 
 
-        //‡Œv”itotalnumberj‚ª0‚É’B‚µ‚½ê‡AƒŠƒZƒbƒg‚µ‚ÄV‚µ‚¢ŒÂ”‚ğİ’è
+        //åˆè¨ˆæ•°ï¼ˆtotalnumberï¼‰ãŒ0ã«é”ã—ãŸå ´åˆã€ãƒªã‚»ãƒƒãƒˆã—ã¦æ–°ã—ã„å€‹æ•°ã‚’è¨­å®š
         if (totalnumber <= 0){
             ResetTrashCounts();
         }
@@ -115,30 +119,17 @@ public class kinds : MonoBehaviour
     {
         //Destroy(now);
         now = next;
-        now.transform.parent = this.transform; // e‚ğ•ÏX
-        now.transform.position = this.transform.position; // À•W‚ğƒRƒs[
-        now.transform.rotation = this.transform.rotation; // ‰ñ“]‚ğƒRƒs[
+        now.transform.parent = this.transform; // è¦ªã‚’å¤‰æ›´
+        now.transform.position = this.transform.position; // åº§æ¨™ã‚’ã‚³ãƒ”ãƒ¼
+        now.transform.rotation = this.transform.rotation; // å›è»¢ã‚’ã‚³ãƒ”ãƒ¼
         var firstThrowingPower = now.GetComponent<ThrowingPower>();
         firstThrowingPower.SetScript(trashBox, this, true);
         index = nextIndex;
-
-
-        //// ThrowingPower ‚Ìİ’è
-        //var throwingPower = now.GetComponent<ThrowingPower>();
-        //if (throwingPower != null)
-        //{
-        //    throwingPower.SetScript(trashBox, this, true); // kinds ‚ğƒZƒbƒg
-        //    isGround = true;
-        //}
-        //else
-        //{
-        //    Debug.LogError("ThrowingPower ƒRƒ“ƒ|[ƒlƒ“ƒg‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
-        //}
     }
 
     private void SecondInstantiateTrash()
     {
-        // V‚µ‚¢ƒSƒ~‚ğ¶¬
+        // æ–°ã—ã„ã‚´ãƒŸã‚’ç”Ÿæˆ
         var tmpIndex = Random.Range(0, _name.Count);
         next = Instantiate(trashPrefabs[tmpIndex], nextObject.transform);
         nextIndex = tmpIndex;
@@ -146,7 +137,7 @@ public class kinds : MonoBehaviour
 
     public void Kinds()
     {
-        // ƒSƒ~‚Ìí—Ş‚É‰‚¶‚Äİ’è
+        // ã‚´ãƒŸã®ç¨®é¡ã«å¿œã˜ã¦è¨­å®š
         switch (_name[index])
         {
             case "plasticbottle":
@@ -171,11 +162,12 @@ public class kinds : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒSƒ~‚ğ•ª‰ğ‚·‚éŠÖ”
+    /// ã‚´ãƒŸã‚’åˆ†è§£ã™ã‚‹é–¢æ•°
     /// </summary>
     private void Separation(GameObject targetObject)
     {
-        Debug.Log("•ª‰ğˆ—‚ğÀs");
+        Debug.Log("åˆ†è§£å‡¦ç†ã‚’å®Ÿè¡Œ");
+        isProcessing = false;
 
         if (targetObject.transform.childCount > 0)
         {
@@ -183,61 +175,60 @@ public class kinds : MonoBehaviour
         }
         Destroy(now);
         Destroy(next);
-        // •ª‰ğŒã‚ÌƒSƒ~‚ğ¶¬
+        // åˆ†è§£å¾Œã®ã‚´ãƒŸã‚’ç”Ÿæˆ
         now = Instantiate(trashPrefabs[(int)TrashType.bottle], this.transform);
 
         next = Instantiate(trashPrefabs[(int)TrashType.cap], next.transform);
 
-        Debug.Log("•ª‰ğŠ®—¹: ƒ{ƒgƒ‹‚ÆƒLƒƒƒbƒv‚ğ¶¬");
-        isProcessing = true;
+        Debug.Log("åˆ†è§£å®Œäº†: ãƒœãƒˆãƒ«ã¨ã‚­ãƒ£ãƒƒãƒ—ã‚’ç”Ÿæˆ");
     }
 
     /// <summary>
-    /// ƒSƒ~‚Ìí—Ş‚ğ”»’è‚µ‚Ä”‚ğŒ¸‚ç‚·ˆ—
+    /// ã‚´ãƒŸã®ç¨®é¡ã‚’åˆ¤å®šã—ã¦æ•°ã‚’æ¸›ã‚‰ã™å‡¦ç†
     /// </summary>
     private void DecreaseTrashCount(string trashName)
     {
-        Debug.Log("o—ˆ‚Ä‚é") ;
-        // ƒSƒ~‚Ìí—Ş‚²‚Æ‚ÉŒÂ”‚ğŒ¸‚ç‚·
+        Debug.Log("å‡ºæ¥ã¦ã‚‹") ;
+        // ã‚´ãƒŸã®ç¨®é¡ã”ã¨ã«å€‹æ•°ã‚’æ¸›ã‚‰ã™
         SecondInstantiateTrash();
         Debug.Log($"trashName: {trashName}, now.name: {now.name}");
         if (trashName == now.name)
         {
             trashCounts[trashName]--;
-            totalnumber--; // ‡Œv”‚ğŒ¸‚ç‚·
+            totalnumber--; // åˆè¨ˆæ•°ã‚’æ¸›ã‚‰ã™
             SecondInstantiateTrash();
-            Debug.Log($"{trashName}‚Ì”‚ğ1Œ¸‚ç‚µ‚Ü‚µ‚½Bc‚è”: {trashCounts[trashName]}");
+            Debug.Log($"{trashName}ã®æ•°ã‚’1æ¸›ã‚‰ã—ã¾ã—ãŸã€‚æ®‹ã‚Šæ•°: {trashCounts[trashName]}");
 
-            // ƒSƒ~‚ª•ª‰ğ‚³‚ê‚½ê‡
+            // ã‚´ãƒŸãŒåˆ†è§£ã•ã‚ŒãŸå ´åˆ
             if (trashName == "plasticbottle(Clone)")
             {
-                // •ª‰ğŒãAbottle ‚Æ cap ‚ğ‘‚â‚·
+                // åˆ†è§£å¾Œã€bottle ã¨ cap ã‚’å¢—ã‚„ã™
                 trashCounts["bottle(Clone)"]++;
                 trashCounts["cap(Clone)"]++;
-                Debug.Log("plasticbottle ‚ğ•ª‰ğ‚µ‚Ä bottle ‚Æ cap ‚ğ‘‚â‚µ‚Ü‚µ‚½");
+                Debug.Log("plasticbottle ã‚’åˆ†è§£ã—ã¦ bottle ã¨ cap ã‚’å¢—ã‚„ã—ã¾ã—ãŸ");
             }
 
             if (trashCounts[trashName] <= 0)
             {
-                Debug.Log($"{trashName}‚Í‚à‚¤c‚Á‚Ä‚¢‚Ü‚¹‚ñ");
+                Debug.Log($"{trashName}ã¯ã‚‚ã†æ®‹ã£ã¦ã„ã¾ã›ã‚“");
                 //var _name = new List<string>();
                 //_name.Remove(now.name);
             }
         }
         else
         {
-            Debug.Log("–¼‘Oˆá‚¤");
+            Debug.Log("åå‰é•ã†");
             return;
         }
     }
 
     private void ResetTrashCounts()
     {
-        Debug.Log("‘‡Œv”‚ª0‚É’B‚µ‚½‚½‚ßAƒJƒEƒ“ƒg‚ğƒŠƒZƒbƒg");
+        Debug.Log("ç·åˆè¨ˆæ•°ãŒ0ã«é”ã—ãŸãŸã‚ã€ã‚«ã‚¦ãƒ³ãƒˆã‚’ãƒªã‚»ãƒƒãƒˆ");
 
-        totalnumber = 10; // ‡Œv”‚Í10‚Éİ’è
+        totalnumber = 10; // åˆè¨ˆæ•°ã¯10ã«è¨­å®š
 
-        // ŠeƒSƒ~‚ÌŒÂ”‚ğƒŠƒZƒbƒg (w’è‚³‚ê‚½ŒÂ”)
+        // å„ã‚´ãƒŸã®å€‹æ•°ã‚’ãƒªã‚»ãƒƒãƒˆ (æŒ‡å®šã•ã‚ŒãŸå€‹æ•°)
         trashCounts["plasticbottle(Clone)"] = 2;
         trashCounts["bottle(Clone)"] = 1;
         trashCounts["cap(Clone)"] = 1;
@@ -252,10 +243,10 @@ public class kinds : MonoBehaviour
         _name.Add("plastic");
 
 
-        // ŠeƒSƒ~‚ÌŒÂ”‚ğƒfƒoƒbƒOƒƒO‚Éo—Í
+        // å„ã‚´ãƒŸã®å€‹æ•°ã‚’ãƒ‡ãƒãƒƒã‚°ãƒ­ã‚°ã«å‡ºåŠ›
         foreach (var entry in trashCounts)
         {
-            Debug.Log($"ƒSƒ~í—Ş: {entry.Key}, İ’èŒÂ”: {entry.Value}");
+            Debug.Log($"ã‚´ãƒŸç¨®é¡: {entry.Key}, è¨­å®šå€‹æ•°: {entry.Value}");
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using TMPro.EditorUtilities;
+using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -56,36 +57,40 @@ public class ThrowingPower : MonoBehaviour
         iscanShoot = true;
         isIncreasingPower = true;
         iscanRotate = true;
+        kindScript.isGround = false;
     }
 
     private void Start()
     {
+        // kinds コンポーネントを取得
         kindScript = GameObject.Find("fistObject").GetComponent<kinds>();
-        rb = GetComponent<Rigidbody>();
 
+        // Rigidbody の取得
+        rb = GetComponent<Rigidbody>();
     }
     // Update is called once per frame
     public void Update()
     {
         //if(time.GetComponent<TimeCounter>().start == true)
         {
-            //if (kindScript == null) return;
-            //    if (!this.iscanShoot) return;
+
+            if (kindScript != null) {
+                if (!this.iscanShoot) return;
                 HandlePowerInput();
                 if (Input.GetMouseButtonUp(0))
                 {
                     Debug.Log(Power + "放した");
                     TargetDistance();
+                    DictionaryTrashGravity(this.name);
                     Gauge();
-
-
-                    kindScript.isGround = false;
                     ResetThrow();
                     ThrowingPower.Destroy(this);
-
                 }
-            
-
+            }
+            else
+            {
+                Debug.Log("失敗");
+            }
         }
     }
 
@@ -110,6 +115,10 @@ public class ThrowingPower : MonoBehaviour
             {
                 NegatePower = true; // 増加中または、減少中ならNegatePowerをtrueに設定
             }
+        }
+        else
+        {
+            NegatePower = true;
         }
     }
 
@@ -236,21 +245,22 @@ public class ThrowingPower : MonoBehaviour
         }
     }
 
-    //public void Quantity()
-    //{
-    //    // ゴミの種類ごとの重力
-    //    trashGravity["plasticbottle"] = 3;
-    //    trashGravity["bottle"] = 3;
-    //    trashGravity["cap"] = 1;
-    //    trashGravity["Trash"] = 1;
-    //    trashGravity["plastic"] = 5;
-    //}
 
-    //public void DictionaryTrashGravity(string trashname)
-    //{
-    //    if(this.name == trashname)
-    //    {
-    //        _trashGravity = trashGravity[trashname];
-    //    }
-    //}
+    public void Quantity()
+    {
+        // ゴミの種類ごとの重力
+        trashGravity["plasticbottle(Clone)"] = 3;
+        trashGravity["bottle(Clone)"] = 3;
+        trashGravity["cap(Clone)"] = 1;
+        trashGravity["Trash(Clone)"] = 1;
+        trashGravity["plastic(Clone)"] = 5;
+    }
+
+    public void DictionaryTrashGravity(string trashname)
+    {
+        Quantity();
+        _trashGravity = trashGravity[trashname];
+        Debug.Log(_trashGravity);
+    }
+
 }

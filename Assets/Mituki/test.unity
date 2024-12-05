@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 278481903}
-  - component: {fileID: 278481904}
   m_Layer: 0
   m_Name: nextObject
   m_TagString: Untagged
@@ -155,25 +154,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &278481904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 278481902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce877aca70d097e4785fdb3f2a1ad0f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextObject: {fileID: 278481902}
-  trashPrefabs:
-  - {fileID: 7608051752013143209, guid: 4efbf686aa70d6c47909844721e28c62, type: 3}
-  - {fileID: 7335773958864978630, guid: ebd536b9016d10d40a5df98296b6c25c, type: 3}
-  - {fileID: 8301393549835201551, guid: 1e92e044dd7d2554dbfe5d13e3f28a64, type: 3}
-  - {fileID: 8706815323055326940, guid: 3667cf3674d65d34bac9dfe35a481f19, type: 3}
-  - {fileID: 8285195888269818234, guid: 7f703fed2d98c2a428b4970d3c502c8f, type: 3}
 --- !u!1 &498550075
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,8 +286,6 @@ MonoBehaviour:
   - {fileID: 878055780521267457, guid: 3b01b9dd695745d4f8e875299c8ca28c, type: 3}
   weight: 0
   totalnumber: 30
-  separation: 1
-  isJudging: 1
   isGround: 1
   isProcessing: 1
 --- !u!1 &1143095647
