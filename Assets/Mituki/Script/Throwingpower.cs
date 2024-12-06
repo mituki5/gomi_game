@@ -41,7 +41,7 @@ public class ThrowingPower : MonoBehaviour
     //public bool powercount10 = true;
 
     private Rigidbody rb;
-    private kinds kindScript;// kinds コンポーネントの参照
+    private kinds kindScript = null;// kinds コンポーネントの参照
 
 
     // 初期化メソッド (呼び出し順を保証)
@@ -63,8 +63,7 @@ public class ThrowingPower : MonoBehaviour
     private void Start()
     {
         // kinds コンポーネントを取得
-        kindScript = GameObject.Find("fistObject").GetComponent<kinds>();
-
+        //kindScript = GameObject.Find("fistObject").GetComponent<kinds>();
         // Rigidbody の取得
         rb = GetComponent<Rigidbody>();
     }
@@ -73,7 +72,6 @@ public class ThrowingPower : MonoBehaviour
     {
         //if(time.GetComponent<TimeCounter>().start == true)
         {
-
             if (kindScript != null) {
                 if (!this.iscanShoot) return;
                 HandlePowerInput();
@@ -91,7 +89,7 @@ public class ThrowingPower : MonoBehaviour
             }
             else
             {
-                Debug.Log("失敗");
+                //Debug.Log("失敗");
             }
         }
     }
