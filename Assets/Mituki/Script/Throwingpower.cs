@@ -30,7 +30,6 @@ public class ThrowingPower : MonoBehaviour
     public GameObject TargetObject;
 
     private GameObject time;
-    private GameObject child;
 
     public bool iscanShoot = true;
     public bool iscanRotate = true;
@@ -77,14 +76,18 @@ public class ThrowingPower : MonoBehaviour
                 HandlePowerInput();
                 if (Input.GetMouseButtonUp(0))
                 {
-                    Debug.Log(Power + "放した");
-                    TargetDistance();
-                    DictionaryTrashGravity(this.name);
-                    //重力がtrueになった
-                    Gauge();
-                    ResetThrow();
-                    //消すと次のも消えてる
-                    ThrowingPower.Destroy(this);
+                    Debug.Log(Power + "放した" + NegatePower);
+                    if (NegatePower == true)
+                    {
+                        Debug.Log(Power + "放した" + NegatePower);
+                        TargetDistance();
+                        DictionaryTrashGravity(this.name);
+                        //重力がtrueになった
+                        Gauge();
+                        ResetThrow();
+                        //消すと次のも消えてる
+                        ThrowingPower.Destroy(this);
+                    }
                 }
             }
             else
@@ -94,31 +97,33 @@ public class ThrowingPower : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Powerの状態管理
+    /// </summary>
     public void CheckPowerStatus()
     {
-        // PowerがMaxPowerに達したら増加を停止
-        if ((int)Power >= MaxPower)
-        {
-            isIncreasingPower = false;
-        }
-        // PowerがMinPowerに達したら減少を停止
-        else if ((int)Power <= MinPower)
-        {
-            isIncreasingPower = true;
-        }
-
         // Powerが0または10以下の場合、NegatePowerフラグを設定
         if ((int)Power <= 10 || (int)Power == 0)
         {
             NegatePower = false;
-            if (isIncreasingPower || !isIncreasingPower)
-            {
-                NegatePower = true; // 増加中または、減少中ならNegatePowerをtrueに設定
-            }
         }
         else
         {
             NegatePower = true;
+            if (isIncreasingPower || !isIncreasingPower)
+            {
+                NegatePower = true; // 増加中または、減少中ならNegatePowerをtrueに設定
+            }
+            // PowerがMaxPowerに達したら増加を停止
+            if ((int)Power >= MaxPower)
+            {
+                isIncreasingPower = false;
+            }
+            // PowerがMinPowerに達したら減少を停止
+            if ((int)Power <= MinPower)
+            {
+                isIncreasingPower = true;
+            }
         }
     }
 
