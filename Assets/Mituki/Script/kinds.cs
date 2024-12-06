@@ -55,12 +55,12 @@ public class kinds : MonoBehaviour
         isGround = true;
 
         //// UI 初期化
-        //TrashImage = GameObject.Find("TrashImage");
-        //TrashImage.SetActive(false);
-        //PlasticImage = GameObject.Find("PlasticImage");
-        //PlasticImage.SetActive(false);
-        //BottleImage = GameObject.Find("BottleImage");
-        //BottleImage.SetActive(false);
+        TrashImage = GameObject.Find("TrashImage");
+        TrashImage.SetActive(false);
+        PlasticImage = GameObject.Find("PlasticImage");
+        PlasticImage.SetActive(false);
+        BottleImage = GameObject.Find("BottleImage");
+        BottleImage.SetActive(false);
     }
 
     private void Update()
@@ -68,12 +68,10 @@ public class kinds : MonoBehaviour
         // ゴミが着地していれば、新しいゴミを生成
         if (isGround == false && isProcessing == true)
         {
-            //Destroy(now);
             FirstInstantiateTrash(); //firstObjectを更新
             SecondInstantiateTrash(); //次のゴミを生成
             Kinds(); // 種類を更新
             isGround = true;
-
         }
 
         if (Input.GetMouseButtonDown(0)) // 左クリック
@@ -96,11 +94,9 @@ public class kinds : MonoBehaviour
                 //ゴミが投げられた場合、その種類に応じてカウントを減らす
                 if (hitObject.name == "plasticbottle(Clone)")
                 { 
+                    isProcessing = false;
                     Debug.Log("分解を実行");
                     Separation(hitObject);
-                    // 分解対象がそのゴミの名前に一致する場合のみ処理
-                    DecreaseTrashCount(hitObject.name);
-                    isProcessing = true;
                 }
             }
         }
@@ -164,20 +160,22 @@ public class kinds : MonoBehaviour
     private void Separation(GameObject targetObject)
     {
         Debug.Log("分解処理を実行");
-        isProcessing = false;
 
-        if (targetObject.transform.childCount > 0)
+        if (next.transform.childCount > 0)
         {
-            Destroy(targetObject.transform.GetChild(0).gameObject);
+            Destroy(next.transform.GetChild(0).gameObject);
         }
         Destroy(now);
         Destroy(next);
         // 分解後のゴミを生成
         now = Instantiate(trashPrefabs[(int)TrashType.bottle], this.transform);
+        var firstThrowingPower = now.GetComponent<ThrowingPower>();
+        firstThrowingPower.SetScript(trashBox, this, true);
 
-        next = Instantiate(trashPrefabs[(int)TrashType.cap], next.transform);
+        next = Instantiate(trashPrefabs[(int)TrashType.cap], nextObject.transform);
 
         Debug.Log("分解完了: ボトルとキャップを生成");
+        isProcessing = true;
     }
 
     /// <summary>
@@ -187,17 +185,16 @@ public class kinds : MonoBehaviour
     {
         Debug.Log("出来てる") ;
         // ゴミの種類ごとに個数を減らす
-        //SecondInstantiateTrash();
+        // 分解対象がそのゴミの名前に一致する場合のみ処理
         Debug.Log($"trashName: {trashName}, now.name: {now.name}");
         if (trashName == now.name)
         {
             trashCounts[trashName]--;
             totalnumber--; // 合計数を減らす
-            //SecondInstantiateTrash();
             Debug.Log($"{trashName}の数を1減らしました。残り数: {trashCounts[trashName]}");
 
             // ゴミが分解された場合
-            if (trashName == "plasticbottle(Clone)")
+            if (now.name == "plasticbottle(Clone)")
             {
                 // 分解後、bottle と cap を増やす
                 trashCounts["bottle(Clone)"]++;
