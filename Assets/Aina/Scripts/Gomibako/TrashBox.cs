@@ -8,6 +8,10 @@ public class TrashBox : MonoBehaviour
     public bool isEnter;  // (紙くず)ゴミが入ったかどうか
     public bool isEnter2; // スタートボールが入ったかどうか
     public bool mistake;  // ゴミが間違ったところに入ったかどうか
+
+    [SerializeField] private SoundManager soundManager;
+    [SerializeField] private AudioClip clip3; // 正しい場所にゴミが入った音
+    [SerializeField] private AudioClip clip4; // 間違った場所にゴミが入った音
     void Start()
     {
         isEnter = false;
@@ -45,36 +49,42 @@ public class TrashBox : MonoBehaviour
                 isEnter2 = true;
                 Debug.Log("スタートボールが入った");
                 Destroy(other.gameObject);
+                soundManager.Play(clip3);
                 break;
             // 紙くず
             case "moerugomi":     
                 isEnter = true;
                 Debug.Log("紙くずが入った");
                 Destroy(other.gameObject);
+                soundManager.Play(clip3);
                 break;
             // 弁当箱
             case "plasticgomi":   
                 mistake = true;
                 Debug.Log("間違えた");
                 Destroy(other.gameObject);
+                soundManager.Play(clip4);
                 break;
             // ペットボトル
             case "plasticbottle": 
                 mistake = true;
                 Debug.Log("間違えた");
                 Destroy(other.gameObject);
+                soundManager.Play(clip4);
                 break;
             // ボトル
             case "bottle":        
                 mistake = true;
                 Debug.Log("間違えた");
                 Destroy(other.gameObject);
+                soundManager.Play(clip4);
                 break;
             // キャップ
             case "cap":           
                 mistake = true;
                 Debug.Log("間違えた");
                 Destroy(other.gameObject);
+                soundManager.Play(clip4);
                 break;
         }
     }

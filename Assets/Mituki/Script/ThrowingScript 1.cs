@@ -30,6 +30,7 @@ public class ThrowingScript1 : MonoBehaviour
     private float ThrowingAngle = 50.0f;
 
     private GameObject StartBall;
+    //private GameObject _time;
 
     [SerializeField]
     private SoundManager soundManager;
@@ -40,11 +41,13 @@ public class ThrowingScript1 : MonoBehaviour
     private void Start()
     {
         StartBall = GameObject.Find("Floor");
+        //_time = GameObject.Find("TimeObject");
     }
 
     private void Update()
     {
         if (StartBall.GetComponent<Floor>().preparation == true)
+        //if (_time.GetComponent<Title>().start == true)
         {
             Key();
             if (Input.GetMouseButtonUp(0))

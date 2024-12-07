@@ -32,9 +32,9 @@ public class TitleSound : MonoBehaviour
         //    }
         //}
 
-        if (Trash.GetComponent<TrashBox>().isEnter2 == true)
-        {
-            soundManager.Play(clip2);
-        }
+        //if (Trash.GetComponent<TrashBox>().isEnter2 == true)
+        //{
+        //    soundManager.Play(clip2);
+        //}
     }
 }
