@@ -38,6 +38,8 @@ public class kinds : MonoBehaviour
     private GameObject PlasticImage;
     private GameObject BottleImage;
 
+    private GameObject _time;
+
     public void Start()
     {
         // ゴミの種類ごとの初期値を設定 (指定された個数)
@@ -61,51 +63,57 @@ public class kinds : MonoBehaviour
         PlasticImage.SetActive(false);
         BottleImage = GameObject.Find("BottleImage");
         BottleImage.SetActive(false);
+
+        _time = GameObject.Find("TimeObject");
     }
 
     private void Update()
     {
-        // ゴミが着地していれば、新しいゴミを生成
-        if (isGround == false && isProcessing == true)
-        {
-            FirstInstantiateTrash(); //firstObjectを更新
-            SecondInstantiateTrash(); //次のゴミを生成
-            Kinds(); // 種類を更新
-            isGround = true;
-        }
-
-        if (Input.GetMouseButtonDown(0)) // 左クリック
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            // Raycastを可視化 (デバッグ用)
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1f);
-
-            // Raycastでオブジェクトを検出
-            if (Physics.Raycast(ray, out hit))
+        //if (_time.GetComponent<Title>().start == true)
+        //{
+            // ゴミが着地していれば、新しいゴミを生成
+            if (isGround == false && isProcessing == true)
             {
-                GameObject hitObject = hit.collider.gameObject;
+                FirstInstantiateTrash(); //firstObjectを更新
+                SecondInstantiateTrash(); //次のゴミを生成
+                Kinds(); // 種類を更新
+                isGround = true;
+            }
 
-                Debug.Log($"Raycastが検出: {hitObject.name}");
-                DecreaseTrashCount(hitObject.name);
+            if (Input.GetMouseButtonDown(0)) // 左クリック
+            {
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                // 分解対象が`plasticbottle`の場合のみ処理
-                //ゴミが投げられた場合、その種類に応じてカウントを減らす
-                if (hitObject.name == "plasticbottle(Clone)")
-                { 
-                    isProcessing = false;
-                    Debug.Log("分解を実行");
-                    Separation(hitObject);
+                // Raycastを可視化 (デバッグ用)
+                Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1f);
+
+                // Raycastでオブジェクトを検出
+                if (Physics.Raycast(ray, out hit))
+                {
+                    GameObject hitObject = hit.collider.gameObject;
+
+                    Debug.Log($"Raycastが検出: {hitObject.name}");
+                    DecreaseTrashCount(hitObject.name);
+
+                    // 分解対象が`plasticbottle`の場合のみ処理
+                    //ゴミが投げられた場合、その種類に応じてカウントを減らす
+                    if (hitObject.name == "plasticbottle(Clone)")
+                    {
+                        isProcessing = false;
+                        Debug.Log("分解を実行");
+                        Separation(hitObject);
+                    }
                 }
             }
-        }
 
 
-        //合計数（totalnumber）が0に達した場合、リセットして新しい個数を設定
-        if (totalnumber <= 0){
-            ResetTrashCounts();
-        }
+            //合計数（totalnumber）が0に達した場合、リセットして新しい個数を設定
+            if (totalnumber <= 0)
+            {
+                ResetTrashCounts();
+            }
+        //}
     }
 
     private void FirstInstantiateTrash()

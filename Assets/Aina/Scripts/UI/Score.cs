@@ -14,8 +14,6 @@ public class Score : MonoBehaviour
     private GameObject bottle;
     public static int score = 0;
 
-    [SerializeField] public GameObject Sound4; // 間違った場所にゴミが入った音
-
     void Start()
     {
         // ヒエラルキーから探す
@@ -27,9 +25,6 @@ public class Score : MonoBehaviour
         score = 0;
 
         ScoreText.text = $"スコア：{score.ToString("D3")}";
-
-        Sound4.SetActive(false);
-
     }
 
     // 削除時の処理
@@ -85,7 +80,6 @@ public class Score : MonoBehaviour
         // 間違ったところに入ったら
         if (trash.GetComponent<TrashBox>().mistake == true || plastic.GetComponent<PlasticBox>().mistake == true || bottle.GetComponent<BottleBox>().mistake == true)
         {
-            Sound4.SetActive(true);
             if (score > 0)
             {
                 score -= 10;
@@ -96,7 +90,6 @@ public class Score : MonoBehaviour
 
             }
         }
-        Sound4.SetActive(false);
 
         //if (PlayerPrefs.HasKey("SCORE"))
         //{
