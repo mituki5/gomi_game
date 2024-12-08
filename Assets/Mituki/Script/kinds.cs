@@ -86,7 +86,7 @@ public class kinds : MonoBehaviour
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 // Raycastを可視化 (デバッグ用)
-                Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1f);
+                //Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1f);
 
                 // Raycastでオブジェクトを検出
                 if (Physics.Raycast(ray, out hit))
