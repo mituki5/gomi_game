@@ -15,7 +15,7 @@ public class ThrowingPower : MonoBehaviour
     public float Power = 0; //現在のPower
     private float MinPower = 0;//最大Power
     private float MaxPower = 100; //最小Power
-    public float PowerIncreaseRate = 0.1f;
+    public float PowerIncreaseRate = 0.6f;
     public float PowerDecreaseRate = 0.6f;
     private bool isIncreasingPower = true; //Powerを増加させるフラグ
     public bool NegatePower = true; //無効化
